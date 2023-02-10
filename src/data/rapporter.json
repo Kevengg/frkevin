@@ -1,0 +1,124 @@
+[
+    {
+        "topic": ["bolig"],
+        "header": "Leie bolig",
+        "content": "Norske leietakeres erfaringer og ønsker for boligmarkedet",
+        "href": ""
+    },
+    {
+        "topic": ["økonomi"],
+        "header": "Gratis inkasso",
+        "content": "Aldri mer gratis inkasso.",
+        "href": ""
+    },
+    {
+        "topic": ["bærekraft"],
+        "header": "Forbruk og klimautslipp",
+        "content": "Befolkningsundersøkelse.",
+        "href": ""
+    },
+    {
+        "topic": ["økonomi"],
+        "header": "Egen pensjonskonto",
+        "content": "Egen pensjonskonto har ført til lavere kostnader.",
+        "href": ""
+    },
+    {
+        "topic": ["strøm"],
+        "header": "Strømundersøkelse 2022",
+        "content": "Strøm og strømleverandører - kunnskap, erfaringer og holdninger i befolkningen.",
+        "href": ""
+    },
+    {
+        "topic": ["digitalt"],
+        "header": "Manipulerende design",
+        "content": "You can log out, but you can never leave.",
+        "href": ""
+    },
+
+    {
+        "topic": ["bærekraft"],
+        "header": "Lavere mva ved reperasjon",
+        "content": "Virkninger av å fjerne eller redusere merverdiavgiften på reparasjon av forbrukervarer.",
+        "href": ""
+    },
+    {
+        "topic": ["forbrukerretigheter"],
+        "header": "Bruktbil",
+        "content": "Kartlegge forbrukernes erfaringer med kjøp av brukte biler.",
+        "href": ""
+    },
+    {
+        "topic": ["bærekraft", "økonomi"],
+        "header": "Sirkulær økonomi",
+        "content": "Om reparasjoner, levetid og grønnvasking.",
+        "href": ""
+    },
+    {
+        "topic": ["strøm", "økonomi"],
+        "header": "Strømundersøkelse 2022",
+        "content": "Bytte hyttestrøm..",
+        "href": ""
+    },
+    {
+        "topic": ["mat"],
+        "header": "Opprinnelsesmerking av mat",
+        "content": "Forbrukerutfordringer i det norske leiemarkedet. Befolkningsundersøkelse gjennomført av YouGov for Forbrukerrådet.",
+        "href": ""
+    },
+    {
+        "topic": ["digitalt"],
+        "header": "Out of control",
+        "content": "How consumers are exploited by the online advertising industry.",
+        "href": ""
+    },
+    {
+        "topic": ["bolig", "økonomi"],
+        "header": "Bolig",
+        "content": "Forventede effekter på boligmarkedet av å fjerne utlånsforskriften.",
+        "href": ""
+    },
+    {
+        "topic": ["økonomi"],
+        "header": "Gebyrfabrikker",
+        "content": "Pasienter i primærhelsetjenesten skal ikke finansiere legekontorenes administrative systemer utover det de betaler i egenandel.",
+        "href": ""
+    },
+    {
+        "topic": ["mat"],
+        "header": "Energidrikk barn og unge",
+        "content": "PowerPoint-presentasjon: Undersøkelse om bruk av energidrikker blant barn og unge 2021.",
+        "href": ""
+    },
+    {
+        "topic": ["digitalt", "forbrukerretigheter"],
+        "header": "Lootboxes",
+        "content": "How the gaming industry exploits consumers using loot boxes.",
+        "href": ""
+    },
+    {
+        "topic": ["strøm", "økonomi"],
+        "header": "Sårbare strømkunder 2022",
+        "content": "De mest sårbare strømkundene betaler de høyeste prisene.",
+        "href": ""
+    },
+    {
+        "topic": ["bolig"],
+        "header": "Trygg bolighandel",
+        "content": "Nye regler fra 1. januar 2022",
+        "href": ""
+    },
+
+    {
+        "topic": ["forbrukerretigheter"],
+        "header": "Bookingportaler fly",
+        "content": "Denne undersøkelsen kartlegger forbrukernes erfaringer med flyreiser, og har som mål å undersøke om det er en forskjell mellom bruk av flyselskapenes egne hjemmesider, bookingportaler og reisebyråer",
+        "href": ""
+    },
+    {
+        "topic": ["mat"],
+        "header": "Plantebaserte pølser og burgere",
+        "content": "Forbrukerrådets kartlegging av utvalg og næringsinnhold 2022.",
+        "href": ""
+    }
+]

@@ -1,0 +1,172 @@
+[
+    {
+        "img": "Gunstein_Instefjord.jpg",
+        "firstName": "Gunstein",
+        "secondName": "",
+        "lastName": "Instefjord",
+        "position": "Leder for forbrukerpolitikk",
+        "tlf": "905 96 780",
+        "email": "gunstein.instefjord@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "andreas.jpg",
+        "firstName": "Andreas",
+        "secondName": "",
+        "lastName": "Framnes",
+        "position": "Kommunikasjonsrådgiver - bærekraft og økonomi",
+        "tlf": "959 45 778",
+        "email": "andreas.framnes@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "Finn_Myrstad.jpg",
+        "firstName": "Finn",
+        "secondName": "",
+        "lastName": "Myrstad",
+        "position": "Fagdirektør",
+        "tlf": "479 66 900",
+        "email": "finn.myrstad@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "Oyvind_Herseth_Kaldestad.jpg",
+        "firstName": "Øyvind",
+        "secondName": "H.",
+        "lastName": "Kaldestad",
+        "position": "Kommunikasjonsrådgiver - digitale rettigheter og strøm",
+        "tlf": "480 82 619",
+        "email": "ohk@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "Jorge_Jensen.jpg",
+        "firstName": "Jorge",
+        "secondName": "",
+        "lastName": "Jensen",
+        "position": "Fagdirektør",
+        "tlf": "930 84 578",
+        "email": "jorge.jensen@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "thomas_iversen.jpg",
+        "firstName": "Thomas",
+        "secondName": "",
+        "lastName": "Iversen",
+        "position": "Seniorrådgiver/forbrukerjurist",
+        "tlf": "907 74 258",
+        "email": "thomas.iversen@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "maren.jpg",
+        "firstName": "Maren",
+        "secondName": "Van Buren",
+        "lastName": "Struksnæs",
+        "position": "Kommunikasjonsrådgiver - forbrukerrettigheter og digitale spill",
+        "tlf": "404 91 804",
+        "email": "maren.struksnaes@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "andreas_strandskog.jpg",
+        "firstName": "Andreas",
+        "secondName": "",
+        "lastName": "Strandskog",
+        "position": "Forbrukerpolitisk rådgiver",
+        "tlf": "",
+        "email": "andreas.strandskog@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "olav_kasland.jpg",
+        "firstName": "Olav",
+        "secondName": "",
+        "lastName": "Kasland",
+        "position": "Fagdirektør",
+        "tlf": "995 99 483",
+        "email": "olav.kasland@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "hanne_beth.jpg",
+        "firstName": "Hanne",
+        "secondName": "Beth",
+        "lastName": "Takvam-Borge",
+        "position": "Forbrukerpolitisk rådgiver",
+        "tlf": "",
+        "email": "hannebeth.takvamborge@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "bengt_eigil.jpg",
+        "firstName": "Bengt",
+        "secondName": "-Eigil",
+        "lastName": "Ruud",
+        "position": "Forbrukerpolitisk rådgiver",
+        "tlf": "",
+        "email": "andreas.strandskog@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "aysha_hussain.jpg",
+        "firstName": "Aysha",
+        "secondName": "",
+        "lastName": "Grönberg",
+        "position": "Seniorrådgiver og ernæringsfysiolog",
+        "tlf": "",
+        "email": "Aysha.Hussain@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "tove.jpg",
+        "firstName": "Tove",
+        "secondName": "Bø",
+        "lastName": "Laundal",
+        "position": "Kommunikasjonssjef",
+        "tlf": "950 28 804",
+        "email": "tove.laundal@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "inger_lise.jpg",
+        "firstName": "Inger",
+        "secondName": "Lise",
+        "lastName": "Blyverket",
+        "position": "Forbrukerdirektør",
+        "tlf": "971 48 690",
+        "email": "inger.lise.blyverket@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "tone_molvaer_berset.jpg",
+        "firstName": "Tone",
+        "secondName": "Molvær",
+        "lastName": "Berset",
+        "position": "Juridisk direktør og leder for enhet for forbrukerrett",
+        "tlf": "997 49 873",
+        "email": "tone.berset@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "amna.png",
+        "firstName": "Amna",
+        "secondName": "",
+        "lastName": "Haye",
+        "position": "Forbrukerjurist",
+        "tlf": "",
+        "email": "amna.haye@forbrukerradet.no",
+        "pictures": "#"
+    },
+    {
+        "img": "nora-gloersen.jpg",
+        "firstName": "Nora",
+        "secondName": "Wennberg",
+        "lastName": "Gløersen",
+        "position": "Forbrukerjurist",
+        "tlf": "",
+        "email": "nora.gloersen@forbrukerradet.no",
+        "pictures": "#"
+    }
+]

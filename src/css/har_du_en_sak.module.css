@@ -1,0 +1,162 @@
+#calc {
+    max-width: 900px;
+    width: 100%;
+    margin: 60px auto;
+}
+
+#calc *:not(#calc * *, #hvaWrap, h2) {
+    margin-top: 70px;
+}
+
+/* Hva har du kjøpt? */
+#hvaWrap {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.hva {
+    display: flex;
+    padding: 12px 15px;
+    background-color: var(--FR-color-lg);
+    border-radius: 8px;
+    width: fit-content;
+    margin: 15px 15px 0 0;
+    align-items: center;
+}
+
+.hva:hover {
+    background-color: var(--FR-color-lb);
+}
+
+.hva i {
+    margin-right: 8px;
+}
+a.hva {
+    color: var(--site-test-color);
+}
+
+/* valg */
+.valgWrap {
+    gap: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.valg {
+    min-width: 160px;
+    padding: 12px 15px;
+    background-color: var(--FR-color-lg);
+    border-radius: 8px;
+    width: fit-content;
+    text-align: center;
+}
+
+.valg:hover {
+    background-color: var(--FR-color-lb);
+}
+
+.selectedValg {
+    background-color: var(--FR-color-lb);
+}
+
+/* svar */
+.svarMedPil {
+    display: grid;
+    grid-template-columns: 11fr 1fr;
+    background-color: #fbe0d3;
+    border-radius: 8px;
+    transition: 0.3s;
+    padding: 15px;
+}
+
+.svarMedPil div {
+    text-align: start;
+    width: 100%;
+    margin: 20px 0 20px 20px;
+}
+
+.svarMedPil p {
+    margin-top: 15px;
+}
+
+.svarMedPil i {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+a.svarMedPil:hover,
+a.svar:hover:not(a.sakJa) {
+    background-color: #f7c2a8;
+    transition: 0.5sec;
+}
+
+a.sakJa:hover {
+    background-color: #a0d4c4;
+    transition: 0.5sec;
+}
+
+.svar {
+    background-color: #fbe0d3;
+    border-radius: 8px;
+    transition: 0.3s;
+    padding: 20px;
+    color: var(--site-text-color);
+}
+
+.svar p:not(.exclude) {
+    margin-top: 15px;
+}
+
+.sakJa {
+    background-color: #cceadf;
+}
+
+/* kalge guide  */
+#kalgeGuide {
+    display: flex;
+    flex-direction: row;
+}
+
+#guide {
+    width: fit-content;
+    margin: 0;
+}
+
+.guideBobble {
+    width: 47px;
+    height: 47px;
+    border-radius: 45px;
+    background-color: #cceadf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.guideSpacer {
+    margin: 3px auto;
+    height: 20px;
+    width: 2px;
+    background-color: #00965e;
+    border-radius: 1px;
+}
+
+#kalgeGuide p {
+    height: 47px;
+    display: flex;
+    align-items: center;
+    margin-left: 35px;
+}
+
+#kalgeGuide p:not(.exclude) {
+    margin-bottom: 26px;
+}
+
+#merOm a {
+    color: black;
+}
+.herOmHva {
+    display: inline;
+}

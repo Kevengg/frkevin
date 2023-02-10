@@ -1,0 +1,255 @@
+/* langBtn */
+#langBtnWrap {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    margin-top: -150px;
+    margin-left: -30px;
+    margin-bottom: 70px;
+}
+
+.langBtn {
+    padding: 10px;
+    background-color: var(--site-backround-color);
+    border-radius: 60px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* box with arrow */
+.boxWArrowWrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+    padding-left: 5px;
+}
+
+.boxWArrow {
+    height: 230px;
+    width: 230px;
+    border: 5px solid var(--FR-color-lg);
+    background-color: white;
+    text-align: center;
+    margin-left: -5px;
+}
+
+.boxWArrow * :not(.arrow, .arrowShadow) {
+    padding: 0 25px;
+}
+
+.boxWArrow h2 {
+    font-size: 60px;
+    margin-top: 17px;
+    font-weight: normal;
+}
+
+.boxWArrow:hover {
+    background-color: var(--FR-color-lg);
+}
+
+.arrow {
+    transition: 0s;
+    width: 40px;
+    height: 40px;
+    border: 5px solid var(--FR-color-lg);
+    position: absolute;
+    background-color: inherit;
+    transform: translateX(200px) translateY(84px) rotate(45deg);
+}
+
+.arrowShadow {
+    width: 28px;
+    height: 59px;
+    position: absolute;
+    background-color: inherit;
+    transform: translateX(192px) translateY(75px);
+    transition: 0s;
+}
+
+.boxWArrowSpacer {
+    width: 30%;
+    height: 5px;
+    background-color: var(--FR-color-b);
+    border-radius: 2.5px;
+    margin: 30px auto;
+}
+
+/* gray banner with arrow */
+.grayBanner {
+    background-color: var(--FR-color-g);
+    height: 250px;
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.grayBannerSpacer {
+    width: 63px;
+    height: 5px;
+    background-color: white;
+    border-radius: 2.5px;
+    margin: 30px auto;
+}
+
+.grayBanner h3 {
+    font-size: 60px;
+    margin-top: 17px;
+    font-weight: normal;
+}
+
+.grayBanner p {
+    font-weight: 600;
+    font-size: 26px;
+}
+
+.grayBannerContent {
+    background-color: inherit;
+    width: 600px;
+}
+
+.grayBannerWrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.grayBannerArrow {
+    width: 40px;
+    height: 40px;
+    background-color: inherit;
+    transform: translateX(287.25px) translateY(47px) rotate(45deg);
+}
+
+/* question box */
+
+.questionBox {
+    margin-bottom: 12px;
+}
+.questionBox h4 {
+    margin-left: 70px;
+    padding-right: 20px;
+}
+
+.questionBoxheader {
+    background-color: #afebee;
+    width: 100%;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 1fr 15fr 1fr;
+    padding: 10px 30px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.questionBoxheader i {
+    color: black;
+}
+
+/* statement box */
+
+.statementBox {
+    margin-bottom: 12px;
+}
+
+.statementBoxheader {
+    background-color: #faca7b;
+    width: 100%;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 1fr 15fr 1fr;
+    padding: 10px 30px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.statementBoxheader svg {
+    width: 60px;
+}
+
+.statementBoxheader i {
+    color: black;
+}
+
+/* statement and question box */
+.boxWrap {
+    width: 100%;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 50px;
+    gap: 50px 0;
+}
+
+.boxContentHeader {
+    display: flex;
+    padding-right: 20px;
+    justify-content: flex-end;
+}
+
+.boxContent {
+    transition: 0.5s;
+    width: 100%;
+    background-color: var(--FR-color-lighterg);
+    height: 300px;
+    overflow: hidden;
+}
+
+.boxContentHidden {
+    transition: 0.5s;
+    height: 0px !important;
+    min-height: 0px !important;
+}
+
+.boxSymbol {
+    width: 25px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: black;
+    position: absolute;
+    transition: 0.2s;
+    transform: scaleY(100%);
+}
+
+.boxSymbolTurn {
+    transform: rotate(90deg);
+    transition: 0.2s;
+}
+.boxContent a {
+    text-decoration: underline;
+}
+
+.boxContent li {
+    list-style-type: disc;
+    margin-bottom: 10px;
+}
+
+/* nemd grid */
+.nemdGridWrap {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 735px) {
+    .boxWArrowWrap {
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+    }
+
+    .boxWArrow {
+        margin-left: 0;
+        margin-top: -5px;
+    }
+
+    .arrow {
+        transform: translateX(90.5px) translateY(200px) rotate(45deg);
+    }
+
+    .arrowShadow {
+        transform: translateX(98px) translateY(176.5px) rotate(90deg);
+    }
+}

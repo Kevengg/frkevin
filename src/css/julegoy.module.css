@@ -1,0 +1,104 @@
+.julegoyBack{
+    height: 300px;
+    width: 100%;
+    
+    display: flex;
+}
+
+html, body{
+    background: none;
+}
+
+.julegoyBack div{
+    background-color: var(--site-backround-color);
+}
+
+.julegoyBack div{
+    display: flex;
+    align-items: center;
+}
+
+.julegoyBack a{
+    padding: 10px;
+    text-decoration: underline;
+    color: red;
+}
+
+.imageWrapper{
+    margin: 2px;
+    overflow: hidden;
+    height: 200px;
+    width: 300px;
+}
+
+.imageWrapper img{
+    height: 100%;
+}
+
+.julegoyShadow{
+    position: absolute;
+    height: 314px;
+    width: 100%;
+    background-color: var(--site-backround-color);
+    z-index: -1;
+}
+
+.julegoyHeader{
+    background-color:var(--site-backround-color);
+    text-align: center;
+    height: 200px;
+    display: grid;
+    grid-template-rows: 3fr 1fr 2fr;
+}
+
+.julegoyHeader h1{
+    font-size: xxx-large;
+}
+
+#julegoyBackground{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background: radial-gradient(#68aad0, #f1f1f1f1, #6aafd7);
+    z-index: -2;
+}
+
+.spacer{
+    height: 200px;
+}
+
+#juleGavePoll{
+    background-color: var(--site-backround-color);
+    text-align: center;
+    width: 350px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    border-radius: 10px;
+    box-shadow: 0px 0 10px  rgba(0, 0, 0, 0.275);
+}
+
+#juleGavePoll label{
+    border-bottom: 2px solid #e3ebec;
+    font-size: larger;
+    margin-top: 5px;
+}
+
+#poll{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    padding-bottom: 25px;
+    padding-top: 15px;
+}
+
+.pollItem{
+    width: 100%;
+    padding: 7px;
+    margin: 10px 0;
+    background-color: var(--site-backround-color);
+    border: 2px solid #e3ebec;
+    border-radius: 10px;
+    text-align: start;
+}

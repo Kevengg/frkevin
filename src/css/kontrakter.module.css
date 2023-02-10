@@ -1,0 +1,62 @@
+/* link button */
+.linkBtn {
+    width: 100%;
+    justify-content: space-between !important;
+}
+
+.linkBtn * {
+    margin-bottom: 0 !important;
+}
+
+/* kontrakter wrap */
+.kontrakterWrap {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 70px;
+}
+
+/* kontrakt */
+.kontrakt {
+    background-color: var(--FR-color-lgreen);
+    display: grid;
+    grid-template-rows: 40px 70px 100px auto;
+    width: auto;
+    height: 500px;
+    padding: 30px;
+    border-radius: 7px;
+}
+
+.kontrakt i {
+    float: right;
+}
+
+.kontrakterMark {
+    background-color: var(--FR-color-green);
+    font-size: 0.7rem;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    border-radius: 28px;
+}
+
+.kontrakt p {
+    margin-bottom: 30px;
+}
+
+.kontrakt h2 {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1100px) {
+    .kontrakterWrap {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 735px) {
+    .kontrakterWrap {
+        grid-template-columns: 1fr;
+    }
+}
