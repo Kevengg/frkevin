@@ -1,0 +1,43 @@
+[
+    {
+        "header": "Mange faller utenfor viktige markeder",
+        "topic": "Økonomi",
+        "img": "handel-illustrasjon.jpg"
+    },
+    {
+        "header": "Bruker design til å lure oss for tid, penger og personopplysninger",
+        "topic": "Digitalt",
+        "img": "manipulerende_design.jpg"
+    },
+    {
+        "header": "Test av stavmiksere: Enorme kvalitetsforskjeller",
+        "topic": "Bærekraft",
+        "img": "forside-stavmikser.png"
+    },
+
+    {
+        "header": "Ny jobb? Husk å beholde forsikringen",
+        "topic": "Økonomi",
+        "img": "artikkelbilde-forsikring.png"
+    },
+    {
+        "header": "Nå kan du klage på både Facebook, Dropbox og Netflix",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg"
+    },
+    {
+        "header": "Forbrukerrådet, Leieboerforeningen og LO feirer Husleielovutvalg",
+        "topic": "Bolig",
+        "img": "husleieutvalg.jpg"
+    },
+    {
+        "header": "Styr unna ulovlige bakeformer i silikon",
+        "topic": "Mat",
+        "img": "bakeform.png"
+    },
+    {
+        "header": "Forbrukerrådet nedringt av fortvilte strømkunder",
+        "topic": "Strøm",
+        "img": "kvinne-med-mobil.jpg"
+    }
+]

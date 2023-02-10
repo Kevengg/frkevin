@@ -1,0 +1,41 @@
+/* veiledning knapp */
+.veiledning {
+    background-color: var(--FR-color-lb);
+    padding: 25px;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.veiledning div {
+    margin-bottom: 10px;
+}
+
+.veiledning a {
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 1320px) {
+    .gridContainerMain {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    #guideBtnWrap {
+        margin-top: 50px;
+        flex-wrap: wrap;
+    }
+
+    .guideBtn {
+        width: 100%;
+    }
+
+    #tipsWrap {
+        grid-template-columns: 1fr;
+    }
+
+    .gridContainerMain {
+        grid-template-columns: 1fr;
+    }
+}

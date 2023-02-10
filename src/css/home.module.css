@@ -1,0 +1,96 @@
+/* tips section */
+#tipsWrap {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 75px;
+    margin-bottom: 100px;
+    gap: 30px 50px;
+    height: fit-content;
+}
+
+.tips {
+    background-color: var(--FR-color-wheat);
+    display: grid;
+    height: 100%;
+    grid-template-columns: 9fr 1fr;
+    border-radius: 8px;
+    width: 100%;
+    color: var(--site-text-color);
+}
+
+.tips:hover {
+    background-color: var(--FR-color-dwheat);
+}
+
+.tips div {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+}
+
+.tips h2 {
+    height: fit-content;
+    font-weight: 500;
+}
+
+/* hero */
+.hero {
+    background-image: url(https://picsum.photos/id/435/1100/380);
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 60%;
+    margin-bottom: 100px;
+    width: 100%;
+}
+
+.hero h2 {
+    color: white;
+    font-size: 2.5rem;
+}
+
+.heroBtn {
+    background-color: var(--site-backround-color);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    border: none;
+    width: fit-content;
+    border-radius: 30px;
+    margin: 30px 0 0 0;
+    cursor: pointer;
+}
+
+/* topSectionContent */
+
+#toppSectionContent h1 {
+    margin-top: 40px;
+    margin-bottom: 0px;
+}
+
+/* siste nytt */
+.nytt:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 850px) {
+    #tipsWrap {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 735px) {
+    .hero {
+        padding: 0;
+        align-items: center;
+    }
+}

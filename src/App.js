@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/home";
+import Tester from "./pages/tester/tester";
+import Forbrukerpolitikk from "./pages/forbrukerpolitikk/forbrukerpolitikk";
+import TipsOgRettigheter from "./pages/tips_og_rettigheter/tips_og_rettigheter";
+import Kontrakter from "./pages/tips_og_rettigheter/kontrakter";
+import HarDuEnSak from "./pages/tips_og_rettigheter/har_du_en_sak";
+import TesterV2 from "./pages/tester/testerv2";
+import KontaktOss from "./pages/kontakt_oss/kontakt_oss";
+import Presse from "./pages/kontakt_oss/presse_kontakt";
+import KlageGuide from "./pages/tips_og_rettigheter/klageguide";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// app
+export default function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/tester" element={<TesterV2 />} />
+            <Route path="/forbrukerpolitikk" element={<Forbrukerpolitikk />} />
+            <Route path="/tips_og_rettigheter" element={<TipsOgRettigheter />} />
+            <Route path="/tips_og_rettigheter/kontrakter" element={<Kontrakter />} />
+            <Route path="/tips_og_rettigheter/har_du_en_sak" element={<HarDuEnSak />} />
+            <Route path="/tips_og_rettigheter/slik_klager_du" element={<KlageGuide />} />
+            <Route path="/kontakt_oss" element={<KontaktOss />} />
+            <Route path="/kontakt_oss/presse" element={<Presse />} />
+        </Routes>
+    );
 }
-
-export default App;

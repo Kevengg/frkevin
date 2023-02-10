@@ -1,0 +1,239 @@
+.textInput,
+select,
+textarea,
+.checkboxContainer {
+    margin-bottom: 25px;
+}
+
+form {
+    width: 100%;
+}
+
+.textInput,
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--FR-color-b);
+    border-radius: 2px;
+    margin-top: 8px;
+}
+
+.checkboxContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 15fr;
+    grid-template-rows: 23px 23px;
+}
+
+.checkboxContainer * {
+    width: auto;
+}
+
+.checkboxContainer input {
+    margin: auto 0;
+    height: 1em;
+}
+
+/* new */
+/* new */
+/* new */
+/* new */
+/* new */
+/* new */
+
+#topSection {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    max-width: var(--site-width);
+    margin: 0 auto;
+}
+
+#topSectionLeft {
+    height: 100px;
+    padding: 0;
+    margin: 0;
+}
+
+#topSectionRight {
+    height: 300px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+#topSectionImg {
+    position: absolute;
+    top: 88.571px;
+    right: -30px;
+    height: 300px;
+    width: 57.4vw;
+}
+
+#toppSectionWrapper {
+    background-color: var(--FR-color-lighterb);
+    width: 100%;
+    padding: 0 25px;
+}
+
+#topBtnWrapper {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin: 70px 0;
+}
+
+.topBtn {
+    background-color: var(--FR-color-darkerb);
+    width: 100%;
+    height: 120px;
+    display: grid;
+    padding: 25px 0 25px 25px;
+    grid-template-columns: 15fr 1fr;
+    grid-template-rows: 1.5fr 1fr;
+    border-radius: 5px;
+}
+
+.topBtn * {
+    color: white;
+}
+
+.topBtn i {
+    color: var(--FR-color-b);
+}
+
+.topBtn div{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.faqSpacer {
+    width: 100%;
+    height: 2px;
+    margin-top: 15px;
+    background-color: var(--FR-color-b);
+}
+
+.faqItem {
+    display: grid;
+    grid-template-columns: 35fr 1fr;
+    height: 50px;
+    align-content: center;
+}
+
+.faqItem i {
+    text-align: end;
+    color: var(--FR-color-b);
+}
+
+#kontaktskjemaWrapper {
+    background-color: var(--FR-color-lighterb);
+}
+
+#KontaktskjemaHeader,
+#tlfKontakt {
+    background-color: var(--FR-color-lb);
+    display: grid;
+    grid-template-columns: 1fr 60fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    padding: 25px;
+    gap: 10px 0;
+    cursor: pointer;
+}
+
+#KontaktskjemaCut {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 50px 30px;
+}
+
+#underkatogorierInfo {
+    width: 100%;
+    height: 100%;
+}
+
+.submittBtn {
+    background-color: var(--site-backround-color);
+    padding: 8px 0;
+    text-align: center;
+    height: auto;
+    width: 160px;
+    border: none;
+    border-radius: 15px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.linkBtn{
+    background-color: var(--site-backround-color);
+    padding: 8px 0;
+    text-align: center;
+    height: auto;
+    width: 200px;
+    border: none;
+    border-radius: 15px;
+    margin: 0;
+    font-weight: bold;
+}
+
+#tlfKontakt {
+    margin-top: 70px;
+}
+
+#frAdresse {
+    background-color: var(--FR-color-lb);
+    padding: 30px;
+    margin-bottom: 70px;
+}
+
+#frAdresse i {
+    margin: auto 0;
+    color: var(--FR-color-b);
+}
+
+.frAdresseHead {
+    display: grid;
+    grid-template-columns: 1fr 70fr;
+    padding-bottom: 5px;
+}
+
+.frAdresseItem{
+    display: flex;
+    padding-bottom: 8px;
+}
+
+.frAdresseText{
+    padding-bottom: 30px;
+}
+
+#kontaktFt{
+    background-color: var(--FR-color-lg);
+    margin: 70px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#kontaktFt img{
+    width: 100%;
+    height: 500PX;
+}
+
+.kontaktFtContent{
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+}
+
+.smalLineSpacer{
+    width: 40px;
+    height: 4px;
+    background-color: black;
+    margin: 0;
+    border-radius: 2px;
+    margin: 20px 0;
+}

@@ -1,0 +1,62 @@
+.kontaktskjemaWrap {
+    border-radius: 8px;
+    background-color: var(--FR-color-lb);
+    overflow: hidden;
+}
+.kontaktskjemaHeader {
+    border-radius: 8px;
+    background-color: var(--FR-color-lb);
+    overflow: hidden;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 25px auto auto;
+}
+
+.kontaktskjema {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    background-color: var(--FR-color-lighterb);
+    padding: 25px;
+}
+
+.kontaktskjema form label,
+.kontaktskjema form input,
+.kontaktskjema form select,
+.kontaktskjema form textarea {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.kontaktskjema form input,
+.kontaktskjema form select,
+.kontaktskjema form textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 0.2px solid var(--FR-color-b);
+    outline: none;
+    margin-top: -1px;
+    padding: 5px;
+}
+
+.kontaktskjema form select,
+.kontaktskjema form input {
+    height: 40px;
+}
+
+.kontaktskjema form .formSelect div {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    margin-top: 15px;
+}
+.kontaktskjema form .formSelect div input {
+    width: 20px;
+    height: 20px;
+    padding: auto;
+    background-color: white;
+    border-radius: 30%;
+    border: 1px solid var(--FR-color-b);
+    margin-top: -1px;
+}

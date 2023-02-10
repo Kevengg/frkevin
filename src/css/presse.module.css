@@ -1,0 +1,59 @@
+/* mer som */
+
+.merSomItem {
+    background-color: var(--FR-color-lg);
+}
+
+#merSom {
+    display: grid;
+    grid-template-columns: 450px 450px 450px;
+    gap: 60px 40px;
+    margin: 0 auto;
+    width: fit-content;
+    margin-bottom: 70px;
+}
+
+.merSomItem {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    min-height: 200px;
+    border-radius: 7px;
+}
+
+.merSomItem h3 {
+    margin-bottom: 30px;
+}
+
+.pressehenvendelser {
+    max-width: 1000px;
+}
+
+.pressehenvendelser h2 {
+    margin-bottom: 20px;
+}
+
+/* Pressebilder */
+.pressebilder h3:not(.pressebilder * * h3) {
+    border-bottom: 1px solid var(--FR-color-b);
+    padding: 10px 0;
+    width: 100%;
+    transition: 5s;
+    overflow: hidden;
+}
+
+.pressebilder h2 {
+    margin-bottom: 20px;
+}
+
+.contactsWrap {
+    overflow: hidden;
+    transition: 0.3s;
+    opacity: 100%;
+}
+.contactsWrapClosed {
+    overflow: hidden;
+    transition: 0.3s;
+    opacity: 0;
+    height: 0px;
+}

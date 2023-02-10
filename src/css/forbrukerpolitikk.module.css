@@ -1,0 +1,68 @@
+/* select */
+
+#select {
+    margin: 70px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.selectBtn {
+    background-color: var(--FR-color-lg);
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    border: none;
+    width: fit-content;
+    border-radius: 30px;
+    margin: 0;
+    color: black;
+    cursor: pointer;
+}
+
+.selectBtnOff {
+    background-color: var(--FR-color-lg);
+    color: black;
+}
+
+.selectBtnOn {
+    background-color: var(--FR-color-darkerb);
+    color: white;
+    cursor: default;
+}
+
+/*  */
+.hero {
+    background-image: url(https://picsum.photos/id/435/1100/380);
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 900px;
+    margin-bottom: 100px;
+}
+
+.hero h2 {
+    color: white;
+    font-size: 50px;
+}
+
+.heroBtn {
+    background-color: var(--site-backround-color);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    border: none;
+    width: fit-content;
+    border-radius: 30px;
+    margin: 30px 0 0 0;
+}
+
+.heroBtn i {
+    margin-top: 3px;
+}
