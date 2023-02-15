@@ -1,0 +1,99 @@
+/* testPageGrayBox */
+
+#testPageGrayBox {
+    background-color: var(--FR-color-lb);
+    margin: 70px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 430px;
+}
+
+.testPageGrayBoxImgWrap {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.testPageGrayBoxImgWrap img {
+    height: 100%;
+    width: auto;
+}
+
+#testPageGrayBox h2 {
+    font-size: 2rem;
+}
+
+.testPageGrayBoxContent a {
+    color: var(--site-text-color);
+}
+
+.testPageGrayBoxContent {
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+}
+
+.testPageGrayBoxContent h4 {
+    margin-bottom: 30px;
+}
+
+.testPageGrayBoxContent div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.testPageGrayBoxContent p {
+    margin-bottom: 70px;
+}
+
+/* testList */
+.testList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* testObject */
+
+.testObject {
+    display: grid;
+    grid-template-columns: 1fr 1fr 20px;
+    height: 215px;
+    margin-bottom: 25px;
+    padding: 10px;
+    background-color: var(--FR-color-lg);
+}
+
+.testObject .content {
+    padding-left: 20px;
+    font-size: large;
+    padding-top: 35px;
+}
+
+.testObject .content * {
+    padding-bottom: 15px;
+}
+
+.testObject input {
+    align-self: baseline;
+}
+
+.testObject div.imageWrap {
+    overflow: hidden;
+    position: relative;
+    background-color: white;
+}
+
+.testObject .rating {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 35px;
+    height: 35px;
+    min-width: 0;
+    min-height: 0;
+}
+
+.testObject img {
+    height: 100%;
+    width: auto;
+}

@@ -1,18 +1,25 @@
 import style from "../../../css/tester/tester_hjem.module.css";
 import FilterWrap from "./filter";
+import TestPage from "./test";
 
 export default function TestWrap(props) {
-    function Test(test) {
+    function Test(t) {
+        let test = t.test;
+        var img = test.img.includes("://") ? test.img : "/img/" + test.img;
         return (
-            <a className={style.test} href={test.test.href}>
+            <div className={style.test} onClick={() => props.updatePage(test)}>
                 {props.updateTestCount(props.testsList.length)}
                 <div className={style.testImgWrap}>
-                    <img src={test.test.img} alt={test.test.imgAlt} />
+                    <img src={img} alt={test.imgAlt} />
                 </div>
-                <div className={style.testCategory}>{test.test.topic}</div>
-                <h3>{test.test.header}</h3>
-                <p> {test.test.content} </p>
-            </a>
+                <div className={style.testCategory}>{test.topic}</div>
+                <h3>{test.header}</h3>
+                <p>
+                    {test.content.includes("<br />")
+                        ? test.content.match(/^.*?(?=<br \/>)/)
+                        : test.content}
+                </p>
+            </div>
         );
     }
     return (
