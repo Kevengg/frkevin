@@ -22,11 +22,15 @@ export function LinkBtn(props) {
     if (!props.content) {
         return;
     }
-
     let chevron = props.chevron ? <i className="fa-solid fa-chevron-right"></i> : "";
+
     if (href) {
         return (
-            <a href={href} className={"linkBtn"}>
+            <a
+                href={href}
+                className={"linkBtn"}
+                style={props.color ? { backgroundColor: props.color } : {}}
+            >
                 {props.content}
                 {props.download ? (
                     <i className="fa-solid fa-download"></i>
@@ -35,11 +39,29 @@ export function LinkBtn(props) {
                 ) : (
                     chevron
                 )}
+                onMouseEnter=
+                {(e) => {
+                    e.currentTarget.style.backgroundColor = props.hover;
+                }}
+                onMouseLeave=
+                {(e) => {
+                    e.currentTarget.style.backgroundColor = props.color;
+                }}
             </a>
         );
     } else {
         return (
-            <div className={"linkBtn"} onClick={props.onClick}>
+            <div
+                className={"linkBtn"}
+                style={props.color ? { backgroundColor: props.color } : {}}
+                onClick={props.onClick}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = props.hover;
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = props.color;
+                }}
+            >
                 {props.content}
                 {chevron}
             </div>
@@ -645,6 +667,43 @@ export function getNthOccurrence(str, target, n) {
     return str.substring(start, end + target.length);
 }
 
+export function formatDate(date, format) {
+    const dateDate = new Date(date);
+    let options = {};
+    if (format === "DD longM YYYY") {
+        options = {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        };
+    } else if (format === "DD MM YYYY") {
+        options = {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+        };
+    } else if (format === "DD/MM/YYYY") {
+        options = {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+        };
+    } else if (format === "DD.MM.YYYY") {
+        options = {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+        };
+    } else if (format === "DD-MM-YYYY") {
+        options = {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+        };
+    }
+    return dateDate.toLocaleDateString("nb-NO", options);
+}
+
 export const Rettigheter = () => {
     return (
         <>
@@ -754,6 +813,27 @@ export const Rettigheter = () => {
     );
 };
 
+// simple font awsome
+export function Chevron({ size: size, color: color, left: left }) {
+    const sizeCalc = () => {
+        if (size === "xxs" || size === "2xs") {
+            return "fa-2xs";
+        } else if (size === "xs") {
+            return "fa-xs";
+        } else if (size === "s" || size === "sm") {
+            return "fa-sm";
+        } else if (size === "l" || size === "lg") {
+            return "fa-lg";
+        } else if (size === "xl") {
+            return "fa-xl";
+        } else if (size === "xxl" || size === "2xl") {
+            return "fa-2xl";
+        }
+    };
+
+    return <i className={`fa-solid fa-chevron-${left ? "left" : "right"} ${sizeCalc()} `}></i>;
+}
+
 // gennerated using chatGTP
 // based on prompt:
 // how wuld i go ahead an ad moar to check than just content and chevron? for example external="{true}"
@@ -762,7 +842,6 @@ export function formatContent(input) {
     // Split the input string into an array of strings separated by <LinkBtn />
     let elements = input.split("<LinkBtn");
     let result = [];
-    // console.log("elements", elements);
 
     // Iterate over each element in the `elements` array
     for (let i = 0; i < elements.length; i++) {
@@ -778,6 +857,7 @@ export function formatContent(input) {
             // Iterate over each subElement in the `subElements` array
             for (let j = 0; j < subElements.length; j++) {
                 let subElement = subElements[j];
+                // console.log("subElements", subElements);
 
                 // Check if the subElement matches the format of <LinkBtn />
                 if ((match = subElement.match(/content='(.*?)'(.*?)\/>(.*)/))) {
@@ -827,7 +907,7 @@ export function formatContent(input) {
 
                 // Push a <br /> component to the `result` array if it's not the last subElement
                 if (j < subElements.length - 1) {
-                    result.push(<br />);
+                    result.push(<br key={j} />);
                 }
             }
         } else {
@@ -882,7 +962,8 @@ export function formatContent(input) {
     }
     // console.log("result before", result);
     // console.log("result", result);
-    return splitJSXString(result);
+    return result;
+    // return splitJSXString(result);
 }
 
 // itteration 3
@@ -1292,7 +1373,3 @@ function splitJSXString(jsx) {
 
 //     return modifiedJSXElements;
 // }
-
-//
-
-//
