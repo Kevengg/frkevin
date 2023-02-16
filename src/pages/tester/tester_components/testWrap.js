@@ -9,7 +9,7 @@ export default function TestWrap(props) {
         return (
             <div className={style.test} onClick={() => props.updatePage(test)}>
                 {props.updateTestCount(props.testsList.length)}
-                <div className={style.testImgWrap}>
+                <div className={`imgWrap ${style.testImgWrap}`}>
                     <img src={img} alt={test.imgAlt} />
                 </div>
                 <div className={style.testCategory}>{test.topic}</div>

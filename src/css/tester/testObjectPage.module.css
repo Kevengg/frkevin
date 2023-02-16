@@ -1,5 +1,108 @@
 .ratingPoint {
     display: flex;
-    height: 25px;
+    height: 50px;
     border-bottom: 1px solid var(--FR-color-b);
+    align-items: center;
+}
+
+.pageWrap .ratingPoint :nth-child(2) {
+    margin-left: auto;
+}
+
+.pageWrap .ratingPoint .imgWrap {
+    height: 65%;
+    border: none;
+}
+
+.ratingPoint .imgWrap img {
+    height: 100%;
+    width: auto;
+    object-fit: initial;
+}
+
+.pageWrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.bigImgWrap {
+    overflow: hidden;
+    border: 10px solid var(--FR-color-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 500px;
+}
+
+.bigImgWrap img.rating {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.statWrap {
+    padding: 0 30px;
+}
+
+.statWrap h1,
+.statWrap h2,
+.date {
+    margin-bottom: 15px;
+}
+
+.statWrap h1 {
+    font-weight: 500;
+}
+
+.statWrap h2 {
+    font-weight: 400;
+}
+
+.ratingTotal {
+    margin-bottom: 20px;
+}
+
+.statWrap .grade {
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+.bigImgWrap .grade {
+    margin-left: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.grade {
+    border-radius: 25px 3px 3px 3px;
+    background-color: var(--FR-color-lb);
+    width: 90px;
+    height: 60px;
+    min-width: 0;
+    min-height: 0;
+    font-size: 0.9rem;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.grade span {
+    font-size: 1.3rem;
+}
+
+.gradeBar {
+    width: 100%;
+    height: 8px;
+    border-radius: 8px;
+    background-color: var(--FR-color-lg);
+    margin-bottom: 20px;
+}
+
+.gradeBar div {
+    border-radius: 2.5px;
+    height: 100%;
+    background-color: var(--FR-color-b);
 }

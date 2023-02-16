@@ -9,13 +9,13 @@ import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <div className="senterWrap">
+        {/* <div className="senterWrap">
             <div className="senter"></div>
         </div>
         <div className="maxSideWrap">
             <div className="maxSide"></div>
             <div className="maxSide"></div>
-        </div>
+        </div> */}
         <Header />
         <BrowserRouter>
             <App />

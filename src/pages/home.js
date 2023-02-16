@@ -1,6 +1,6 @@
 import style from "../css/home.module.css";
 import React from "react";
-import { Rettigheter, GuideBtn, GrayBox, Nyheter } from "../component";
+import { Rettigheter, GuideBtn, GrayBox, Nyheter, ToppSection } from "../component";
 
 // img
 import manipulerendeDesign from "../img/manipulerende_design.jpg";
@@ -37,8 +37,12 @@ class ErrorBoundary extends React.Component {
 export default function Home() {
     return (
         <main>
+            <ToppSection
+                header="Vi veileder forbrukere, og påvirker samfunnet i en forbrukervennlig
+                            retning."
+            ></ToppSection>
             {/* <!-- ^ main ^ --> */}
-            <div id="toppSection">
+            {/* <div id="toppSection">
                 <div>
                     <div id="toppSectionContent">
                         <h1>
@@ -50,7 +54,7 @@ export default function Home() {
                 <picture>
                     <img src="https://picsum.photos/id/435/1300/520" alt=""></img>
                 </picture>
-            </div>
+            </div> */}
             {/* <!-- v maxWidth v --> */}
             <div className="maxWidth">
                 <GuideBtn style={{ marginTop: "-150px" }}></GuideBtn>
