@@ -9,24 +9,32 @@ export default function TestPage({ page, updatePage }) {
     function TestObject({ obj }) {
         var img = obj.img.includes("://") ? obj.img : "/img/" + obj.img;
         return (
-            <div className={styles.testObject} onClick={() => updatePage(obj)}>
-                <div className={styles.imageWrap}>
+            <div className={styles.testObject} onClick={() => updatePage(obj, page)}>
+                <div className="imgWrap" style={{ backgroundColor: "white" }}>
                     <img src={img} alt={obj.imgAlt} />
-                    <img
-                        className={styles.rating}
-                        src={
-                            obj.rating === "good"
-                                ? "/img/grade-positive.svg"
-                                : obj.rating === "ok"
-                                ? "/img/grade-neutral.svg"
-                                : "/img/grade-negative.svg"
-                        }
-                    />
+                    {(obj.ratingType === "smiley" && (
+                        <img
+                            className={styles.rating}
+                            src={
+                                obj.rating === "good"
+                                    ? "/img/grade-positive.svg"
+                                    : obj.rating === "ok"
+                                    ? "/img/grade-neutral.svg"
+                                    : "/img/grade-negative.svg"
+                            }
+                        />
+                    )) ||
+                        (obj.ratingType === "grade" && (
+                            <div className={styles.grade}>
+                                <span>{obj.rating + " "}</span>/ 10
+                            </div>
+                        ))}
                 </div>
                 <div className={styles.content}>
-                    <h2>{obj.manufacturer}</h2>
-                    <h3> {obj.product} </h3>
-                    <div style={{ textDecoration: "underline", marginTop: "20px" }}>
+                    <h4>{obj.manufacturer}</h4>
+                    <h5> {obj.product} </h5>
+                    {obj.note && <div>{obj.note}</div>}
+                    <div style={{ textDecoration: "underline", marginBottom: "auto" }}>
                         Les mer om produktet
                     </div>
                 </div>
@@ -48,16 +56,12 @@ export default function TestPage({ page, updatePage }) {
                     <Chevron size="xxs" />
                     <span onClick={() => updatePage()}>{test.topic}</span>
                     <Chevron size="xxs" />
-                    <span onClick={() => updatePage()}>{test.header}</span>
+                    <span>{test.header}</span>
                 </nav>
 
                 <div id={styles.testPageGrayBox}>
-                    <div className={styles.testPageGrayBoxImgWrap}>
-                        <img
-                            style={{ width: "auto", height: "100%" }}
-                            src={test.img}
-                            alt={test.imgAlt}
-                        />
+                    <div className="imgWrap">
+                        <img src={test.img} alt={test.imgAlt} />
                     </div>
                     <div className={styles.testPageGrayBoxContent}>
                         <LinkBtn content={test.topic} onClick={() => updatePage()}></LinkBtn>

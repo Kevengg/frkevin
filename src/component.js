@@ -30,6 +30,12 @@ export function LinkBtn(props) {
                 href={href}
                 className={"linkBtn"}
                 style={props.color ? { backgroundColor: props.color } : {}}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = props.hover;
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = props.color;
+                }}
             >
                 {props.content}
                 {props.download ? (
@@ -39,14 +45,6 @@ export function LinkBtn(props) {
                 ) : (
                     chevron
                 )}
-                onMouseEnter=
-                {(e) => {
-                    e.currentTarget.style.backgroundColor = props.hover;
-                }}
-                onMouseLeave=
-                {(e) => {
-                    e.currentTarget.style.backgroundColor = props.color;
-                }}
             </a>
         );
     } else {
@@ -122,7 +120,7 @@ export function GrayBox(props) {
                         </span>
                     )}
                 </div>
-                <div className="grayBoxImgWrap">
+                <div className="grayBoxImgWrap imgWrap">
                     <img src={props.img ? props.img : forbrukerrtilsynet} alt={props.imgAlt} />
                 </div>
             </div>
@@ -130,12 +128,11 @@ export function GrayBox(props) {
     } else {
         return (
             <div id="grayBox">
-                <div className="grayBoxImgWrap">
-                    <img
-                        style={{ width: "auto", height: "100%" }}
-                        src={props.img ? props.img : forbrukerrtilsynet}
-                        alt={props.imgAlt}
-                    />
+                <div
+                    className="grayBoxImgWrap imgWrap"
+                    // style={{ height: this.parentElement.querySelector(".grayBoxContent").height }}
+                >
+                    <img src={props.img ? props.img : forbrukerrtilsynet} alt={props.imgAlt} />
                 </div>
                 <div className="grayBoxContent">
                     <h4>{props.topic}</h4>
@@ -183,8 +180,8 @@ function Nytt(props) {
 
     return (
         <a className="nytt" href="#">
-            <div className="sisteNyttImgWrapper">
-                <img src={img} alt={props.imgAlt} style={{ width: "auto", height: "100%" }} />
+            <div className="imgWrap">
+                <img src={img} alt={props.imgAlt} />
             </div>
             <div className="sisteNyttContent">
                 <div className="topic">{props.topic}</div>
@@ -396,6 +393,7 @@ export function Raporter(props) {
 }
 
 export function Tester(props) {
+    // console.log("props", props);
     if (props.sort) {
         var testerList = [];
         for (let index = 0; index < tester.length; index++) {
@@ -410,15 +408,14 @@ export function Tester(props) {
         }
     } else {
         var testerList = [];
-        testerList.push(
-            tester[tester.length - 1],
-            tester[tester.length - 2],
-            tester[tester.length - 3]
-        );
+        testerList.push(tester.slice(-3));
     }
+    // console.log("testerList", testerList);
     function testForTest() {
         if (testerList[0]) {
             return testerList.map((test, index) => {
+                // console.log("test", test);
+
                 return (
                     <Nytt
                         key={index}
@@ -544,15 +541,8 @@ export function ToppSection({ header, content, path, img, imgAlt }) {
     // optimized and explained by chatGPT
     let formattedContent;
 
-    if (content.includes("<br />")) {
-        formattedContent = content.split("<br />").map((item, index) => (
-            <>
-                {item}
-                <br key={index} />
-            </>
-        ));
-    } else {
-        formattedContent = content;
+    if (content) {
+        formattedContent = formatContent(content);
     }
 
     return (
@@ -589,7 +579,7 @@ export function ToppSection({ header, content, path, img, imgAlt }) {
                     <p>{formattedContent}</p>
                 </div>
             </div>
-            <div>
+            <div className="imgWrap">
                 <img
                     src={img || "https://picsum.photos/id/435/1300/520"}
                     alt={imgAlt || "Default image"}
