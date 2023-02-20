@@ -6,8 +6,9 @@ import TestObjectPage from "./tester_components/testObjectPage";
 import testsList from "../../data/tester.json";
 
 // to do:
-// figure out how to make <- remember search data
-// figure out how to make search work
+// make text feld get the text from searchBar in url
+// make "Category" btn change color based on searchBtn in url
+// make ^ <- forget url if posible
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
