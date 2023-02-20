@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import ToppSection from "../tester_components/topp_section";
 import testsList from "../../../data/tester.json";
 import TestWrap from "../tester_components/testWrap";
@@ -19,6 +20,10 @@ export default function TesterHjem(props) {
                     newSearchBtn = newSearchBtn.filter((btn) => btn !== searchBtn.toLowerCase());
                 }
             }
+            handleHistory(
+                searchBar ? searchBar : searchBar === undefined ? oldSearchData.searchBar : "",
+                newSearchBtn ? newSearchBtn : []
+            );
             return {
                 ...oldSearchData,
                 searchBar: searchBar
@@ -31,6 +36,33 @@ export default function TesterHjem(props) {
         });
         setEmptySearchData(!emptySearchData);
     };
+
+    // suposed to make <- remember sarch data by manippulating tab history,
+    // and pasing search data in query string in the href
+
+    const navigate = useNavigate();
+    function handleHistory(searchBar, searchBtn) {
+        navigate({
+            search: `?searchBar:${searchBar.replace(/ /g, "-")}&searchBtn:${searchBtn.map((btn) => {
+                return btn.replace(/ /g, "-");
+            })}`,
+        });
+    }
+
+    const location = useLocation();
+    useEffect(() => {
+        let url = location.search
+            .replace(/-/g, " ")
+            .replace(/&/g, ",")
+            .replace(/\?/, "")
+            .replace(/%22/g, "")
+            .replace(/searchBar:/g, "")
+            .replace(/searchBtn:/g, "")
+            .split(",");
+
+        console.log(url);
+        setSearchData({ searchBar: url[0], searchBtn: url.slice(1) });
+    }, []);
 
     // counts how manny tests
     const [testCount, setTestCount] = useState();
