@@ -5,21 +5,31 @@ import TestWrap from "../tester_components/testWrap";
 
 export default function TesterHjem(props) {
     // holds, sets data from the search bar
-    const [searchData, setSearchData] = useState([]);
+    const [searchData, setSearchData] = useState({ searchBar: "", searchBtn: [] });
+    const [emptySearchData, setEmptySearchData] = useState([true]);
     //
     // alows components pased it to update searchData
-    const updateSearchData = (data) => {
-        const dataLowerCase = data.toLowerCase();
-
+    const updateSearchData = (searchBar, searchBtn) => {
         setSearchData((oldSearchData) => {
-            if (!oldSearchData.includes(dataLowerCase)) {
-                var toReturn = oldSearchData.concat(dataLowerCase);
-            } else if (oldSearchData.includes(dataLowerCase)) {
-                var toReturn = oldSearchData;
-                toReturn.splice(toReturn.indexOf(dataLowerCase), 1);
+            let newSearchBtn = [...oldSearchData.searchBtn];
+            if (searchBtn) {
+                if (!newSearchBtn.includes(searchBtn.toLowerCase())) {
+                    newSearchBtn.push(searchBtn.toLowerCase());
+                } else {
+                    newSearchBtn = newSearchBtn.filter((btn) => btn !== searchBtn.toLowerCase());
+                }
             }
-            return toReturn;
+            return {
+                ...oldSearchData,
+                searchBar: searchBar
+                    ? searchBar
+                    : searchBar === undefined
+                    ? oldSearchData.searchBar
+                    : "",
+                searchBtn: newSearchBtn ? newSearchBtn : [],
+            };
         });
+        setEmptySearchData(!emptySearchData);
     };
 
     // counts how manny tests
@@ -33,22 +43,25 @@ export default function TesterHjem(props) {
     // expects array
     function filterSearch(data) {
         const filteredSearch = [];
-        var skip = false;
-        if (!searchData[0]) {
+        if (!searchData.searchBar && !searchData.searchBtn[0]) {
             return data;
         }
         for (const item of data) {
-            skip = false;
-            for (const filter of searchData) {
-                if (
-                    item.topic.toLowerCase().includes(filter.toLowerCase()) ||
-                    item.header.toLowerCase().includes(filter.toLowerCase()) ||
-                    item.content.toLowerCase().includes(filter.toLowerCase())
-                ) {
-                    if (!skip) {
+            if (
+                (item.topic.toLowerCase().includes(searchData.searchBar.toLowerCase()) ||
+                    item.header.toLowerCase().includes(searchData.searchBar.toLowerCase()) ||
+                    item.content.toLowerCase().includes(searchData.searchBar.toLowerCase())) &&
+                searchData.searchBar != ""
+            ) {
+                filteredSearch.push(item);
+                continue;
+            }
+            for (const filter of searchData.searchBtn) {
+                if (filter != "") {
+                    if (item.topic.toLowerCase().includes(filter.toLowerCase())) {
                         filteredSearch.push(item);
+                        break;
                     }
-                    skip = true;
                 }
             }
         }
@@ -65,6 +78,7 @@ export default function TesterHjem(props) {
                     updateTestCount={updateTestCount}
                     searchData={searchData}
                     updatePage={props.updatePage}
+                    key={emptySearchData}
                 ></TestWrap>
             </div>
         </main>

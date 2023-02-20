@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Chevron, formatContent, LinkBtn, formatDate } from "../../../component";
 import styles from "../../../css/tester/testPage.module.css";
 
@@ -9,7 +10,13 @@ export default function TestPage({ page, updatePage }) {
     function TestObject({ obj }) {
         var img = obj.img.includes("://") ? obj.img : "/img/" + obj.img;
         return (
-            <div className={styles.testObject} onClick={() => updatePage(obj, page)}>
+            <Link
+                className={styles.testObject}
+                to={`?page=${page.header.toLowerCase().replace(/ /g, "-")}/${obj.product
+                    .toLowerCase()
+                    .replace(/ /g, "-")}`}
+                // onClick={() => updatePage(obj, page)}
+            >
                 <div className="imgWrap" style={{ backgroundColor: "white" }}>
                     <img src={img} alt={obj.imgAlt} />
                     {(obj.ratingType === "smiley" && (
@@ -44,7 +51,7 @@ export default function TestPage({ page, updatePage }) {
                     type="checkbox"
                 ></input>
                 <label htmlFor={`select${test.objects.indexOf(obj)}`} className="checkmark"></label>
-            </div>
+            </Link>
         );
     }
     // console.log("test", test);
@@ -52,16 +59,23 @@ export default function TestPage({ page, updatePage }) {
         <main>
             <div className={`maxWidth ${styles.testPage}`}>
                 <nav className={styles.path}>
-                    <span onClick={() => updatePage()}>Tester</span>
+                    <Link to="" onClick={() => updatePage()}>
+                        Tester
+                    </Link>
                     <Chevron size="xxs" />
-                    <span onClick={() => updatePage()}>{test.topic}</span>
+                    <Link to="" onClick={() => updatePage()}>
+                        {test.topic}
+                    </Link>
                     <Chevron size="xxs" />
                     <span>{test.header}</span>
                 </nav>
 
                 <div id={styles.testPageGrayBox}>
                     <div className="imgWrap">
-                        <img src={test.img} alt={test.imgAlt} />
+                        <img
+                            src={test.img.includes("://") ? test.img : "/img/" + test.img}
+                            alt={test.imgAlt}
+                        />
                     </div>
                     <div className={styles.testPageGrayBoxContent}>
                         <LinkBtn content={test.topic} onClick={() => updatePage()}></LinkBtn>

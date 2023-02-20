@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Chevron, formatDate } from "../../../component";
 import styles from "../../../css/tester/testObjectPage.module.css";
 
@@ -61,11 +62,13 @@ export default function TestObjectPage({ obj, info, updatePage }) {
         <main>
             <div className={`maxWidth`}>
                 <nav className={styles.path}>
-                    <span onClick={() => updatePage()}>Tester</span>
+                    <Link to="">Tester</Link>
                     <Chevron size="xxs" />
-                    <span onClick={() => updatePage()}>topic</span>
+                    <Link to="">topic</Link>
                     <Chevron size="xxs" />
-                    <span onClick={() => updatePage(info)}>{info.header}</span>
+                    <Link to={`?page=${info.header.toLowerCase().replace(/ /g, "-")}`}>
+                        {info.header}
+                    </Link>
                     <Chevron size="xxs" />
                     <span>{obj.product}</span>
                 </nav>

@@ -24,6 +24,11 @@ export default function SearchBar(props) {
                 placeholder="Søk etter test"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.code === "Enter") {
+                        searchBtnPressed();
+                    }
+                }}
             />
 
             <button id="searchBtn" className={style.searchBtn} onClick={() => searchBtnPressed()}>
