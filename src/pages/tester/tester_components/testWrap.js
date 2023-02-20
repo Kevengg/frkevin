@@ -1,13 +1,16 @@
 import style from "../../../css/tester/tester_hjem.module.css";
 import FilterWrap from "./filter";
-import TestPage from "./test";
+import { Link } from "react-router-dom";
 
 export default function TestWrap(props) {
     function Test(t) {
         let test = t.test;
         var img = test.img.includes("://") ? test.img : "/img/" + test.img;
         return (
-            <div className={style.test} onClick={() => props.updatePage(test)}>
+            <Link
+                className={style.test}
+                to={`/tester?page=${test.header.toLowerCase().replace(/ /g, "-")}`}
+            >
                 {props.updateTestCount(props.testsList.length)}
                 <div className={`imgWrap ${style.testImgWrap}`}>
                     <img src={img} alt={test.imgAlt} />
@@ -19,11 +22,11 @@ export default function TestWrap(props) {
                         ? test.content.match(/^.*?(?=<br \/>)/)
                         : test.content}
                 </p>
-            </div>
+            </Link>
         );
     }
     return (
-        <div>
+        <div id="TestWrap">
             <div className={style.testHeader}>
                 <h2>Alle våre {props.testCount} tester</h2>
                 <FilterWrap searchData={props.searchData}></FilterWrap>

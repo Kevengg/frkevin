@@ -9,7 +9,7 @@ function Category(props) {
             id={props.content}
             className={style.categoryBtn}
             onClick={() => {
-                props.updateSearchData(props.content);
+                props.updateSearchData(undefined, props.content);
 
                 if (color.backgroundColor == "var(--FR-color-lg)") {
                     setColor({ backgroundColor: "var(--FR-color-b)" });
