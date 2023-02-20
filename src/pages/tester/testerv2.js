@@ -8,7 +8,6 @@ import testsList from "../../data/tester.json";
 // to do:
 // make text feld get the text from searchBar in url
 // make "Category" btn change color based on searchBtn in url
-// make ^ <- forget url if posible
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);

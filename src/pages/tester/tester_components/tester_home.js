@@ -42,11 +42,16 @@ export default function TesterHjem(props) {
 
     const navigate = useNavigate();
     function handleHistory(searchBar, searchBtn) {
-        navigate({
-            search: `?searchBar:${searchBar.replace(/ /g, "-")}&searchBtn:${searchBtn.map((btn) => {
-                return btn.replace(/ /g, "-");
-            })}`,
-        });
+        console.log(searchBar, searchBtn);
+        if (searchBar || searchBtn) {
+            navigate({
+                search: `?searchBar:${searchBar.replace(/ /g, "-")}&searchBtn:${searchBtn.map(
+                    (btn) => {
+                        return btn.replace(/ /g, "-");
+                    }
+                )}`,
+            });
+        }
     }
 
     const location = useLocation();
@@ -62,6 +67,17 @@ export default function TesterHjem(props) {
 
         console.log(url);
         setSearchData({ searchBar: url[0], searchBtn: url.slice(1) });
+    }, []);
+
+    // to make ^ <- forget url
+    useEffect(() => {
+        window.onload = () => {
+            if (performance.getEntriesByType("navigation")[0].nextHopProtocol === "http/1.1") {
+                setSearchData({ searchBar: "", searchBtn: [] });
+                navigate({ search: "" });
+                console.log(performance.getEntriesByType("navigation")[0].nextHopProtocol);
+            }
+        };
     }, []);
 
     // counts how manny tests
