@@ -8,6 +8,9 @@ export default function TesterHjem(props) {
     const navigate = useNavigate();
     const location = useLocation();
 
+    // to make searchBtn remember color
+    const [updateTopsection, forceUpdateTopsection] = useState(true);
+
     // holds, sets data from the search bar
     const [searchData, setSearchData] = useState({ searchBar: "", searchBtn: [] });
     const [emptySearchData, setEmptySearchData] = useState([true]);
@@ -66,18 +69,20 @@ export default function TesterHjem(props) {
             .split(",");
 
         setSearchData({ searchBar: url[0], searchBtn: url.slice(1) });
-        // document.getElementById("search").value = url[0];
+        forceUpdateTopsection(!updateTopsection);
     }, []);
 
-    // to make ^ <- forget url
-    useEffect(() => {
-        window.onload = () => {
-            if (performance.getEntriesByType("navigation")[0].nextHopProtocol === "http/1.1") {
-                setSearchData({ searchBar: "", searchBtn: [] });
-                navigate({ search: "" });
-            }
-        };
-    }, []);
+    // not working 100%, better to remove
+    // // to make ^ <- forget url
+    // useEffect(() => {
+    //     console.log(PerformanceEntry);
+    //     window.onload = () => {
+    //         if (performance.getEntriesByType("navigation")[0].nextHopProtocol === "http/1.1") {
+    //             setSearchData({ searchBar: "", searchBtn: [] });
+    //             navigate({ search: "" });
+    //         }
+    //     };
+    // }, []);
 
     // counts how manny tests
     const [testCount, setTestCount] = useState();
@@ -156,7 +161,11 @@ export default function TesterHjem(props) {
 
     return (
         <main>
-            <ToppSection searchData={searchData} updateSearchData={updateSearchData}></ToppSection>
+            <ToppSection
+                key={updateTopsection}
+                searchData={searchData}
+                updateSearchData={updateSearchData}
+            ></ToppSection>
             <div className="maxWidth">
                 <TestWrap
                     testsList={filterSearch(testsList)}

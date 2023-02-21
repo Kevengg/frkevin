@@ -5,15 +5,20 @@ import { useLocation } from "react-router-dom";
 
 function Category(props) {
     const location = useLocation();
-    var [color, setColor] = useState({ backgroundColor: "var(--FR-color-lg)", color: "black" });
+    var [color, setColor] = useState(
+        props.searchData.searchBtn.includes(props.content.toLowerCase())
+            ? { backgroundColor: "var(--FR-color-db)", color: "white" }
+            : { backgroundColor: "var(--FR-color-lg)", color: "black" }
+    );
+
     useEffect(() => {
         window.onload = () => {
-            if (
-                location.search
-                    ? location.search.includes(props.content.toLowerCase().replace(/ /g, "-"))
-                    : false
-            ) {
-                setColor({ backgroundColor: "var(--FR-color-db)", color: "white" });
+            if (performance.getEntriesByType("navigation")[0].nextHopProtocol === "http/1.1") {
+                setColor(
+                    props.searchData.searchBtn.includes(props.content.toLowerCase())
+                        ? { backgroundColor: "var(--FR-color-db)", color: "white" }
+                        : { backgroundColor: "var(--FR-color-lg)", color: "black" }
+                );
             }
         };
     }, []);
@@ -55,11 +60,31 @@ export default function ToppSection(props) {
                     setSearch={props.setSearch}
                 ></SearchBar>
                 <div className={style.categoryWrap}>
-                    <Category updateSearchData={props.updateSearchData} content="Mat og drikke" />
-                    <Category updateSearchData={props.updateSearchData} content="Fritid" />
-                    <Category updateSearchData={props.updateSearchData} content="Bilbarneseter" />
-                    <Category updateSearchData={props.updateSearchData} content="Helse og pleie" />
-                    <Category updateSearchData={props.updateSearchData} content="Hus og hjem" />
+                    <Category
+                        updateSearchData={props.updateSearchData}
+                        searchData={props.searchData}
+                        content="Mat og drikke"
+                    />
+                    <Category
+                        updateSearchData={props.updateSearchData}
+                        searchData={props.searchData}
+                        content="Fritid"
+                    />
+                    <Category
+                        updateSearchData={props.updateSearchData}
+                        searchData={props.searchData}
+                        content="Bilbarneseter"
+                    />
+                    <Category
+                        updateSearchData={props.updateSearchData}
+                        searchData={props.searchData}
+                        content="Helse og pleie"
+                    />
+                    <Category
+                        updateSearchData={props.updateSearchData}
+                        searchData={props.searchData}
+                        content="Hus og hjem"
+                    />
                 </div>
             </div>
         </div>
