@@ -9,10 +9,9 @@ import style from "../../../css/tester/tester_hjem.module.css";
 // }
 
 export default function SearchBar(props) {
-    const [search, setSearch] = useState("");
-
     const searchBtnPressed = () => {
-        props.updateSearchData(search);
+        props.updateSearchData(props.search);
+        console.log(props.search);
     };
 
     return (
@@ -22,8 +21,8 @@ export default function SearchBar(props) {
                 id="searchField"
                 className={style.searchField}
                 placeholder="Søk etter test"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={props.search}
+                onChange={(e) => props.updateSearchData(e.target.value)}
                 onKeyDown={(e) => {
                     if (e.code === "Enter") {
                         searchBtnPressed();

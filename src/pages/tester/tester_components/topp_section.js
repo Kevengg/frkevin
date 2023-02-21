@@ -1,9 +1,23 @@
 import style from "../../../css/tester/tester_hjem.module.css";
 import SearchBar from "./search_bar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function Category(props) {
-    var [color, setColor] = useState({ backgroundColor: "var(--FR-color-lg)" });
+    const location = useLocation();
+    var [color, setColor] = useState({ backgroundColor: "var(--FR-color-lg)", color: "black" });
+    useEffect(() => {
+        window.onload = () => {
+            if (
+                location.search
+                    ? location.search.includes(props.content.toLowerCase().replace(/ /g, "-"))
+                    : false
+            ) {
+                setColor({ backgroundColor: "var(--FR-color-db)", color: "white" });
+            }
+        };
+    }, []);
+
     return (
         <div
             id={props.content}
@@ -12,9 +26,9 @@ function Category(props) {
                 props.updateSearchData(undefined, props.content);
 
                 if (color.backgroundColor == "var(--FR-color-lg)") {
-                    setColor({ backgroundColor: "var(--FR-color-b)" });
+                    setColor({ backgroundColor: "var(--FR-color-db)", color: "white" });
                 } else {
-                    setColor({ backgroundColor: "var(--FR-color-lg)" });
+                    setColor({ backgroundColor: "var(--FR-color-lg)", color: "black" });
                 }
             }}
             style={color}
@@ -35,7 +49,11 @@ export default function ToppSection(props) {
                     kvalitet. Hvis du vil unngå produkter som raskt går i stykker, fungerer dårlig
                     eller inneholder skadelige kjemikalier, kan du lese alle testene våre her.
                 </p>
-                <SearchBar updateSearchData={props.updateSearchData}></SearchBar>
+                <SearchBar
+                    updateSearchData={props.updateSearchData}
+                    search={props.search}
+                    setSearch={props.setSearch}
+                ></SearchBar>
                 <div className={style.categoryWrap}>
                     <Category updateSearchData={props.updateSearchData} content="Mat og drikke" />
                     <Category updateSearchData={props.updateSearchData} content="Fritid" />
