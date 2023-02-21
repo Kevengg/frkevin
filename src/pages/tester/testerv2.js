@@ -7,7 +7,7 @@ import testsList from "../../data/tester.json";
 
 // to do:
 // make lower "Category" btn work
-// make "sort by" btn work
+// style "sort by" btn
 // make "alle våre x tester" work more consistantly, and/or make it change text
 // make it sutch that seartch feld dus not live update
 

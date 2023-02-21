@@ -30,9 +30,16 @@ export default function TestWrap(props) {
             <div className={style.testHeader}>
                 <h2>Alle våre {props.testCount} tester</h2>
                 <FilterWrap searchData={props.searchData}></FilterWrap>
-                <div className={style.testSort}>
-                    mest rellevante tester <i className="fa-solid fa-chevron-down fa-2xs"></i>
-                </div>
+                <select
+                    className={style.testSort}
+                    onChange={(i) => props.updateSortBy(i.target.value)}
+                >
+                    <option defaultValue value="date">
+                        Mest rellevante tester
+                    </option>
+                    <option value="alfabetical">Alfabetisk stigende</option>
+                    <option value="alfabeticalReverse">Alfabetisk synkende</option>
+                </select>
             </div>
             <div className={style.testsWrap}>
                 {props.testsList &&
