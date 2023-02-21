@@ -6,8 +6,10 @@ import TestObjectPage from "./tester_components/testObjectPage";
 import testsList from "../../data/tester.json";
 
 // to do:
-// make text feld get the text from searchBar in url
-// make "Category" btn change color based on searchBtn in url
+// make lower "Category" btn work
+// make "sort by" btn work
+// make "alle våre x tester" work more consistantly, and/or make it change text
+// make it sutch that seartch feld dus not live update
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
