@@ -5,6 +5,8 @@ import testsList from "../../../data/tester.json";
 import TestWrap from "../tester_components/testWrap";
 
 export default function TesterHjem(props) {
+    // holds the seach bar value
+    const [search, setSearch] = useState("");
     // holds, sets data from the search bar
     const [searchData, setSearchData] = useState({ searchBar: "", searchBtn: [] });
     const [emptySearchData, setEmptySearchData] = useState([true]);
@@ -65,8 +67,8 @@ export default function TesterHjem(props) {
             .replace(/searchBtn:/g, "")
             .split(",");
 
-        console.log(url);
         setSearchData({ searchBar: url[0], searchBtn: url.slice(1) });
+        document.getElementById("search").value = url[0];
     }, []);
 
     // to make ^ <- forget url
@@ -75,7 +77,6 @@ export default function TesterHjem(props) {
             if (performance.getEntriesByType("navigation")[0].nextHopProtocol === "http/1.1") {
                 setSearchData({ searchBar: "", searchBtn: [] });
                 navigate({ search: "" });
-                console.log(performance.getEntriesByType("navigation")[0].nextHopProtocol);
             }
         };
     }, []);
@@ -126,6 +127,8 @@ export default function TesterHjem(props) {
                     updateTestCount={updateTestCount}
                     searchData={searchData}
                     updatePage={props.updatePage}
+                    search={search}
+                    setSearch={setSearch}
                     key={emptySearchData}
                 ></TestWrap>
             </div>

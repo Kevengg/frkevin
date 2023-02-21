@@ -19,12 +19,10 @@ export default function TesterV2() {
         if (url) {
             var page = url.split("/");
 
-            console.log("page", page);
             var pageUrl = [
                 testsList.find((obj) => obj.header.toLowerCase().replace(/ /g, "-") === page[0]),
             ];
 
-            console.log("pageUrl", pageUrl);
             pageUrl.push(
                 pageUrl[0].objects.find(
                     (obj) => obj.product.toLowerCase().replace(/ /g, "-") === page[1]
