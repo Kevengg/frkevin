@@ -87,11 +87,50 @@ export default function TesterHjem(props) {
         setTestCount(testCount);
     };
 
+    const [sortBy, setSortBy] = useState("");
+    function updateSortBy(update) {
+        setSortBy(update);
+    }
+
+    function sortData(obj) {
+        function compare(a, b) {
+            if (sortBy === "alfabetical") {
+                if (a.header.toLowerCase() > b.header.toLowerCase()) {
+                    return 1;
+                } else if (a.header.toLowerCase() < b.header.toLowerCase()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            } else if (sortBy === "alfabeticalReverse") {
+                if (a.header.toLowerCase() > b.header.toLowerCase()) {
+                    return -1;
+                } else if (a.header.toLowerCase() < b.header.toLowerCase()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            } else {
+                const adate = a.date.split("T")[0].replace(/-/g, "");
+                const bdate = b.date.split("T")[0].replace(/-/g, "");
+                if (adate > bdate) {
+                    return -1;
+                } else if (adate < bdate) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+
+        return obj.sort(compare);
+    }
+
     // expects array
     function filterSearch(data) {
         const filteredSearch = [];
         if (!searchData.searchBar && !searchData.searchBtn[0]) {
-            return data;
+            return sortData(data);
         }
         for (const item of data) {
             if (
@@ -112,7 +151,7 @@ export default function TesterHjem(props) {
                 }
             }
         }
-        return filteredSearch;
+        return sortData(filteredSearch);
     }
 
     return (
@@ -126,6 +165,7 @@ export default function TesterHjem(props) {
                     searchData={searchData}
                     updatePage={props.updatePage}
                     key={emptySearchData}
+                    updateSortBy={updateSortBy}
                 ></TestWrap>
             </div>
         </main>
