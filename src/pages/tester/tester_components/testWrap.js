@@ -29,8 +29,14 @@ export default function TestWrap(props) {
         <div id="TestWrap">
             <div className={style.testHeader}>
                 <h2>Alle våre {props.testCount} tester</h2>
-                <FilterWrap searchData={props.searchData}></FilterWrap>
+                <FilterWrap
+                    searchData={props.searchData}
+                    updateSearchData={props.updateSearchData}
+                    forceUpdateTopsection={props.forceUpdateTopsection}
+                    updateTopsection={props.updateTopsection}
+                ></FilterWrap>
                 <select
+                    id="testSort"
                     className={style.testSort}
                     onChange={(i) => props.updateSortBy(i.target.value)}
                 >
@@ -40,6 +46,9 @@ export default function TestWrap(props) {
                     <option value="alfabetical">Alfabetisk stigende</option>
                     <option value="alfabeticalReverse">Alfabetisk synkende</option>
                 </select>
+                <label htmlFor="testSort" className={style.testSortV}>
+                    <i className="fa-solid fa-chevron-down"></i>
+                </label>
             </div>
             <div className={style.testsWrap}>
                 {props.testsList &&

@@ -6,11 +6,13 @@ import TestObjectPage from "./tester_components/testObjectPage";
 import testsList from "../../data/tester.json";
 
 // to do:
-// make lower "Category" btn work
+// make lower "Category" btn for text box
 // style "sort by" btn
 // make "alle våre x tester" work more consistantly, and/or make it change text
-// fix text cont bad setstate() error
+// fix test count bad setstate() error
 // fix findInitSearch in search bar killing page when going to test page, cant read propperty of null
+// fix the bad setstate() in TesterHjem
+// make next page function for testWrap
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
