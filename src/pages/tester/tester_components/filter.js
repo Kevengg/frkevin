@@ -1,14 +1,30 @@
 import style from "../../../css/tester/tester_hjem.module.css";
 
 export default function FilterWrap(props) {
+    const searchData = props.searchData;
+    const updateSearchData = (searchBar, searchBtn) => {
+        props.updateSearchData(searchBar, searchBtn);
+    };
+    const updateTopsection = props.updateTopsection;
+    const forceUpdateTopsection = (not) => {
+        props.forceUpdateTopsection(not);
+    };
+
     function Filter(props) {
         return (
             <div
                 style={{
-                    display: props.searchData.searchBtn.includes(props.filter) ? "block" : "none",
+                    display: searchData.searchBtn.includes(props.filter.toLowerCase())
+                        ? "flex"
+                        : "none",
+                }}
+                className={style.filter}
+                onClick={() => {
+                    updateSearchData(undefined, props.filter);
+                    forceUpdateTopsection(!updateTopsection);
                 }}
             >
-                {props.filter}
+                <span>{props.filter}</span>
                 <i className="fa-solid fa-x"></i>
             </div>
         );
@@ -21,11 +37,11 @@ export default function FilterWrap(props) {
     }
     return (
         <div className={style.filterWrap}>
-            <Filter filter="mat og drikke" searchData={props.searchData}></Filter>
-            <Filter filter="fritid" searchData={props.searchData}></Filter>
-            <Filter filter="bilbarneseter" searchData={props.searchData}></Filter>
-            <Filter filter="helse og pleie" searchData={props.searchData}></Filter>
-            <Filter filter="hus og hjem" searchData={props.searchData}></Filter>
+            <Filter filter="Mat og drikke"></Filter>
+            <Filter filter="Fritid"></Filter>
+            <Filter filter="Bilbarneseter"></Filter>
+            <Filter filter="Helse og pleie"></Filter>
+            <Filter filter="Hus og hjem"></Filter>
         </div>
     );
 }

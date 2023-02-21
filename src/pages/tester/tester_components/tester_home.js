@@ -17,6 +17,7 @@ export default function TesterHjem(props) {
     //
     // alows components pased it to update searchData
     const updateSearchData = (searchBar, searchBtn) => {
+        console.log(searchBar, searchBtn);
         setSearchData((oldSearchData) => {
             let newSearchBtn = [...oldSearchData.searchBtn];
             if (searchBtn) {
@@ -175,6 +176,9 @@ export default function TesterHjem(props) {
                     updatePage={props.updatePage}
                     key={emptySearchData}
                     updateSortBy={updateSortBy}
+                    forceUpdateTopsection={forceUpdateTopsection}
+                    updateTopsection={updateTopsection}
+                    updateSearchData={updateSearchData}
                 ></TestWrap>
             </div>
         </main>
