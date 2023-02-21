@@ -9,7 +9,8 @@ import testsList from "../../data/tester.json";
 // make lower "Category" btn work
 // style "sort by" btn
 // make "alle våre x tester" work more consistantly, and/or make it change text
-// make it sutch that seartch feld dus not live update
+// fix text cont bad setstate() error
+// fix findInitSearch in search bar killing page when going to test page, cant read propperty of null
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
