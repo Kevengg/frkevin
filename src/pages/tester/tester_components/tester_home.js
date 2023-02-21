@@ -5,8 +5,9 @@ import testsList from "../../../data/tester.json";
 import TestWrap from "../tester_components/testWrap";
 
 export default function TesterHjem(props) {
-    // holds the seach bar value
-    const [search, setSearch] = useState("");
+    const navigate = useNavigate();
+    const location = useLocation();
+
     // holds, sets data from the search bar
     const [searchData, setSearchData] = useState({ searchBar: "", searchBtn: [] });
     const [emptySearchData, setEmptySearchData] = useState([true]);
@@ -42,9 +43,7 @@ export default function TesterHjem(props) {
     // suposed to make <- remember sarch data by manippulating tab history,
     // and pasing search data in query string in the href
 
-    const navigate = useNavigate();
     function handleHistory(searchBar, searchBtn) {
-        console.log(searchBar, searchBtn);
         if (searchBar || searchBtn) {
             navigate({
                 search: `?searchBar:${searchBar.replace(/ /g, "-")}&searchBtn:${searchBtn.map(
@@ -56,7 +55,6 @@ export default function TesterHjem(props) {
         }
     }
 
-    const location = useLocation();
     useEffect(() => {
         let url = location.search
             .replace(/-/g, " ")
@@ -68,7 +66,7 @@ export default function TesterHjem(props) {
             .split(",");
 
         setSearchData({ searchBar: url[0], searchBtn: url.slice(1) });
-        document.getElementById("search").value = url[0];
+        // document.getElementById("search").value = url[0];
     }, []);
 
     // to make ^ <- forget url
@@ -127,8 +125,6 @@ export default function TesterHjem(props) {
                     updateTestCount={updateTestCount}
                     searchData={searchData}
                     updatePage={props.updatePage}
-                    search={search}
-                    setSearch={setSearch}
                     key={emptySearchData}
                 ></TestWrap>
             </div>

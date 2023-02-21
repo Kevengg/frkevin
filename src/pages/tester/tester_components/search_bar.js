@@ -1,17 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import style from "../../../css/tester/tester_hjem.module.css";
 
-// {
-//     topic:
-//     header:
-//     content:
-//     subject:
-// }
-
 export default function SearchBar(props) {
+    const location = useLocation();
+
+    // holds the seach bar value
+    const [search, setSearch] = useState(findInitSearch());
+    function findInitSearch() {
+        let search = location.search ? location.search.split("&")[0].match(/(?<=:).*/)[0] : "";
+        return search;
+    }
+
+    // to make ^ <- forget search
+    useEffect(() => {
+        window.onload = () => {
+            if (performance.getEntriesByType("navigation")[0].nextHopProtocol === "http/1.1") {
+                setSearch(" ");
+            }
+        };
+    }, []);
+
     const searchBtnPressed = () => {
-        props.updateSearchData(props.search);
-        console.log(props.search);
+        props.updateSearchData(search);
     };
 
     return (
@@ -21,8 +32,11 @@ export default function SearchBar(props) {
                 id="searchField"
                 className={style.searchField}
                 placeholder="Søk etter test"
-                value={props.search}
-                onChange={(e) => props.updateSearchData(e.target.value)}
+                value={search}
+                onChange={(e) => {
+                    // props.updateSearchData(e.target.value);
+                    setSearch(e.target.value);
+                }}
                 onKeyDown={(e) => {
                     if (e.code === "Enter") {
                         searchBtnPressed();
