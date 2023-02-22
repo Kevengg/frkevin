@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Chevron, formatContent, LinkBtn, formatDate } from "../../../component";
 import styles from "../../../css/tester/testPage.module.css";
 
-export default function TestPage({ page, updatePage }) {
+export default function TestPage({ page }) {
     let test = page;
     // console.log(test);
 
@@ -15,7 +15,6 @@ export default function TestPage({ page, updatePage }) {
                 to={`?page=${page.header.toLowerCase().replace(/ /g, "-")}/${obj.product
                     .toLowerCase()
                     .replace(/ /g, "-")}`}
-                // onClick={() => updatePage(obj, page)}
             >
                 <div className="imgWrap" style={{ backgroundColor: "white" }}>
                     <img src={img} alt={obj.imgAlt} />
@@ -59,9 +58,7 @@ export default function TestPage({ page, updatePage }) {
         <main>
             <div className={`maxWidth ${styles.testPage}`}>
                 <nav className={styles.path}>
-                    <Link to="" onClick={() => updatePage()}>
-                        Tester
-                    </Link>
+                    <Link to="">Tester</Link>
                     <Chevron size="xxs" />
                     <Link
                         to={`?searchBar:&searchBtn:${test.topic.toLowerCase().replace(/ /g, "-")}`}
@@ -85,7 +82,6 @@ export default function TestPage({ page, updatePage }) {
                             href={`?searchBar:&searchBtn:${test.topic
                                 .toLowerCase()
                                 .replace(/ /g, "-")}`}
-                            onClick={() => updatePage()}
                         ></LinkBtn>
                         <h2>{test.header}</h2>
                         <p style={{ marginBottom: "10px" }}>

@@ -15,6 +15,10 @@ export default function TesterHjem(props) {
     const [searchData, setSearchData] = useState({ searchBar: "", searchBtn: [] });
     const [emptySearchData, setEmptySearchData] = useState([true]);
     //
+
+    useEffect(() => {
+        console.log(searchData);
+    }, [searchData]);
     // alows components pased it to update searchData
     const updateSearchData = (searchBar, searchBtn) => {
         setSearchData((oldSearchData) => {
@@ -68,7 +72,10 @@ export default function TesterHjem(props) {
             .replace(/searchBtn:/g, "")
             .split(",");
 
-        setSearchData({ searchBar: url[0], searchBtn: url.slice(1) });
+        setSearchData({
+            searchBar: url[0],
+            searchBtn: url.slice(1)[0] == "" ? [] : url.slice(1),
+        });
         forceUpdateTopsection(!updateTopsection);
     }, []);
 
