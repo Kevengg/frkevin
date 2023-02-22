@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { Chevron, formatDate } from "../../../component";
 import styles from "../../../css/tester/testObjectPage.module.css";
 
-export default function TestObjectPage({ obj, info, updatePage, searchData }) {
-    console.log(searchData);
+export default function TestObjectPage({ obj, info }) {
     function RatingPoint({ point, score, type }) {
         return (
             <div className={styles.ratingPoint}>
