@@ -6,13 +6,15 @@ import TestObjectPage from "./tester_components/testObjectPage";
 import testsList from "../../data/tester.json";
 
 // to do:
-// make lower "Category" btn for text box
-// style "sort by" btn
-// make "alle våre x tester" work more consistantly, and/or make it change text
-// fix test count bad setstate() error
-// fix findInitSearch in search bar killing page when going to test page, cant read propperty of null
-// fix the bad setstate() in TesterHjem
+// make lower "Category" btn for text box?
+// make "alle våre x tester" change text?
+// locate and fix the bad setstate() in TesterHjem ( cant find, may have bean fixed )
 // make next page function for testWrap
+// find and fix the childs need unik key on testPage
+// find and fix the childs need unik key on testObjectPage
+// make breadcrumbs on testPage and testObjectPage remember search info
+// make text search take priorety over topic?
+// fix the seaches when queryString is searchBar:&searchBtn:, this cases all search to brake, cus of a stray "" in both searchBar and searchBtn in searchData, shuld be null or undefined
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
