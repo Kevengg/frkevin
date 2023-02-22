@@ -8,7 +8,7 @@ export default function TesterHjem(props) {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // to make searchBtn remember color
+    // forces Topsection to update when set to !updateTopsection via forceUpdateTopsection()
     const [updateTopsection, forceUpdateTopsection] = useState(true);
 
     // holds, sets data from the search bar
@@ -17,7 +17,6 @@ export default function TesterHjem(props) {
     //
     // alows components pased it to update searchData
     const updateSearchData = (searchBar, searchBtn) => {
-        console.log(searchBar, searchBtn);
         setSearchData((oldSearchData) => {
             let newSearchBtn = [...oldSearchData.searchBtn];
             if (searchBtn) {
@@ -136,7 +135,7 @@ export default function TesterHjem(props) {
     function filterSearch(data) {
         const filteredSearch = [];
         if (!searchData.searchBar && !searchData.searchBtn[0]) {
-            return sortData(data);
+            return [sortData(data), data.length];
         }
         for (const item of data) {
             if (
@@ -157,7 +156,7 @@ export default function TesterHjem(props) {
                 }
             }
         }
-        return sortData(filteredSearch);
+        return [sortData(filteredSearch), filteredSearch.length];
     }
 
     return (
@@ -170,7 +169,6 @@ export default function TesterHjem(props) {
             <div className="maxWidth">
                 <TestWrap
                     testsList={filterSearch(testsList)}
-                    testCount={testCount}
                     updateTestCount={updateTestCount}
                     searchData={searchData}
                     updatePage={props.updatePage}

@@ -1,6 +1,7 @@
 import style from "../../../css/tester/tester_hjem.module.css";
 import FilterWrap from "./filter";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function TestWrap(props) {
     function Test(t) {
@@ -8,10 +9,10 @@ export default function TestWrap(props) {
         var img = test.img.includes("://") ? test.img : "/img/" + test.img;
         return (
             <Link
+                key={props.pushTestCount}
                 className={style.test}
                 to={`/tester?page=${test.header.toLowerCase().replace(/ /g, "-")}`}
             >
-                {props.updateTestCount(props.testsList.length)}
                 <div className={`imgWrap ${style.testImgWrap}`}>
                     <img src={img} alt={test.imgAlt} />
                 </div>
@@ -25,10 +26,11 @@ export default function TestWrap(props) {
             </Link>
         );
     }
+
     return (
         <div id="TestWrap">
             <div className={style.testHeader}>
-                <h2>Alle våre {props.testCount} tester</h2>
+                <h2>Alle våre {props.testsList[1]} tester</h2>
                 <FilterWrap
                     searchData={props.searchData}
                     updateSearchData={props.updateSearchData}
@@ -52,8 +54,8 @@ export default function TestWrap(props) {
             </div>
             <div className={style.testsWrap}>
                 {props.testsList &&
-                    props.testsList.map((test) => {
-                        return <Test test={test} key={props.testsList.indexOf(test)}></Test>;
+                    props.testsList[0].map((test) => {
+                        return <Test test={test} key={props.testsList[0].indexOf(test)}></Test>;
                     })}
             </div>
         </div>

@@ -8,7 +8,11 @@ export default function SearchBar(props) {
     // holds the seach bar value
     const [search, setSearch] = useState(findInitSearch());
     function findInitSearch() {
-        let search = location.search ? location.search.split("&")[0].match(/(?<=:).*/)[0] : "";
+        let search = location.search
+            ? location.search.includes("searchBar:")
+                ? location.search.split("&")[0].match(/(?<=:).*/)[0]
+                : ""
+            : "";
         return search;
     }
 
