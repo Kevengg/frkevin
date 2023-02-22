@@ -113,8 +113,8 @@ export default function TestPage({ page, updatePage }) {
                     <div>
                         <div>{"rating sort"}</div>
                         <div className={styles.testObjectWrap}>
-                            {test.objects.map((obj) => (
-                                <TestObject obj={obj}></TestObject>
+                            {test.objects.map((obj, i) => (
+                                <TestObject obj={obj} key={i}></TestObject>
                             ))}
                         </div>
                     </div>

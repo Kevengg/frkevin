@@ -113,8 +113,8 @@ export default function TestObjectPage({ obj, info, updatePage }) {
                                 score={obj.manufacturer}
                                 type="text"
                             ></RatingPoint>
-                            {obj.ratingPoints.map((o) => (
-                                <RatingPoint point={o[0]} score={o[1]} type={o[2]} />
+                            {obj.ratingPoints.map((o, i) => (
+                                <RatingPoint point={o[0]} score={o[1]} type={o[2]} key={i} />
                             ))}
                         </div>
                     </div>
