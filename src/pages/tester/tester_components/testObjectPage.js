@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Chevron, formatDate } from "../../../component";
 import styles from "../../../css/tester/testObjectPage.module.css";
 
-export default function TestObjectPage({ obj, info, updatePage }) {
+export default function TestObjectPage({ obj, info, updatePage, searchData }) {
+    console.log(searchData);
     function RatingPoint({ point, score, type }) {
         return (
             <div className={styles.ratingPoint}>
@@ -64,7 +65,11 @@ export default function TestObjectPage({ obj, info, updatePage }) {
                 <nav className={styles.path}>
                     <Link to="">Tester</Link>
                     <Chevron size="xxs" />
-                    <Link to="">topic</Link>
+                    <Link
+                        to={`?searchBar:&searchBtn:${info.topic.toLowerCase().replace(/ /g, "-")}`}
+                    >
+                        {info.topic}
+                    </Link>
                     <Chevron size="xxs" />
                     <Link to={`?page=${info.header.toLowerCase().replace(/ /g, "-")}`}>
                         {info.header}

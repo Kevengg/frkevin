@@ -10,7 +10,6 @@ import testsList from "../../data/tester.json";
 // make "alle våre x tester" change text?
 // locate and fix the bad setstate() in TesterHjem ( cant find, may have bean fixed )?
 // make next page function for testWrap
-// make breadcrumbs on testPage and testObjectPage remember search info
 // make text search take priorety over topic?
 // fix the seaches when queryString is searchBar:&searchBtn:, this cases all search to brake, cus of a stray "" in both searchBar and searchBtn in searchData, shuld be null or undefined
 
