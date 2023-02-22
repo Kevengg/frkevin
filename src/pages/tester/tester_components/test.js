@@ -63,7 +63,9 @@ export default function TestPage({ page, updatePage }) {
                         Tester
                     </Link>
                     <Chevron size="xxs" />
-                    <Link to="" onClick={() => updatePage()}>
+                    <Link
+                        to={`?searchBar:&searchBtn:${test.topic.toLowerCase().replace(/ /g, "-")}`}
+                    >
                         {test.topic}
                     </Link>
                     <Chevron size="xxs" />
@@ -78,13 +80,19 @@ export default function TestPage({ page, updatePage }) {
                         />
                     </div>
                     <div className={styles.testPageGrayBoxContent}>
-                        <LinkBtn content={test.topic} onClick={() => updatePage()}></LinkBtn>
+                        <LinkBtn
+                            content={test.topic}
+                            href={`?searchBar:&searchBtn:${test.topic
+                                .toLowerCase()
+                                .replace(/ /g, "-")}`}
+                            onClick={() => updatePage()}
+                        ></LinkBtn>
                         <h2>{test.header}</h2>
                         <p style={{ marginBottom: "10px" }}>
                             Publissert: {formatDate(test.date, "DD longM YYYY")}
                         </p>
                         <p>{formatContent(test.content)}</p>
-                        <LinkBtn content="Les mer om testen" chevron onClick={() => {}}></LinkBtn>
+                        <LinkBtn content="Les mer om testen" chevron></LinkBtn>
                     </div>
                 </div>
 
