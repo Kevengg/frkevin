@@ -8,10 +8,9 @@ import testsList from "../../data/tester.json";
 // to do:
 // make lower "Category" btn for text box?
 // make "alle våre x tester" change text?
-// fix the bad setstate() in TesterHjem when klicking a searchBtn, posible do to updating the cattegory btn
 // make next page function for testWrap
 // make text search take priorety over topic?
-// fix the search when queryString is "searchBar:&searchBtn:"", this cases all search to brake, cus of a stray "" in both searchBar and searchBtn in searchData, shuld be null or undefined
+// fix the search bar
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);

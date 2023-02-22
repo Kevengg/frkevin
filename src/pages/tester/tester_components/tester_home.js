@@ -16,9 +16,6 @@ export default function TesterHjem(props) {
     const [emptySearchData, setEmptySearchData] = useState([true]);
     //
 
-    useEffect(() => {
-        console.log(searchData);
-    }, [searchData]);
     // alows components pased it to update searchData
     const updateSearchData = (searchBar, searchBtn) => {
         setSearchData((oldSearchData) => {
@@ -30,10 +27,10 @@ export default function TesterHjem(props) {
                     newSearchBtn = newSearchBtn.filter((btn) => btn !== searchBtn.toLowerCase());
                 }
             }
-            handleHistory(
-                searchBar ? searchBar : searchBar === undefined ? oldSearchData.searchBar : "",
-                newSearchBtn ? newSearchBtn : []
-            );
+            // handleHistory(
+            //     searchBar ? searchBar : searchBar === undefined ? oldSearchData.searchBar : "",
+            //     newSearchBtn ? newSearchBtn : []
+            // );
             return {
                 ...oldSearchData,
                 searchBar: searchBar
@@ -49,6 +46,15 @@ export default function TesterHjem(props) {
 
     // suposed to make <- remember sarch data by manippulating tab history,
     // and pasing search data in query string in the href
+    useEffect(() => {
+        const searchBar = searchData.searchBar;
+        const searchBtn = searchData.searchBtn;
+        navigate({
+            search: `?searchBar:${searchBar.replace(/ /g, "-")}&searchBtn:${searchBtn.map((btn) => {
+                return btn.replace(/ /g, "-");
+            })}`,
+        });
+    }, [searchData]);
 
     function handleHistory(searchBar, searchBtn) {
         if (searchBar || searchBtn) {
