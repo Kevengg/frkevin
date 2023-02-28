@@ -168,6 +168,12 @@
     appearance: unset;
 }
 
+.testSort:focus-visible {
+    outline: 3px solid var(--FR-color-b);
+    outline-offset: 2px;
+    text-decoration: none;
+}
+
 .testSortV {
     display: inline-block;
     position: relative;

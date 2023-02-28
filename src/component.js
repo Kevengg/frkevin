@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import sampleImg from "./img/manipulerende_design.jpg";
 import forbrukerrtilsynet from "./img/Forbrukerrtilsynet.png";
@@ -18,6 +18,7 @@ export function LinkBtn(props) {
     } else if (props.href) {
         href = props.href;
     }
+    let name = props.className ? `linkBtn ${props.className}` : "linkBtn";
 
     if (!props.content) {
         return;
@@ -28,7 +29,7 @@ export function LinkBtn(props) {
         return (
             <a
                 href={href}
-                className={"linkBtn"}
+                className={name}
                 style={props.color ? { backgroundColor: props.color } : {}}
                 onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = props.hover;
@@ -50,7 +51,7 @@ export function LinkBtn(props) {
     } else {
         return (
             <div
-                className={"linkBtn"}
+                className={name}
                 style={props.color ? { backgroundColor: props.color } : {}}
                 onClick={props.onClick}
                 onMouseEnter={(e) => {
@@ -65,6 +66,38 @@ export function LinkBtn(props) {
             </div>
         );
     }
+}
+
+export function Slider(props) {
+    return (
+        <div className={`slider ${props.class}`}>
+            <div className="sliderBack"></div>
+            <input
+                className="sliderMax"
+                type="range"
+                max={props.max}
+                value={props.maxValue}
+                min={props.min}
+                onChange={(e) => {
+                    if (parseInt(e.target.value) - props.minValue > 10) {
+                        props.setMaxValue(parseInt(e.target.value));
+                    } else props.setMaxValue(props.minValue + 11);
+                }}
+            />
+            <input
+                className="sliderMin"
+                type="range"
+                value={props.minValue}
+                max={props.max}
+                min={props.min}
+                onChange={(e) => {
+                    if (props.maxValue - parseInt(e.target.value) > 10) {
+                        props.setMinValue(parseInt(e.target.value));
+                    } else props.setMinValue(props.maxValue - 11);
+                }}
+            />
+        </div>
+    );
 }
 
 export function GrayBox(props) {

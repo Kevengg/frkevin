@@ -7,10 +7,13 @@ import testsList from "../../data/tester.json";
 
 // to do:
 // make lower "Category" btn for text box?
-// make "alle våre x tester" change text?
+// make "alle våre x tester" text change?
 // make next page function for testWrap
-// make text search take priorety over topic?
-// fix the search bar
+// make text search take priorety over topic? (complex logic)
+// style bread crumbs on testPage and TestObjectPage
+// style all pages to work on mobile
+// finish styling testPage
+// fix refresh when not on testHome
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);

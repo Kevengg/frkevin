@@ -17,13 +17,13 @@ export default function SearchBar(props) {
     }
 
     // to make ^ <- forget search
-    useEffect(() => {
-        window.onload = () => {
-            if (performance.getEntriesByType("navigation")[0].nextHopProtocol === "http/1.1") {
-                setSearch(" ");
-            }
-        };
-    }, []);
+    // useEffect(() => {
+    //     window.onload = () => {
+    //         if (performance.getEntriesByType("navigation")[0].nextHopProtocol === "http/1.1") {
+    //             setSearch(" ");
+    //         }
+    //     };
+    // }, []);
 
     const searchBtnPressed = () => {
         props.updateSearchData(search);
