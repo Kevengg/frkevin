@@ -2,7 +2,8 @@
 
 #testPageGrayBox {
     background-color: var(--FR-color-lb);
-    margin: 70px 0;
+    margin-bottom: 30px;
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-height: 430px;
@@ -44,6 +45,10 @@
 
 .testPageGrayBoxContent p {
     margin-bottom: 70px;
+}
+
+.testPage {
+    padding-top: 20px;
 }
 
 /* testList */
@@ -104,4 +109,86 @@
 
 .grade span {
     font-size: 1.3rem;
+}
+
+.path {
+    margin: 0;
+}
+
+.path i {
+    margin-right: 8px;
+    margin-left: 3px;
+}
+
+.testHeader {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.testList,
+.testHeader {
+    max-width: calc(var(--site-width) - 200px);
+    margin: 0 auto;
+}
+
+.compare {
+    border-radius: calc(2.4rem / 2);
+    height: 2.4rem;
+}
+
+.testHeader :nth-child(1) {
+    margin-right: auto;
+}
+
+.filter {
+    text-decoration: underline;
+}
+
+.testHeader select {
+    margin-right: 150px;
+}
+
+.testHeader input {
+    margin-right: 10px;
+}
+
+.testHeader input,
+.testHeader select {
+    border: 2px solid var(--FR-color-dg);
+    border-radius: calc(2.4rem / 2);
+    height: 2.4rem;
+    padding: 0 10px;
+    font-size: var(--site-f_size);
+}
+.testHeader input:focus-visible,
+.testHeader select:focus-visible {
+    outline: 3px solid var(--FR-color-b);
+    outline-offset: 2px;
+    text-decoration: none;
+}
+
+.testHeader select {
+    appearance: none;
+    padding-right: 40px;
+}
+
+.sortV {
+    position: relative;
+    transform: translateX(-180px);
+}
+
+.search {
+    position: relative;
+    transform: translateX(-40px);
+}
+
+.ratingWrap {
+    display: grid;
+    grid-template-columns: 30px auto;
+    grid-auto-rows: 30px;
+}
+
+.testObjectWrap {
+    min-height: 500px;
 }

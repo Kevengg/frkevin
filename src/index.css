@@ -1,5 +1,5 @@
 :root {
-    --main-f_size: 20px;
+    --main-f_size: 18px;
     --small-f_size: 15px;
     --main-f_family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --line-height: 1.5;
@@ -1075,6 +1075,40 @@ input.checkbox:checked + label.checkmark:after {
     right: 2px;
     content: "\2714";
     font-size: 30px;
+}
+
+/* slider */
+.slider {
+    position: relative;
+}
+
+.sliderBack {
+    height: 7px;
+    background-color: var(--FR-color-lighterg);
+}
+
+.slider input {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background: none;
+    appearance: none;
+    pointer-events: none;
+    height: 7px;
+}
+
+.slider input[type="range"]::-webkit-slider-thumb {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    appearance: none;
+    pointer-events: auto;
+    background-color: var(--FR-color-b);
+    border: 1px white solid;
+}
+
+.sliderMax {
+    z-index: 1;
 }
 
 /* add padding when needed */

@@ -6,6 +6,8 @@ import Footer from "./includes/footer.js";
 import Header from "./includes/header.js";
 import { BrowserRouter } from "react-router-dom";
 
+// to do:
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>

@@ -140,7 +140,6 @@ export default function TesterHjem(props) {
                 }
             }
         }
-
         return obj.sort(compare);
     }
 
