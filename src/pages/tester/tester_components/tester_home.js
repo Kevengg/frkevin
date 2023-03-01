@@ -46,14 +46,27 @@ export default function TesterHjem(props) {
 
     // suposed to make <- remember sarch data by manippulating tab history,
     // and pasing search data in query string in the href
+    const [loaded, setLoaded] = useState(0);
     useEffect(() => {
         const searchBar = searchData.searchBar;
         const searchBtn = searchData.searchBtn;
-        navigate({
-            search: `?searchBar:${searchBar.replace(/ /g, "-")}&searchBtn:${searchBtn.map((btn) => {
-                return btn.replace(/ /g, "-");
-            })}`,
-        });
+        if (!location.search.includes("page") && loaded > 1) {
+            if (searchBar != "" || searchBtn != "") {
+                navigate({
+                    search: `?searchBar:${searchBar.replace(/ /g, "-")}&searchBtn:${searchBtn.map(
+                        (btn) => {
+                            return btn.replace(/ /g, "-");
+                        }
+                    )}`,
+                });
+            } else
+                navigate({
+                    search: null,
+                });
+        } else {
+            let load = loaded;
+            setLoaded(load + 1);
+        }
     }, [searchData]);
 
     function handleHistory(searchBar, searchBtn) {
@@ -69,6 +82,7 @@ export default function TesterHjem(props) {
     }
 
     useEffect(() => {
+        // here
         let url = location.search
             .replace(/-/g, " ")
             .replace(/&/g, ",")
@@ -82,6 +96,7 @@ export default function TesterHjem(props) {
             searchBar: url[0],
             searchBtn: url.slice(1)[0] == "" ? [] : url.slice(1),
         });
+
         forceUpdateTopsection(!updateTopsection);
     }, []);
 

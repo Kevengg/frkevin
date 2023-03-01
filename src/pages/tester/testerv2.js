@@ -13,7 +13,6 @@ import testsList from "../../data/tester.json";
 // style bread crumbs on testPage and TestObjectPage
 // style all pages to work on mobile
 // finish styling testPage
-// fix refresh when not on testHome
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
@@ -37,6 +36,7 @@ export default function TesterV2() {
 
             updatePage(pageUrl[1] ? pageUrl[1] : pageUrl[0], pageUrl[1] ? pageUrl[0] : undefined);
         } else updatePage();
+        // makes query string empty insted of searchBar:&searchBtn: when none is selected
     }, [location.search]);
 
     function updatePage(page, info) {
