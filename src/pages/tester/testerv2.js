@@ -13,6 +13,7 @@ import testsList from "../../data/tester.json";
 // style bread crumbs on testPage and TestObjectPage
 // style all pages to work on mobile
 // finish styling testPage
+// make a sortComponent that sorts based on the sortBy object on a test
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
