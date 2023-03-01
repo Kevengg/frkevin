@@ -727,6 +727,10 @@ export function formatDate(date, format) {
     return dateDate.toLocaleDateString("nb-NO", options);
 }
 
+export function findName(array, filter) {
+    return Object.keys(array).find((key) => array[key] === filter);
+}
+
 export const Rettigheter = () => {
     return (
         <>

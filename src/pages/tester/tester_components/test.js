@@ -1,17 +1,22 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Chevron, formatContent, LinkBtn, formatDate, Slider } from "../../../component";
 import styles from "../../../css/tester/testPage.module.css";
+import SortBy from "./sortBy_component";
+
+// something blocks the objList, something to do with newCustomFilter
 
 export default function TestPage({ page }) {
     let test = page;
     // console.log(test);
     const [sortBy, setSortBy] = useState("resultSynk");
     const [search, setsearch] = useState("");
-    const [vurdering, setvurdering] = useState();
+    const [vurdering, setvurdering] = useState([]);
     const [priceMaxValue, setPriceMaxValue] = useState(calcPriceMax());
     const [priceMinValue, setPriceMinValue] = useState(calcPriceMin());
+    const [customFilter, setCustomFilter] = useState({ manufacturer: [] });
+    // expects example: {manufacturer: ["Nortura SA", "Fatland Sandefjord for Coop Norge SA"]}
 
     const handleVurdering = (e) => {
         let newVurdering = [...vurdering];
@@ -33,6 +38,23 @@ export default function TestPage({ page }) {
         }
         setvurdering(newVurdering);
     };
+
+    function handleCustomFilter(e, param) {
+        let newCustomFilter = customFilter;
+        if (!Object.keys(newCustomFilter).includes(param)) {
+            newCustomFilter[param] = [];
+        }
+        if (!e.target.checked) {
+            newCustomFilter[param].splice(newCustomFilter[param].indexOf(e.target.id), 1);
+        } else {
+            newCustomFilter[param].push(e.target.id);
+        }
+        if (newCustomFilter[param].length == 0) {
+            delete newCustomFilter[param];
+        }
+        console.log(newCustomFilter);
+        setCustomFilter(newCustomFilter);
+    }
 
     function TestObject({ obj }) {
         var img = obj.img.includes("://") ? obj.img : "/img/" + obj.img;
@@ -162,27 +184,27 @@ export default function TestPage({ page }) {
                     test &&
                     (test.product.toLowerCase().includes(search) ||
                         test.manufacturer.toLowerCase().includes(search))
-                    // fix search in test.ratingPoints
                 ) {
                     filterd.push(test);
                 }
             });
+            // returns original value if false
         } else filterd = [...tester];
         let filterdWRating = [];
         // console.log(filterd);
 
         if (vurdering && vurdering != "") {
             filterd.map((test) => {
-                if (test && vurdering.includes(test.rating)) {
+                if (test && vurdering.length && vurdering.includes(test.rating)) {
                     filterdWRating.push(test);
                 }
             });
-            // console.log(filterdWRating);
+            // returns last value if false
         } else filterdWRating = [...filterd];
 
         let filterdWPrice = [];
 
-        if (filterdWRating[0].price) {
+        if (filterdWRating.length && filterdWRating[0].price) {
             filterdWRating.map((i) => {
                 if (i.price <= priceMaxValue && i.price >= priceMinValue) {
                     filterdWPrice.push(i);
@@ -190,7 +212,40 @@ export default function TestPage({ page }) {
             });
         } else filterdWRating = [...filterdWRating];
 
-        return filterdWPrice;
+        let filteredWCustom = [];
+        // checs if customFilter is not empty object, nor null/undefined
+        if (Object.keys(customFilter).length) {
+            console.log("here");
+            // deconstructs customFilter to a list of its keys
+            const filterType = [...Object.keys(customFilter)];
+            // deconstucts customFilter to an array of its values
+            const filterObj = [...Object.values(customFilter)];
+            // iterates thru the data filter with price
+            filterdWPrice.map((i) => {
+                // iterates thru the array of arrays of custom filters, giving [this,this]
+                filterObj.map((f) => {
+                    // iterates thru eatch array from the array of arrays of custom filters, giving [["this","this","this"]]
+                    f.map((fO) => {
+                        // itterates thru filterType, giving ["this"]
+                        filterType.map((fT) => {
+                            // checks if the item from array from the array of arrays of custom filters is the same as the itteration the data filter with price's
+                            // value of the current itteration of filterType
+                            if (fO == i[fT]) {
+                                filteredWCustom.push(i);
+                            }
+                        });
+                    });
+                });
+            });
+            // returns last value if false
+        } else filteredWCustom = [...filterdWPrice];
+        console.log("filterd", filterd);
+        console.log("filterdWRating", filterdWRating);
+        console.log("filterdWPrice", filterdWPrice);
+        console.log("filteredWCustom", filteredWCustom);
+        console.log();
+
+        return filteredWCustom;
     }
     // reset filters
     const [reset, doReset] = useState(false);
@@ -451,6 +506,7 @@ export default function TestPage({ page }) {
                                 </div>
                             </>
                         )}
+                        <SortBy param="manufacturer" test={test} call={handleCustomFilter}></SortBy>
                     </div>
                     <div>
                         <div className={styles.testObjectWrap}>

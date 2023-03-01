@@ -144,6 +144,40 @@
                 ]
             },
             {
+                "manufacturer": "Gårdsand AS/Meny",
+                "product": "Lerstang gård Kyllingfilet krydret (100 gram)",
+                "img": "https://picsum.photos/id/901/600",
+                "imgAlt": "https://picsum.photos/id/901/600",
+                "date": "2023-01-06T00:00:00.000Z",
+                "price": 435,
+                "note": "Litt lavere innhold av kylling og protein enn de andre typene. Inneholder mer salt og mettet fett enn vinneren.",
+                "rating": 5,
+                "ratingType": "grade",
+                "ratingPoints": [
+                    ["Energi (kJ / kcal)", "360 / 86", "text"],
+                    [
+                        "Fett (gram)",
+                        1.6,
+                        "number",
+                        [
+                            ["Herav mettet (gram)", 1, "number"],
+                            ["Herav umettet (gram)", "", "number"]
+                        ]
+                    ],
+                    [
+                        "Karbohydrater (gram)",
+                        1.1,
+                        "number",
+                        [["Sukkerarter (gram)", 1.1, "number"]]
+                    ],
+                    ["Protein (gram)", 16.6, "number"],
+                    ["Salt (gram)", 1.78, "number"],
+                    ["Andel kylling eller kalkun (%)", 79, "number"],
+                    ["Nitritt eller/ og nitrat", false, "bolian"],
+                    ["Merkeordning", "Nøkkelhullet", "text"]
+                ]
+            },
+            {
                 "manufacturer": "Fatland Sandefjord for Coop Norge SA",
                 "product": "Coop Naturell kalkunbryst (100 gram)",
                 "img": "https://picsum.photos/id/901/600",
@@ -177,7 +211,8 @@
                     ["Merkeordning", "Nyt Norge, Nøkkelhullet", "text"]
                 ]
             }
-        ]
+        ],
+        "sortBy": ["manufacturer", "price"]
     },
     {
         "header": "Kylling- og kalkunpålegg",
