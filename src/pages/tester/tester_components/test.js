@@ -15,7 +15,10 @@ export default function TestPage({ page }) {
     const [vurdering, setvurdering] = useState([]);
     const [priceMaxValue, setPriceMaxValue] = useState(calcPriceMax());
     const [priceMinValue, setPriceMinValue] = useState(calcPriceMin());
-    const [customFilter, setCustomFilter] = useState({ manufacturer: [] });
+
+    const [update, forceUpdate] = useState(true);
+
+    const [customFilter, setCustomFilter] = useState({});
     // expects example: {manufacturer: ["Nortura SA", "Fatland Sandefjord for Coop Norge SA"]}
 
     const handleVurdering = (e) => {
@@ -52,9 +55,12 @@ export default function TestPage({ page }) {
         if (newCustomFilter[param].length == 0) {
             delete newCustomFilter[param];
         }
-        console.log(newCustomFilter);
         setCustomFilter(newCustomFilter);
+        setForceUpdate();
     }
+    const setForceUpdate = () => {
+        forceUpdate(!update);
+    };
 
     function TestObject({ obj }) {
         var img = obj.img.includes("://") ? obj.img : "/img/" + obj.img;
@@ -191,7 +197,6 @@ export default function TestPage({ page }) {
             // returns original value if false
         } else filterd = [...tester];
         let filterdWRating = [];
-        // console.log(filterd);
 
         if (vurdering && vurdering != "") {
             filterd.map((test) => {
@@ -210,43 +215,42 @@ export default function TestPage({ page }) {
                     filterdWPrice.push(i);
                 }
             });
-        } else filterdWRating = [...filterdWRating];
+        } else filterdWPrice = [...filterdWRating];
 
         let filteredWCustom = [];
+        let firstRound = true;
         // checs if customFilter is not empty object, nor null/undefined
-        if (Object.keys(customFilter).length) {
-            console.log("here");
+        if (customFilter && Object.keys(customFilter).length != 0) {
             // deconstructs customFilter to a list of its keys
             const filterType = [...Object.keys(customFilter)];
             // deconstucts customFilter to an array of its values
             const filterObj = [...Object.values(customFilter)];
             // iterates thru the data filter with price
-            filterdWPrice.map((i) => {
-                // iterates thru the array of arrays of custom filters, giving [this,this]
-                filterObj.map((f) => {
-                    // iterates thru eatch array from the array of arrays of custom filters, giving [["this","this","this"]]
-                    f.map((fO) => {
-                        // itterates thru filterType, giving ["this"]
-                        filterType.map((fT) => {
-                            // checks if the item from array from the array of arrays of custom filters is the same as the itteration the data filter with price's
-                            // value of the current itteration of filterType
-                            if (fO == i[fT]) {
-                                filteredWCustom.push(i);
+
+            filterType.map((filterT, index) => {
+                filterdWPrice.map((item) => {
+                    if (firstRound) {
+                        if (filterdWPrice.includes(item)) {
+                            if (filterObj[index].includes(item[filterT].toString())) {
+                                filteredWCustom.push(item);
                             }
-                        });
-                    });
+                        }
+                    } else {
+                        if (filteredWCustom.includes(item)) {
+                            if (!filterObj[index].includes(item[filterT].toString())) {
+                                delete filteredWCustom[filteredWCustom.indexOf(item)];
+                            }
+                        }
+                    }
                 });
+                firstRound = false;
             });
             // returns last value if false
         } else filteredWCustom = [...filterdWPrice];
-        console.log("filterd", filterd);
-        console.log("filterdWRating", filterdWRating);
-        console.log("filterdWPrice", filterdWPrice);
-        console.log("filteredWCustom", filteredWCustom);
-        console.log();
 
         return filteredWCustom;
     }
+
     // reset filters
     const [reset, doReset] = useState(false);
     const nulstill = () => {
@@ -256,6 +260,7 @@ export default function TestPage({ page }) {
         doReset(!reset);
         setPriceMaxValue(calcPriceMax());
         setPriceMinValue(calcPriceMin());
+        setCustomFilter();
         //
         window.scroll({ top: 300, behavior: "auto" });
     };
@@ -506,12 +511,23 @@ export default function TestPage({ page }) {
                                 </div>
                             </>
                         )}
-                        <SortBy param="manufacturer" test={test} call={handleCustomFilter}></SortBy>
+                        {/* {console.log(customFilter)} */}
+                        {test.filterBy.map((filterBy, i) => {
+                            return (
+                                <SortBy
+                                    key={i}
+                                    param={filterBy}
+                                    test={test}
+                                    call={handleCustomFilter}
+                                    filter={customFilter}
+                                ></SortBy>
+                            );
+                        })}
                     </div>
                     <div>
                         <div className={styles.testObjectWrap}>
                             {sortTest(filter(test.objects)).map((obj, i) => (
-                                <TestObject obj={obj} key={i}></TestObject>
+                                <TestObject obj={obj} key={i + update}></TestObject>
                             ))}
                         </div>
                     </div>

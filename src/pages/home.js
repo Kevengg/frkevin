@@ -113,6 +113,106 @@ export default function Home() {
                             chevron: true,
                             href: "/tester",
                         },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
+                        {
+                            content: "Se alle våre tester",
+                            chevron: true,
+                            href: "/tester",
+                        },
                     ]}
                 ></GrayBox>
 
