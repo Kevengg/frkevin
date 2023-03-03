@@ -212,7 +212,7 @@
                 ]
             }
         ],
-        "sortBy": ["manufacturer", "price"]
+        "filterBy": ["manufacturer", "price"]
     },
     {
         "header": "Kylling- og kalkunpålegg",
@@ -323,6 +323,7 @@
                     ["Merkeordning", "Nyt Norge, Nøkkelhullet", "text"]
                 ]
             }
-        ]
+        ],
+        "filterBy": ["manufacturer", "price"]
     }
 ]
