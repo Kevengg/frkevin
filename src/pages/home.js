@@ -2,12 +2,6 @@ import style from "../css/home.module.css";
 import React from "react";
 import { Rettigheter, GuideBtn, GrayBox, Nyheter, ToppSection } from "../component";
 
-// img
-import manipulerendeDesign from "../img/manipulerende_design.jpg";
-import forbrukerrtilsynet from "../img/Forbrukerrtilsynet.png";
-// import frLogo from "../img/forbrukerradet_logo.svg";
-// import frLogoSmall from "../img/forbrukerradet_logo_symbol.svg";
-
 class ErrorBoundary extends React.Component {
     constructor(props) {
         super(props);
