@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-import Tester from "./pages/tester/tester";
 import Forbrukerpolitikk from "./pages/forbrukerpolitikk/forbrukerpolitikk";
 import TipsOgRettigheter from "./pages/tips_og_rettigheter/tips_og_rettigheter";
 import Kontrakter from "./pages/tips_og_rettigheter/kontrakter";

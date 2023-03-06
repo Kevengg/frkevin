@@ -192,3 +192,45 @@
 .testObjectWrap {
     min-height: 500px;
 }
+
+/* compare */
+.compareWrap {
+    display: flex;
+    background-color: var(--FR-color-lb);
+}
+
+.compareListHeader {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.CompareListItem {
+    padding-left: 8px;
+    height: 2.3rem;
+    display: flex;
+    align-items: center;
+}
+
+.CompareListItem:not(.compareListHeader .CompareListItem) {
+    border-top: 2px solid var(--FR-color-g);
+}
+
+.comparePoints {
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+.compareItem,
+.comparePoints {
+    width: 300px;
+}
+
+.compareItemsWrap {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.falseScroll {
+    height: 15px;
+}

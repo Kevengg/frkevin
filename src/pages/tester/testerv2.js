@@ -4,16 +4,7 @@ import TesterHjem from "./tester_components/tester_home";
 import TestPage from "./tester_components/test";
 import TestObjectPage from "./tester_components/testObjectPage";
 import testsList from "../../data/tester.json";
-
-// to do:
-// make lower "Category" btn for text box?
-// make "alle våre x tester" text change?
-// make text search take priorety over topic? (complex logic)
-// make next page function for testWrap
-// style bread crumbs on testPage and TestObjectPage
-// style all pages to work on mobile
-// finish styling testPage
-// make the check for vurdering type
+import ComparePage from "./tester_components/comparePage";
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
@@ -22,7 +13,17 @@ export default function TesterV2() {
 
     useEffect(() => {
         var url = queryParams.get("page");
-        if (url) {
+        var compare = queryParams.get("compare");
+
+        if (compare) {
+            // [{testObject}, {testObject}], [index, index]
+
+            updatePage(
+                testsList.find((obj) => obj.header.toLowerCase().replace(/ /g, "-") === url)
+                    .objects,
+                compare.split("")
+            );
+        } else if (url && !compare) {
             var page = url.split("/");
 
             var pageUrl = [
@@ -47,10 +48,12 @@ export default function TesterV2() {
         if (typeof page === "object") {
             if (page.hasOwnProperty("header")) {
                 setPage(<TestPage page={page} info={info} updatePage={updatePage} />);
-            } else {
+            } else if (page.hasOwnProperty("product")) {
                 setPage(
                     <TestObjectPage obj={page} info={info} updatePage={updatePage}></TestObjectPage>
                 );
+            } else {
+                setPage(<ComparePage obj={page} info={info}></ComparePage>);
             }
         } else setPage(<TesterHjem updatePage={updatePage} />);
         window.scrollTo(0, 0);

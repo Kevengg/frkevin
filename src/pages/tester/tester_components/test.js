@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Chevron, formatContent, LinkBtn, formatDate, Slider } from "../../../component";
@@ -15,18 +15,39 @@ export default function TestPage({ page }) {
     const [vurdering, setvurdering] = useState([]);
     const [priceMaxValue, setPriceMaxValue] = useState(calcPriceMax());
     const [priceMinValue, setPriceMinValue] = useState(calcPriceMin());
-
     const [update, forceUpdate] = useState(true);
-
     const [customFilter, setCustomFilter] = useState({});
     // expects example: {manufacturer: ["Nortura SA", "Fatland Sandefjord for Coop Norge SA"]}
+
+    let [compare, setCompare] = useState([]);
+
+    function handleCompareToggle(e, obj) {
+        if (e.target.checked) {
+            if (!compare.includes(obj)) {
+                setCompare(compare.concat(obj));
+            }
+        } else {
+            if (compare.includes(obj)) {
+                compare.splice(compare.indexOf(obj), 1);
+            }
+        }
+        forceUpdate(!update);
+    }
+
+    function calcCompare() {
+        let toReturn = "";
+        compare.map((i) => {
+            toReturn = toReturn + page.objects.indexOf(i).toString();
+        });
+        return toReturn;
+    }
 
     const handleVurdering = (e) => {
         let newVurdering = [...vurdering];
         if (!e.target.id.includes(",")) {
             if (e.target.checked) {
                 newVurdering.push(e.target.id);
-                console.log(newVurdering);
+                // console.log(newVurdering);
             } else {
                 newVurdering.splice(newVurdering.indexOf(e.target.id), 1);
             }
@@ -103,8 +124,23 @@ export default function TestPage({ page }) {
                     id={`select${test.objects.indexOf(obj)}`}
                     className="checkbox"
                     type="checkbox"
+                    checked={compare.includes(obj)}
+                    onChange={(e) => {
+                        handleCompareToggle(e, obj);
+                    }}
+                    // makes click not run with the Link
+                    onClick={(e) => {
+                        e.stopPropagation();
+                    }}
                 ></input>
-                <label htmlFor={`select${test.objects.indexOf(obj)}`} className="checkmark"></label>
+                <label
+                    // makes click not run with the Link
+                    onClick={(e) => {
+                        e.stopPropagation();
+                    }}
+                    htmlFor={`select${test.objects.indexOf(obj)}`}
+                    className="checkmark"
+                ></label>
             </Link>
         );
     }
@@ -368,6 +404,9 @@ export default function TestPage({ page }) {
                         <i className="fa-solid fa-chevron-down"></i>
                     </label>
                     <LinkBtn
+                        to={`?page=${test.header
+                            .toLowerCase()
+                            .replace(/ /g, "-")}&compare=${calcCompare()}`}
                         content="Sammenlign"
                         color="var(--FR-color-lg)"
                         hover="var(--FR-color-lb)"
@@ -393,7 +432,13 @@ export default function TestPage({ page }) {
                                     ></input>
                                     <label htmlFor="good" className="checkmark"></label>
                                 </div>
-                                <span>God</span>
+                                <span
+                                    onClick={(e) => {
+                                        document.getElementById("good").click();
+                                    }}
+                                >
+                                    God
+                                </span>
                                 <div>
                                     <input
                                         id="ok"
@@ -405,7 +450,13 @@ export default function TestPage({ page }) {
                                     ></input>
                                     <label htmlFor="ok" className="checkmark"></label>
                                 </div>
-                                <span>Medium</span>
+                                <span
+                                    onClick={(e) => {
+                                        document.getElementById("ok").click();
+                                    }}
+                                >
+                                    Medium
+                                </span>
                                 <div>
                                     <input
                                         id="bad"
@@ -417,7 +468,13 @@ export default function TestPage({ page }) {
                                     ></input>
                                     <label htmlFor="bad" className="checkmark"></label>
                                 </div>
-                                <span>Lav</span>
+                                <span
+                                    onClick={(e) => {
+                                        document.getElementById("bad").click();
+                                    }}
+                                >
+                                    Lav
+                                </span>
                             </div>
                         )}
                         {test.objects[0].ratingType === "grade" && (
@@ -434,7 +491,13 @@ export default function TestPage({ page }) {
                                         ></input>
                                         <label htmlFor="9,10" className="checkmark"></label>
                                     </div>
-                                    <span>9 - 10</span>
+                                    <span
+                                        onClick={(e) => {
+                                            document.getElementById("9,10").click();
+                                        }}
+                                    >
+                                        9 - 10
+                                    </span>
                                     <div>
                                         <input
                                             id="7,8"
@@ -446,7 +509,13 @@ export default function TestPage({ page }) {
                                         ></input>
                                         <label htmlFor="7,8" className="checkmark"></label>
                                     </div>
-                                    <span>7 - 8</span>
+                                    <span
+                                        onClick={(e) => {
+                                            document.getElementById("7,8").click();
+                                        }}
+                                    >
+                                        7 - 8
+                                    </span>
                                     <div>
                                         <input
                                             id="5,6"
@@ -458,7 +527,13 @@ export default function TestPage({ page }) {
                                         ></input>
                                         <label htmlFor="5,6" className="checkmark"></label>
                                     </div>
-                                    <span>5 - 6</span>
+                                    <span
+                                        onClick={(e) => {
+                                            document.getElementById("5,6").click();
+                                        }}
+                                    >
+                                        5 - 6
+                                    </span>
                                     <div>
                                         <input
                                             id="3,4"
@@ -470,7 +545,13 @@ export default function TestPage({ page }) {
                                         ></input>
                                         <label htmlFor="3,4" className="checkmark"></label>
                                     </div>
-                                    <span>3 - 4</span>
+                                    <span
+                                        onClick={(e) => {
+                                            document.getElementById("3,4").click();
+                                        }}
+                                    >
+                                        3 - 4
+                                    </span>
                                     <div>
                                         <input
                                             id="1,2"
@@ -482,7 +563,13 @@ export default function TestPage({ page }) {
                                         ></input>
                                         <label htmlFor="1,2" className="checkmark"></label>
                                     </div>
-                                    <span>1 - 2</span>
+                                    <span
+                                        onClick={(e) => {
+                                            document.getElementById("1,2").click();
+                                        }}
+                                    >
+                                        1 - 2
+                                    </span>
                                 </div>
                                 <p>Pris {`(Kr. ${calcPriceMin()} - ${calcPriceMax()},-)`}</p>
                                 <div style={{ width: "50%", margin: "0 auto" }}>
@@ -512,22 +599,27 @@ export default function TestPage({ page }) {
                             </>
                         )}
                         {/* {console.log(customFilter)} */}
-                        {test.filterBy.map((filterBy, i) => {
-                            return (
-                                <SortBy
-                                    key={i}
-                                    param={filterBy}
-                                    test={test}
-                                    call={handleCustomFilter}
-                                    filter={customFilter}
-                                ></SortBy>
-                            );
-                        })}
+                        {test.filterBy &&
+                            test.filterBy.map((filterBy, i) => {
+                                return (
+                                    <SortBy
+                                        key={i}
+                                        param={filterBy}
+                                        test={test}
+                                        call={handleCustomFilter}
+                                        filter={customFilter}
+                                    ></SortBy>
+                                );
+                            })}
                     </div>
                     <div>
                         <div className={styles.testObjectWrap}>
                             {sortTest(filter(test.objects)).map((obj, i) => (
-                                <TestObject obj={obj} key={i + update}></TestObject>
+                                <TestObject
+                                    obj={obj}
+                                    key={i + update}
+                                    compare={compare}
+                                ></TestObject>
                             ))}
                         </div>
                     </div>

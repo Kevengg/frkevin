@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-
+import React from "react";
+import { Link } from "react-router-dom";
 import sampleImg from "./img/manipulerende_design.jpg";
 import forbrukerrtilsynet from "./img/Forbrukerrtilsynet.png";
 import insertCoin from "./img/insert_coin.png";
@@ -26,6 +26,7 @@ export function LinkBtn(props) {
     let chevron = props.chevron ? <i className="fa-solid fa-chevron-right"></i> : "";
 
     if (href) {
+        // console.log(1, props.content);
         return (
             <a
                 href={href}
@@ -48,7 +49,27 @@ export function LinkBtn(props) {
                 )}
             </a>
         );
+    } else if (props.to) {
+        // console.log(2, props.content);
+        return (
+            <Link
+                to={props.to}
+                className={name}
+                style={props.color ? { backgroundColor: props.color } : {}}
+                onClick={props.onClick}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = props.hover;
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = props.color;
+                }}
+            >
+                {props.content}
+                {chevron}
+            </Link>
+        );
     } else {
+        // console.log(3, props.content);
         return (
             <div
                 className={name}
@@ -693,31 +714,31 @@ export function getNthOccurrence(str, target, n) {
 export function formatDate(date, format) {
     const dateDate = new Date(date);
     let options = {};
-    if (format === "DD longM YYYY") {
+    if (format == "DD longM YYYY") {
         options = {
             day: "numeric",
             month: "long",
             year: "numeric",
         };
-    } else if (format === "DD MM YYYY") {
+    } else if (format == "DD MM YYYY") {
         options = {
             day: "numeric",
             month: "numeric",
             year: "numeric",
         };
-    } else if (format === "DD/MM/YYYY") {
+    } else if (format == "DD/MM/YYYY") {
         options = {
             day: "numeric",
             month: "numeric",
             year: "numeric",
         };
-    } else if (format === "DD.MM.YYYY") {
+    } else if (format == "DD.MM.YYYY") {
         options = {
             day: "numeric",
             month: "numeric",
             year: "numeric",
         };
-    } else if (format === "DD-MM-YYYY") {
+    } else if (format == "DD-MM-YYYY") {
         options = {
             day: "numeric",
             month: "numeric",

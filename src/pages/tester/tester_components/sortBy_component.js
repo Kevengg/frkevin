@@ -11,7 +11,6 @@ export default function SortBy({ param, test, call, filter }) {
         }
     });
 
-    // console.log(uniqueOfParam, eachOfParam);
     function Sort({ sort }) {
         const [checked, setChecked] = useState(
             filter
@@ -41,7 +40,13 @@ export default function SortBy({ param, test, call, filter }) {
                         className="checkmark"
                     ></label>
                 </div>
-                <span>
+                <span
+                    onClick={(e) => {
+                        document
+                            .getElementById(typeof sort === "number" ? sort.toString() : sort)
+                            .click();
+                    }}
+                >
                     {sort} {"("}
                     {eachOfParam.reduce((acc, val) => {
                         return val === sort ? acc + 1 : acc;
