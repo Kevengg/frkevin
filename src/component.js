@@ -91,7 +91,6 @@ export function LinkBtn(props) {
 
 export function Slider(props) {
     const gap = ((props.max - props.min) / 100) * (props.gap ? props.gap : 5);
-    console.log(gap);
     return (
         <div className={`slider ${props.class}`}>
             <div className="sliderBack"></div>
@@ -866,17 +865,17 @@ export const Rettigheter = () => {
 // simple font awsome
 export function Chevron({ size: size, color: color, left: left }) {
     const sizeCalc = () => {
-        if (size === "xxs" || size === "2xs") {
+        if (size == "xxs" || size == "2xs") {
             return "fa-2xs";
-        } else if (size === "xs") {
+        } else if (size == "xs") {
             return "fa-xs";
-        } else if (size === "s" || size === "sm") {
+        } else if (size == "s" || size == "sm") {
             return "fa-sm";
-        } else if (size === "l" || size === "lg") {
+        } else if (size == "l" || size == "lg") {
             return "fa-lg";
-        } else if (size === "xl") {
+        } else if (size == "xl") {
             return "fa-xl";
-        } else if (size === "xxl" || size === "2xl") {
+        } else if (size == "xxl" || size == "2xl") {
             return "fa-2xl";
         }
     };
