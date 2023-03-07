@@ -215,7 +215,7 @@
         "filterBy": ["manufacturer", "price"]
     },
     {
-        "header": "Kylling- og kalkunpålegg",
+        "header": "Kylling- og kalkunpålegg2",
         "img": "kalkun_pålegg.jpg",
         "topic": "Helse og pleie",
         "content": "I denne testen har vi sammenliknet en rekke pålegg laget av kylling og kalkun som er å finne i de største matvarebutikkene. For å gjøre en ernæringsmessig vurdering av produktene, har vi sett på innhold av mettet fett, protein, sukker, salt og andel kjøtt. En høy andel kjøtt og protein har trukket opp, mens innholdet av salt, mettet fett og sukker har trukket ned.<br /><br />Produktene ble kjøpt inn 6. januar.<br /><br />Prisene ble sist sjekket tidlig i februar 2023. Disse kan endre seg, så sjekk prisen selv før du kjøper - det kan være en god del å spare på en ekstra prissjekk. De oppgitte prisene er per kilo. Kilopris gir et mer korrekt bilde av hva et produkt koster, og gjør det lettere å sammenlikne ulike produkter.<br /><br />Testen er gjennomført av BraMat AS i samarbeid med Forbrukerrådet.",
@@ -295,7 +295,7 @@
                 "img": "https://picsum.photos/id/901/600",
                 "imgAlt": "https://picsum.photos/id/901/600",
                 "date": "2023-01-06T00:00:00.000Z",
-                "price": 297,
+                "price": 1000000,
                 "note": "Høyt innhold av kalkun og protein. Lite mettet fett. Mer salt og sukker enn vinneren.",
                 "rating": 7,
                 "ratingType": "grade",

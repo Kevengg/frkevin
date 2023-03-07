@@ -197,6 +197,7 @@
 .compareWrap {
     display: flex;
     background-color: var(--FR-color-lb);
+    padding: 5px 5px 0 0;
 }
 
 .compareListHeader {
@@ -205,14 +206,14 @@
     flex-direction: column;
 }
 
-.CompareListItem {
-    padding-left: 8px;
+.compareListItem {
+    padding-left: 5px;
     height: 2.3rem;
     display: flex;
     align-items: center;
 }
 
-.CompareListItem:not(.compareListHeader .CompareListItem) {
+.compareListItem:not(.compareListHeader .compareListItem) {
     border-top: 2px solid var(--FR-color-g);
 }
 
@@ -224,13 +225,44 @@
 .compareItem,
 .comparePoints {
     width: 300px;
+    position: relative;
 }
 
 .compareItemsWrap {
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .falseScroll {
     height: 15px;
+}
+
+.compareListHeader div:first-child {
+    background-color: #fff;
+    margin: 0 auto;
+    width: 98%;
+    height: 80%;
+}
+
+.compareItemX {
+    background-color: var(--FR-color-db);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.compareItemX:hover {
+    cursor: pointer;
+    background-color: var(--FR-color-b);
+}
+
+.compareItemX i {
+    color: white;
 }

@@ -1,37 +1,109 @@
-import { formatDate } from "../../../component";
+import { formatDate, Chevron } from "../../../component";
 import styles from "../../../css/tester/testPage.module.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function ComparePage({ obj, info }) {
+export default function ComparePage({ obj, info, parent }) {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
     function SortItem({ item }) {
         return (
-            <div className={styles.compareItem}>
+            <div
+                className={styles.compareItem}
+                onClick={() => {
+                    navigate({
+                        search: `?page=${queryParams.get("page")}/${item.product
+                            .toLowerCase()
+                            .replace(/ /g, "-")}`,
+                    });
+                }}
+                onMouseEnter={(e) => {
+                    e.target.closest(`.${styles.compareItem}`).style.backgroundColor = "#0000000e";
+                }}
+                onMouseLeave={(e) => {
+                    e.target.closest(`.${styles.compareItem}`).style.backgroundColor = "";
+                }}
+            >
+                <div
+                    className={styles.compareItemX}
+                    onMouseEnter={(e) => {
+                        e.target.closest(`.${styles.compareItem}`).style.backgroundColor = "";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.target.closest(`.${styles.compareItem}`).style.backgroundColor =
+                            "#0000000e";
+                    }}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        navigate({
+                            search: `?page=${queryParams.get("page")}${
+                                queryParams
+                                    .get("compare")
+                                    .replace(obj.indexOf(item).toString(), "") != ""
+                                    ? `&compare=${queryParams
+                                          .get("compare")
+                                          .replace(obj.indexOf(item).toString(), "")}`
+                                    : ""
+                            }`,
+                        });
+                    }}
+                >
+                    <i className="fa-solid fa-xmark"></i>
+                </div>
                 <div className={styles.compareListHeader}>
-                    <div
-                        className="imgWrap"
-                        style={{
-                            backgroundColor: "white",
-                            margin: " 5px 2.5px 0 2.5px",
-                            overflow: "hidden",
-                        }}
-                    >
+                    <div className="imgWrap">
                         <img
                             src={item.img.includes("://") ? item.img : "./img/" + item.img}
                             alt=""
                         />
                     </div>
-                    <div className={styles.CompareListItem}> {item.product} </div>
+                    <div className={styles.compareListItem}> {item.product} </div>
                 </div>
                 <div className={styles.comparePoints}></div>
-                <div className={styles.CompareListItem}>
-                    {item.ratingType == "grade" ? `${item.rating} / 10` : item.rating}
+                <div className={styles.compareListItem}>
+                    {item.ratingType == "grade" ? (
+                        `${item.rating} / 10`
+                    ) : item.ratingType == "smiley" ? (
+                        <img
+                            height={35}
+                            src={
+                                item.rating === "good"
+                                    ? "./img/grade-positive.svg"
+                                    : item.rating === "ok"
+                                    ? "./img/grade-neutral.svg"
+                                    : "./img/grade-negative.svg"
+                            }
+                        ></img>
+                    ) : (
+                        item.rating
+                    )}
                 </div>
-                <div className={styles.CompareListItem}>{formatDate(item.date, "dd.mm.yyy")}</div>
-                {item.price && <div className={styles.CompareListItem}>kr {item.price}</div>}
-                <div className={styles.CompareListItem}> {item.manufacturer} </div>
+                <div className={styles.compareListItem}>{formatDate(item.date, "dd.mm.yyy")}</div>
+                {item.price && <div className={styles.compareListItem}>kr {item.price}</div>}
+                <div className={styles.compareListItem}> {item.manufacturer} </div>
                 {item.ratingPoints.map((p, i) => {
                     return (
-                        <div className={styles.CompareListItem} key={i}>
-                            {p[1] === true ? "ja" : p[1] === false ? "nei" : p[1]}
+                        <div className={styles.compareListItem} key={i}>
+                            {p[1] === true ? (
+                                "ja"
+                            ) : p[1] === false ? (
+                                "nei"
+                            ) : p[2] == "smiley" ? (
+                                <img
+                                    height={35}
+                                    src={
+                                        p[1] === "good"
+                                            ? "./img/grade-positive.svg"
+                                            : p[1] === "ok"
+                                            ? "./img/grade-neutral.svg"
+                                            : "./img/grade-negative.svg"
+                                    }
+                                ></img>
+                            ) : (
+                                p[1]
+                            )}
                         </div>
                     );
                 })}
@@ -42,16 +114,37 @@ export default function ComparePage({ obj, info }) {
     return (
         <main>
             <div className="maxWidth">
+                <nav className={styles.path}>
+                    <Link to="">Tester</Link>
+                    <Chevron size="xxs" />
+                    <Link
+                        to={`?searchBar:&searchBtn:${parent.topic
+                            .toLowerCase()
+                            .replace(/ /g, "-")}`}
+                    >
+                        {parent.topic}
+                    </Link>
+                    <Chevron size="xxs" />
+                    <Link to={`?page=${queryParams.get("page")}`}>{parent.header}</Link>
+                    <Chevron size="xxs" />
+                    <span>Sammenlign</span>
+                </nav>
+
+                <Link to={`?page=${queryParams.get("page")}`}>
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span style={{ textDecoration: "underline" }}>Tilbake</span>
+                </Link>
+
                 <div className={styles.compareWrap}>
                     <div className={styles.comparePoints}>
                         <div className={styles.compareListHeader}></div>
-                        <div className={styles.CompareListItem}> Samlet score </div>
-                        <div className={styles.CompareListItem}>Test dato</div>
-                        {obj[info[0]].price && <div className={styles.CompareListItem}>Pris</div>}
-                        <div className={styles.CompareListItem}>Produsent</div>
+                        <div className={styles.compareListItem}> Samlet score </div>
+                        <div className={styles.compareListItem}>Test dato</div>
+                        {obj[info[0]].price && <div className={styles.compareListItem}>Pris</div>}
+                        <div className={styles.compareListItem}>Produsent</div>
                         {obj[info[0]].ratingPoints.map((p, i) => {
                             return (
-                                <div className={styles.CompareListItem} key={i}>
+                                <div className={styles.compareListItem} key={i}>
                                     {p[0]}
                                 </div>
                             );
@@ -60,9 +153,8 @@ export default function ComparePage({ obj, info }) {
                     </div>
 
                     <div className={styles.compareItemsWrap}>
-                        {console.log(obj)}
-                        {obj.map((o, i) => {
-                            return <SortItem item={o} key={i}></SortItem>;
+                        {info.map((i, key) => {
+                            return <SortItem item={obj[i]} key={key}></SortItem>;
                         })}
                     </div>
                 </div>
