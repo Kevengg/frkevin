@@ -49,6 +49,9 @@ export default function TesterHjem(props) {
         setEmptySearchData(!emptySearchData);
     };
 
+    useEffect(() => {
+        forceUpdateTopsection(!updateTopsection);
+    }, [searchData]);
     // suposed to make <- remember sarch data by manippulating tab history,
     // and pasing search data in query string in the href
     const [loaded, setLoaded] = useState(0);
