@@ -21,7 +21,8 @@ export default function TesterV2() {
             updatePage(
                 testsList.find((obj) => obj.header.toLowerCase().replace(/ /g, "-") === url)
                     .objects,
-                compare.split("")
+                compare.split(""),
+                testsList.find((obj) => obj.header.toLowerCase().replace(/ /g, "-") === url)
             );
         } else if (url && !compare) {
             var page = url.split("/");
@@ -41,7 +42,7 @@ export default function TesterV2() {
         // makes query string empty insted of searchBar:&searchBtn: when none is selected
     }, [location.search]);
 
-    function updatePage(page, info) {
+    function updatePage(page, info, info2) {
         // console.log(page);
         // console.log(typeof page);
         // console.log("info", info);
@@ -53,7 +54,7 @@ export default function TesterV2() {
                     <TestObjectPage obj={page} info={info} updatePage={updatePage}></TestObjectPage>
                 );
             } else {
-                setPage(<ComparePage obj={page} info={info}></ComparePage>);
+                setPage(<ComparePage obj={page} info={info} parent={info2}></ComparePage>);
             }
         } else setPage(<TesterHjem updatePage={updatePage} />);
         window.scrollTo(0, 0);
