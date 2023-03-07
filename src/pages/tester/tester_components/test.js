@@ -298,7 +298,6 @@ export default function TestPage({ page }) {
         setPriceMinValue(calcPriceMin());
         setCustomFilter();
         //
-        window.scroll({ top: 300, behavior: "auto" });
     };
 
     // to find the max price in the list of products

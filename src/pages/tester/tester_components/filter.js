@@ -37,6 +37,18 @@ export default function FilterWrap(props) {
     }
     return (
         <div className={style.filterWrap}>
+            <div
+                style={{
+                    display: !!searchData.searchBar ? "flex" : "none",
+                }}
+                className={style.filter}
+                onClick={() => {
+                    updateSearchData("");
+                }}
+            >
+                <span>{searchData.searchBar}</span>
+                <i className="fa-solid fa-x"></i>
+            </div>
             <Filter filter="Mat og drikke"></Filter>
             <Filter filter="Fritid"></Filter>
             <Filter filter="Bilbarneseter"></Filter>

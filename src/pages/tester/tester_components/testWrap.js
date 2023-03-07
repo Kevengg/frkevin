@@ -30,7 +30,16 @@ export default function TestWrap(props) {
     return (
         <div id="TestWrap">
             <div className={style.testHeader}>
-                <h2>Alle våre {props.testsList[1]} tester</h2>
+                <h2>{`${
+                    !!props.searchData.searchBar || !!props.searchData.searchBtn.length
+                        ? ""
+                        : "Alle våre "
+                } ${props.testsList[1]} tester ${
+                    !!props.searchData.searchBar || !!props.searchData.searchBtn.length
+                        ? "innen"
+                        : ""
+                }`}</h2>
+
                 <FilterWrap
                     searchData={props.searchData}
                     updateSearchData={props.updateSearchData}
