@@ -90,6 +90,8 @@ export function LinkBtn(props) {
 }
 
 export function Slider(props) {
+    const gap = ((props.max - props.min) / 100) * (props.gap ? props.gap : 5);
+    console.log(gap);
     return (
         <div className={`slider ${props.class}`}>
             <div className="sliderBack"></div>
@@ -100,9 +102,9 @@ export function Slider(props) {
                 value={props.maxValue}
                 min={props.min}
                 onChange={(e) => {
-                    if (parseInt(e.target.value) - props.minValue > 10) {
+                    if (parseInt(e.target.value) - props.minValue > gap) {
                         props.setMaxValue(parseInt(e.target.value));
-                    } else props.setMaxValue(props.minValue + 11);
+                    } else props.setMaxValue(props.minValue + (gap + 1));
                 }}
             />
             <input
@@ -112,9 +114,9 @@ export function Slider(props) {
                 max={props.max}
                 min={props.min}
                 onChange={(e) => {
-                    if (props.maxValue - parseInt(e.target.value) > 10) {
+                    if (props.maxValue - parseInt(e.target.value) > gap) {
                         props.setMinValue(parseInt(e.target.value));
-                    } else props.setMinValue(props.maxValue - 11);
+                    } else props.setMinValue(props.maxValue - (gap + 1));
                 }}
             />
         </div>
