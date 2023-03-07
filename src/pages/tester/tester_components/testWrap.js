@@ -54,8 +54,14 @@ export default function TestWrap(props) {
             </div>
             <div className={style.testsWrap}>
                 {props.testsList &&
-                    props.testsList[0].map((test) => {
-                        return <Test test={test} key={props.testsList[0].indexOf(test)}></Test>;
+                    props.testsList[0].map((test, i) => {
+                        if (
+                            i + 1 > (props.page - 1) * 12 && i + 1 <= (props.page - 1) * 12 + 12
+                                ? true
+                                : false
+                        ) {
+                            return <Test test={test} key={props.testsList[0].indexOf(test)}></Test>;
+                        }
                     })}
             </div>
         </div>

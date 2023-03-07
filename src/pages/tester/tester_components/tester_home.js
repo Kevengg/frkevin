@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Chevron } from "../../../component";
 import ToppSection from "../tester_components/topp_section";
 import testsList from "../../../data/tester.json";
 import TestWrap from "../tester_components/testWrap";
+import styles from "../../../css/tester/tester_hjem.module.css";
 
 export default function TesterHjem(props) {
     const navigate = useNavigate();
     const location = useLocation();
+
+    // tracks the pagenr
+    const [pageNr, setPageNr] = useState(1);
 
     // forces Topsection to update when set to !updateTopsection via forceUpdateTopsection()
     const [updateTopsection, forceUpdateTopsection] = useState(true);
@@ -186,6 +191,27 @@ export default function TesterHjem(props) {
         return [sortData(filteredSearch), filteredSearch.length];
     }
 
+    function addPageNrBtn() {
+        let mapHold = [];
+        for (let i = 0; i < Math.ceil(filterSearch(testsList)[1] / 12); i++) {
+            mapHold.push(i + 1);
+        }
+        return mapHold.map((item) => {
+            return (
+                <span
+                    style={{ backgroundColor: pageNr == item ? "var(--FR-color-lb)" : "" }}
+                    className={styles.pageNr}
+                    key={item}
+                    onClick={() => {
+                        setPageNr(item);
+                    }}
+                >
+                    {item}
+                </span>
+            );
+        });
+    }
+
     return (
         <main>
             <ToppSection
@@ -195,16 +221,40 @@ export default function TesterHjem(props) {
             ></ToppSection>
             <div className="maxWidth">
                 <TestWrap
+                    key={emptySearchData}
                     testsList={filterSearch(testsList)}
                     updateTestCount={updateTestCount}
                     searchData={searchData}
                     updatePage={props.updatePage}
-                    key={emptySearchData}
                     updateSortBy={updateSortBy}
                     forceUpdateTopsection={forceUpdateTopsection}
                     updateTopsection={updateTopsection}
                     updateSearchData={updateSearchData}
+                    page={pageNr}
                 ></TestWrap>
+                <div className={styles.pageNrWrap}>
+                    <span
+                        className={styles.pageBtn}
+                        onClick={() => {
+                            if (pageNr != 1) {
+                                setPageNr(pageNr - 1);
+                            }
+                        }}
+                    >
+                        <Chevron left size="L"></Chevron>
+                    </span>
+                    {addPageNrBtn()}
+                    <span
+                        className={styles.pageBtn}
+                        onClick={() => {
+                            if (pageNr + 1 <= Math.ceil(filterSearch(testsList)[1] / 12)) {
+                                setPageNr(pageNr + 1);
+                            }
+                        }}
+                    >
+                        <Chevron size="L"></Chevron>
+                    </span>
+                </div>
             </div>
         </main>
     );

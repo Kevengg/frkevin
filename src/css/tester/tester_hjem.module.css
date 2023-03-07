@@ -6,7 +6,7 @@
     gap: 45px 5%;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
-    min-height: 400px;
+    min-height: 1000px;
 }
 
 .test {
@@ -192,6 +192,27 @@
 .testSort i {
     color: var(--site-text-color);
     margin-left: 5px;
+}
+
+/* pageNr */
+.pageNrWrap {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.pageNr {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin: 0 4px;
+    user-select: none;
+}
+
+.pageBtn *:hover {
+    color: var(--FR-color-db) !important;
 }
 
 @media screen and (max-width: 1100px) {
