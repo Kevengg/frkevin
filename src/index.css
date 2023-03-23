@@ -1111,6 +1111,39 @@ input.checkbox:checked + label.checkmark:after {
     z-index: 1;
 }
 
+.frDropDown {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.frDropDownHeader {
+    width: 100%;
+    border-bottom: 2px solid black;
+    border-radius: 1px;
+    margin-bottom: 10px;
+}
+
+.frDropDownHeader i {
+    margin-left: auto;
+    margin-right: 8px;
+}
+
+.frDropDownContent {
+    width: 100%;
+    overflow: hidden;
+    max-height: 0px;
+    transition: max-height 0.3s cubic-bezier(0.53, 0.46, 0.52, 0.49);
+}
+
+.frDropDownContentActive {
+    max-height: 1000px;
+}
+
+.fa-solid {
+    display: inline-flex;
+    align-items: center;
+}
+
 /* add padding when needed */
 @media screen and (max-width: 1500px) {
     header nav,

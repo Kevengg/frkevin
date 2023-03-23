@@ -43,7 +43,7 @@ export function LinkBtn(props) {
                 {props.download ? (
                     <i className="fa-solid fa-download"></i>
                 ) : props.external ? (
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 ) : (
                     chevron
                 )}
@@ -282,24 +282,24 @@ export function Nyheter(props) {
 
     return (
         <>
-            <div id="sisteNyttHeaderWrapper">
-                <h2 style={{ marginBottom: "20px" }}>
-                    {props.header ? props.header : "Verdt å få med seg"}
-                </h2>
-                <a href="">
-                    les mer
-                    <i
-                        style={{ verticalAlign: "baseline" }}
-                        className="fa-solid fa-xs fa-chevron-right"
-                    ></i>
-                </a>
-            </div>
+            {props.header && (
+                <div id="sisteNyttHeaderWrapper">
+                    <h2 style={{ marginBottom: "20px" }}>{props.header}</h2>
+                    <a href="">
+                        les mer
+                        <i
+                            style={{ verticalAlign: "baseline" }}
+                            className="fa-solid fa-xs fa-chevron-right"
+                        ></i>
+                    </a>
+                </div>
+            )}
             <div id="sisteNytt">{testForNyhet()}</div>
         </>
     );
 }
 
-function ContactPreset(props) {
+export function ContactPreset(props) {
     if (props.tlf) {
         if (props.tlfAlt) {
             var tlf = props.tlfAlt + " " + props.tlf;
@@ -721,6 +721,12 @@ export function formatDate(date, format) {
             month: "long",
             year: "numeric",
         };
+    } else if (format == "DD.longM.YYYY") {
+        options = {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        };
     } else if (format == "DD MM YYYY") {
         options = {
             day: "numeric",
@@ -883,6 +889,53 @@ export function Chevron({ size: size, color: color, left: left }) {
     return <i className={`fa-solid fa-chevron-${left ? "left" : "right"} ${sizeCalc()} `}></i>;
 }
 
+// fr droppdown
+export const FrDroppDown = ({ header, content, style, className, active }) => {
+    return (
+        <div
+            className={`frDropDown ${active ? "frDropDownContentActive" : ""} ${className}`}
+            style={style}
+        >
+            <div
+                className="frDropDownHeader"
+                onClick={(e) => {
+                    const target = e.target.closest(".frDropDown");
+                    target
+                        .querySelector(".frDropDownContent")
+                        .classList.toggle("frDropDownContentActive");
+                    target.querySelector(".fa-solid").classList.toggle("fa-plus");
+                    target.querySelector(".fa-solid").classList.toggle("fa-minus");
+                }}
+            >
+                <h3>{header}</h3>
+                <i className="fa-solid fa-plus fa-lg "></i>
+            </div>
+            <div className="frDropDownContent">{formatContent(content)}</div>
+        </div>
+    );
+};
+
+// to make a ul/ol from an object, mainly for translating text to lists
+export const ListObject = ({ type, items }) => {
+    if (type == "ul" || type == "unordered list" || type == "unorderedlist") {
+        return (
+            <ul>
+                {items.map((i, index) => {
+                    return <li key={index}>{i}</li>;
+                })}
+            </ul>
+        );
+    } else {
+        return (
+            <ol>
+                {items.map((i, index) => {
+                    return <li key={index}>{i}</li>;
+                })}
+            </ol>
+        );
+    }
+};
+
 // gennerated using chatGTP
 // based on prompt:
 // how wuld i go ahead an ad moar to check than just content and chevron? for example external="{true}"
@@ -941,6 +994,7 @@ export function formatContent(input) {
                     // Push a <LinkBtn /> component to the `result` array
                     result.push(
                         <LinkBtn
+                            key={(j + 1) * Math.random(2, 200) + j}
                             content={content}
                             chevron={chevron}
                             external={external}
@@ -991,6 +1045,7 @@ export function formatContent(input) {
                 }
 
                 // Push a <LinkBtn /> component to the `result` array
+
                 result.push(
                     <LinkBtn
                         content={content}
@@ -1000,7 +1055,7 @@ export function formatContent(input) {
                         download={download}
                     />
                 );
-                // console.log("match", match[3]);
+                console.log("match", match[3]);
 
                 match[3] && result.push(match[3]);
             } else {
@@ -1010,8 +1065,62 @@ export function formatContent(input) {
         }
     }
     // console.log("result before", result);
+    let resultV2 = [];
+    result.forEach((r, index) => {
+        if (typeof r == "string" && r.includes("<ListObject")) {
+            r = r.match(/(.*)(<ListObject.*?\/>)(.*)/);
+            let type = r[2].match(/(?<=type=').*?(?=')/);
+            let items = r[2];
+            items = items.match(/(?<=items=\[).*?(?=\])/)[0].match(/(?<=')(?!,).*?(?=')/g);
+            // console.log("items, type", items, type);
+            resultV2.push(
+                r[1] ? r[1] : null,
+                r[2] ? <ListObject key={result.length + index} type={type} items={items} /> : null,
+                r[3] ? r[formatContent(3)] : null
+            );
+        } else resultV2.push(r);
+    });
+
+    // to find and replace list elements
+    let resultV3 = [];
+    resultV2.forEach((item, index) => {
+        if (typeof item == "string" && item.includes("FrDroppDown")) {
+            item = item.match(/(.*)(<FrDroppDown.*?\/>)(.*)/);
+            let header = item[2].match(/(?<=header=').*?(?=')/);
+            let content = item[2].match(/(?<=content=').*?(?=')/);
+            let style = item[2].match(/(?<=style=').*?(?=')/);
+            let className = item[2].match(/(?<=className=').*?(?=')/);
+            resultV3.push(item[1]);
+            resultV3.push(
+                item[2] ? (
+                    <FrDroppDown
+                        key={resultV2.length + index}
+                        header={header ? header[0] : null}
+                        content={content ? formatContent(content[0]) : null}
+                        className={className ? className[0] : null}
+                        style={style ? style[0] : null}
+                    />
+                ) : null
+            );
+            resultV3.push(formatContent(item[3]));
+        } else resultV3.push(item);
+    });
+
+    let resultV4 = [];
+    resultV3.forEach((item, index) => {
+        if (typeof item == "string" && item.includes("<img")) {
+            item = item.match(/(.*?)(<img.*?\/>)(.*)/);
+            let src = item ? item[2].match(/(?<=src=').*?(?=')/) : null;
+            let alt = item ? item[2].match(/(?<=alt=').*?(?=')/) : null;
+
+            resultV4.push(item[1]);
+            resultV4.push(<img key={"img " + toString(index)} src={src} alt={alt} />);
+            resultV4.push(formatContent(item[3]));
+        } else resultV4.push(item);
+    });
+
     // console.log("result", result);
-    return result;
+    return resultV4;
     // return splitJSXString(result);
 }
 
@@ -1275,12 +1384,12 @@ function splitJSXString(jsx) {
         let num = 0;
         if (typeof item === "string" && item.includes("<div>")) {
             let itemHold = [item];
-            console.log("item", item);
-            console.log("itemHold", itemHold);
+            // console.log("item", item);
+            // console.log("itemHold", itemHold);
 
             while (itemHold.includes("<div>")) {
                 num++;
-                console.log(num);
+                // console.log(num);
                 let newItem = [];
                 itemHold.map((item, index) => {
                     if (typeof item === "string") {
@@ -1303,7 +1412,7 @@ function splitJSXString(jsx) {
                 });
                 itemHold = newItem;
             }
-            console.log("new itemHold", itemHold);
+            // console.log("new itemHold", itemHold);
         }
 
         // if (typeof item == "string") {
