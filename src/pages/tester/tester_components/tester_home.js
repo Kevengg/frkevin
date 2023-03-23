@@ -207,6 +207,9 @@ export default function TesterHjem(props) {
                     key={item}
                     onClick={() => {
                         setPageNr(item);
+                        if (pageNr != item) {
+                            window.scrollTo(0, 0);
+                        }
                     }}
                 >
                     {item}
@@ -241,6 +244,7 @@ export default function TesterHjem(props) {
                         onClick={() => {
                             if (pageNr != 1) {
                                 setPageNr(pageNr - 1);
+                                window.scrollTo(0, 0);
                             }
                         }}
                     >
@@ -252,6 +256,7 @@ export default function TesterHjem(props) {
                         onClick={() => {
                             if (pageNr + 1 <= Math.ceil(filterSearch(testsList)[1] / 12)) {
                                 setPageNr(pageNr + 1);
+                                window.scrollTo(0, 0);
                             }
                         }}
                     >
