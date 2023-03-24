@@ -357,7 +357,15 @@ export default function TestPage({ page }) {
                             Publissert: {formatDate(test.date, "DD longM YYYY")}
                         </p>
                         <p>{formatContent(test.content)}</p>
-                        <LinkBtn content="Les mer om testen" chevron></LinkBtn>
+                        {page.readMore && (
+                            <LinkBtn
+                                content="Les mer om testen"
+                                chevron
+                                href={`?page=${page.header
+                                    .toLowerCase()
+                                    .replace(/ /, "-")}&readmore=true`}
+                            ></LinkBtn>
+                        )}
                     </div>
                 </div>
 

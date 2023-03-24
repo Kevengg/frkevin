@@ -5,6 +5,7 @@ import TestPage from "./tester_components/test";
 import TestObjectPage from "./tester_components/testObjectPage";
 import testsList from "../../data/tester.json";
 import ComparePage from "./tester_components/comparePage";
+import ReadMore from "./tester_components/readMore";
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
@@ -14,6 +15,7 @@ export default function TesterV2() {
     useEffect(() => {
         var url = queryParams.get("page");
         var compare = queryParams.get("compare");
+        var readMore = queryParams.get("readmore");
 
         if (compare) {
             // [{testObject}, {testObject}], [index, index]
@@ -24,7 +26,7 @@ export default function TesterV2() {
                 compare.split(""),
                 testsList.find((obj) => obj.header.toLowerCase().replace(/ /g, "-") === url)
             );
-        } else if (url && !compare) {
+        } else if (url) {
             var page = url.split("/");
 
             var pageUrl = [
@@ -43,11 +45,14 @@ export default function TesterV2() {
     }, [location.search]);
 
     function updatePage(page, info, info2) {
+        var readMore = queryParams.get("readmore");
         // console.log(page);
         // console.log(typeof page);
         // console.log("info", info);
         if (typeof page === "object") {
-            if (page.hasOwnProperty("header")) {
+            if (readMore) {
+                setPage(<ReadMore page={page}></ReadMore>);
+            } else if (page.hasOwnProperty("header")) {
                 setPage(<TestPage page={page} info={info} updatePage={updatePage} />);
             } else if (page.hasOwnProperty("product")) {
                 setPage(
