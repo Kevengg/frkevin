@@ -1,0 +1,17 @@
+.page {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pageLeft {
+    max-width: 833px;
+    margin-right: 40px;
+}
+
+.pageLeft img {
+    width: 100%;
+}
+
+.pageRight {
+    max-width: 450px;
+}

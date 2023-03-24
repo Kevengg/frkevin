@@ -274,7 +274,7 @@ export function Nyheter(props) {
         } else {
             return (
                 <div>
-                    <h2 style={{ color: "red" }}> ingen tester nyheter, noe gikk galt</h2>
+                    <h2 style={{ color: "red" }}> ingen tester/nyheter, noe gikk galt</h2>
                 </div>
             );
         }
@@ -309,7 +309,7 @@ export function ContactPreset(props) {
     } else {
         var tlf;
     }
-    var img = "/img/" + props.img;
+    var img = props.img.includes("://") ? props.img : "/img/" + props.img;
 
     function presse() {
         if (props.presseBilder) {
@@ -962,7 +962,7 @@ export function formatContent(input) {
                 // console.log("subElements", subElements);
 
                 // Check if the subElement matches the format of <LinkBtn />
-                if ((match = subElement.match(/content='(.*?)'(.*?)\/>(.*)/))) {
+                if ((match = subElement.match(/(?<=<LinkBtn).*content='(.*?)'(.*?)\/>(.*)/))) {
                     let content = match[1];
                     let chevron = false;
                     let external = false;
@@ -1055,7 +1055,6 @@ export function formatContent(input) {
                         download={download}
                     />
                 );
-                console.log("match", match[3]);
 
                 match[3] && result.push(match[3]);
             } else {
@@ -1065,6 +1064,19 @@ export function formatContent(input) {
         }
     }
     // console.log("result before", result);
+
+    function formatLists(items) {
+        let toreturn = [];
+        items.forEach((item, index) => {
+            if (typeof item == "string" && item.includes("li")) {
+                // index 0:everything, index 1: everything before, index 2: opening tagg,
+                // index 3: content, index 4: rest
+                item = item.match(/(.*?)(<ul.*?>)(.*?)((?<=<\/ul>).*)/);
+            } else toreturn.push(item);
+        });
+        return toreturn;
+    }
+
     let resultV2 = [];
     result.forEach((r, index) => {
         if (typeof r == "string" && r.includes("<ListObject")) {
@@ -1076,51 +1088,125 @@ export function formatContent(input) {
             resultV2.push(
                 r[1] ? r[1] : null,
                 r[2] ? <ListObject key={result.length + index} type={type} items={items} /> : null,
-                r[3] ? r[formatContent(3)] : null
+                r[3] ? formatContent(r[3]) : null
             );
         } else resultV2.push(r);
     });
 
     // to find and replace list elements
-    let resultV3 = [];
-    resultV2.forEach((item, index) => {
-        if (typeof item == "string" && item.includes("FrDroppDown")) {
-            item = item.match(/(.*)(<FrDroppDown.*?\/>)(.*)/);
-            let header = item[2].match(/(?<=header=').*?(?=')/);
-            let content = item[2].match(/(?<=content=').*?(?=')/);
-            let style = item[2].match(/(?<=style=').*?(?=')/);
-            let className = item[2].match(/(?<=className=').*?(?=')/);
-            resultV3.push(item[1]);
-            resultV3.push(
-                item[2] ? (
-                    <FrDroppDown
-                        key={resultV2.length + index}
-                        header={header ? header[0] : null}
-                        content={content ? formatContent(content[0]) : null}
-                        className={className ? className[0] : null}
-                        style={style ? style[0] : null}
-                    />
-                ) : null
-            );
-            resultV3.push(formatContent(item[3]));
-        } else resultV3.push(item);
-    });
+    function formatFrDroppDown(items) {
+        let toreturn = [];
+        items.forEach((item, index) => {
+            if (typeof item == "string" && item.includes("FrDroppDown")) {
+                item = item.match(/(.*)(<FrDroppDown.*?\/>)(.*)/);
+                let header = item[2].match(/(?<=header=').*?(?=')/);
+                let content = item[2].match(/(?<=content=').*?(?=')/);
+                let style = item[2].match(/(?<=style=').*?(?=')/);
+                let className = item[2].match(/(?<=className=').*?(?=')/);
+                toreturn.push(item[1]);
+                toreturn.push(
+                    item[2] ? (
+                        <FrDroppDown
+                            key={"FrDroppDown " + index.toString()}
+                            header={header ? header[0] : null}
+                            content={content ? content[0] : null}
+                            className={className ? className[0] : null}
+                            style={style ? style[0] : null}
+                        />
+                    ) : null
+                );
+                toreturn.push(formatFrDroppDown([item[3]]));
+            } else toreturn.push(item);
+        });
+        return toreturn;
+    }
 
-    let resultV4 = [];
-    resultV3.forEach((item, index) => {
-        if (typeof item == "string" && item.includes("<img")) {
-            item = item.match(/(.*?)(<img.*?\/>)(.*)/);
-            let src = item ? item[2].match(/(?<=src=').*?(?=')/) : null;
-            let alt = item ? item[2].match(/(?<=alt=').*?(?=')/) : null;
+    function filterImg(items) {
+        let toreturn = [];
+        items.forEach((item, index) => {
+            if (typeof item == "string" && item.includes("<img")) {
+                item = item.match(/(.*?)(<img.*?\/>)(.*)/);
+                let src = item ? item[2].match(/(?<=src=').*?(?=')/) : null;
+                let alt = item ? item[2].match(/(?<=alt=').*?(?=')/) : null;
 
-            resultV4.push(item[1]);
-            resultV4.push(<img key={"img " + toString(index)} src={src} alt={alt} />);
-            resultV4.push(formatContent(item[3]));
-        } else resultV4.push(item);
-    });
+                toreturn.push(item[1]);
+                toreturn.push(<img key={"img " + index.toString()} src={src} alt={alt} />);
+                toreturn.push(filterImg([item[3]]));
+            } else toreturn.push(item);
+        });
+        return toreturn;
+    }
 
-    // console.log("result", result);
-    return resultV4;
+    function formatHeader(items) {
+        let toreturn = [];
+        // console.log("items", items);
+        items.forEach((item, index) => {
+            if (typeof item == "string" && item.includes("<h")) {
+                item = item.match(/(.*?)(<h..*?\/h.>)(.*)/);
+                let type = item[2] ? item[2].match(/(?<=<h)./)[0] : null;
+                let className =
+                    item[2] && item[2].match(/(?<=className=').*?(?=')/)
+                        ? item[2].match(/(?<=className=').*?(?=')/)[0]
+                        : null;
+                let style = [];
+                item[2] &&
+                    item[2].match(/(?<=style={{).*?(?=}})/) &&
+                    item[2]
+                        .match(/(?<=style={{).*?(?=}})/)[0]
+                        .split(/, /)
+                        .forEach((i) => {
+                            let keep = i.match(/(.*?(?=:)).*?((?<=').*?(?='))/);
+                            style.push({ [keep[1]]: keep[2] });
+                        });
+                style = style.length
+                    ? style
+                        ? style.reduce((result, obj) => {
+                              return { ...result, ...obj };
+                          })
+                        : null
+                    : {};
+                let content = item ? item[2].match(/(?<=>).*?(?=<\/h.*?>)/)[0] : null;
+                toreturn.push(
+                    item.length && item[1],
+                    type || content ? (
+                        type == 1 ? (
+                            <h1 className={className} style={style} key={`header ${index}`}>
+                                {content}
+                            </h1>
+                        ) : type == 2 ? (
+                            <h2 className={className} style={style} key={`header ${index}`}>
+                                {content}
+                            </h2>
+                        ) : type == 3 ? (
+                            <h3 className={className} style={style} key={`header ${index}`}>
+                                {content}
+                            </h3>
+                        ) : type == 4 ? (
+                            <h4 className={className} style={style} key={`header ${index}`}>
+                                {content}
+                            </h4>
+                        ) : type == 5 ? (
+                            <h5 className={className} style={style} key={`header ${index}`}>
+                                {content}
+                            </h5>
+                        ) : type == 6 ? (
+                            <h6 className={className} style={style} key={`header ${index}`}>
+                                {content}
+                            </h6>
+                        ) : (
+                            content
+                        )
+                    ) : (
+                        ""
+                    )
+                );
+                item[3] && toreturn.push(formatHeader([item[3]]));
+            } else toreturn.push(item);
+        });
+        return toreturn;
+    }
+
+    return formatFrDroppDown(filterImg(formatHeader(resultV2)));
     // return splitJSXString(result);
 }
 

@@ -4,6 +4,7 @@
     --main-f_family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --line-height: 1.5;
     --site-width: 1500px;
+    --site-width-medium: 1408px;
     --site-width-small: calc(var(--site-width) - 300px);
     --site-text-color: #000;
     --site-backround-color: #ffffff;
@@ -76,6 +77,11 @@ body {
     min-height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto;
+}
+
+main .maxWidthMedium {
+    margin: 0 auto;
+    max-width: var(--site-width-medium);
 }
 
 main .maxWidth {
@@ -1121,6 +1127,8 @@ input.checkbox:checked + label.checkmark:after {
     border-bottom: 2px solid black;
     border-radius: 1px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .frDropDownHeader i {
