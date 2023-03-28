@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Chevron, formatContent, LinkBtn, formatDate, Slider } from "../../../component";
+import { Chevron, formatContent, LinkBtnOld, formatDate, Slider } from "../../../component";
 import styles from "../../../css/tester/testPage.module.css";
 import SortBy from "./sortBy_component";
 
@@ -346,25 +346,25 @@ export default function TestPage({ page }) {
                         />
                     </div>
                     <div className={styles.testPageGrayBoxContent}>
-                        <LinkBtn
+                        <LinkBtnOld
                             content={test.topic}
                             href={`?searchBar:&searchBtn:${test.topic
                                 .toLowerCase()
                                 .replace(/ /g, "-")}`}
-                        ></LinkBtn>
+                        ></LinkBtnOld>
                         <h2>{test.header}</h2>
                         <p style={{ marginBottom: "10px" }}>
                             Publissert: {formatDate(test.date, "DD longM YYYY")}
                         </p>
                         <p>{formatContent(test.content)}</p>
                         {page.readMore && (
-                            <LinkBtn
+                            <LinkBtnOld
                                 content="Les mer om testen"
                                 chevron
                                 href={`?page=${page.header
                                     .toLowerCase()
                                     .replace(/ /, "-")}&readmore=true`}
-                            ></LinkBtn>
+                            ></LinkBtnOld>
                         )}
                     </div>
                 </div>
@@ -373,7 +373,7 @@ export default function TestPage({ page }) {
 
                 <div className={styles.testHeader}>
                     <p>Filter</p>
-                    <LinkBtn
+                    <LinkBtnOld
                         content="Nulstill filter"
                         color="transparent"
                         hover="transparent"
@@ -381,7 +381,7 @@ export default function TestPage({ page }) {
                         onClick={() => {
                             nulstill();
                         }}
-                    ></LinkBtn>
+                    ></LinkBtnOld>
                     <input
                         type="text"
                         name="search"
@@ -410,7 +410,7 @@ export default function TestPage({ page }) {
                     <label htmlFor="sort" className={styles.sortV}>
                         <i className="fa-solid fa-chevron-down"></i>
                     </label>
-                    <LinkBtn
+                    <LinkBtnOld
                         to={`?page=${test.header
                             .toLowerCase()
                             .replace(/ /g, "-")}&compare=${calcCompare()}`}
@@ -418,7 +418,7 @@ export default function TestPage({ page }) {
                         color="var(--FR-color-lg)"
                         hover="var(--FR-color-lb)"
                         className={styles.compare}
-                    ></LinkBtn>
+                    ></LinkBtnOld>
                 </div>
 
                 {/*  */}

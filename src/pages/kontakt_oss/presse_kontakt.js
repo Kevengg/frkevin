@@ -1,5 +1,5 @@
 import styles from "../../css/presse.module.css";
-import { Contacts, LinkBtn, Nyheter, ToppSection } from "../../component";
+import { Contacts, LinkBtnOld, Nyheter, ToppSection } from "../../component";
 
 export default function Presse() {
     async function close(t) {
@@ -62,23 +62,26 @@ export default function Presse() {
                     <div id={styles.merSom}>
                         <div className={styles.merSomItem}>
                             <h3>Abonner på nyhetsvarsel</h3>
-                            <LinkBtn
+                            <LinkBtnOld
                                 content="Få varsel om siste nytt"
                                 chevron={true}
                                 href="#"
-                            ></LinkBtn>
+                            ></LinkBtnOld>
                         </div>
                         <div className={styles.merSomItem}>
                             <h3>Be om innsyn i en sak</h3>
-                            <LinkBtn content="Søk eInnsyn" external={true} href="#"></LinkBtn>
+                            <LinkBtnOld content="Søk eInnsyn" external={true} href="#"></LinkBtnOld>
                         </div>
                         <div className={styles.merSomItem}>
                             <h3>Retningslinjer for bruk av logo</h3>
-                            <LinkBtn
+                            <LinkBtnOld
                                 content="Retningslinjer for bruk av logo"
                                 download="#"
-                            ></LinkBtn>
-                            <LinkBtn content="Forbrukerrådets logo(jpeg)" download="#"></LinkBtn>
+                            ></LinkBtnOld>
+                            <LinkBtnOld
+                                content="Forbrukerrådets logo(jpeg)"
+                                download="#"
+                            ></LinkBtnOld>
                         </div>
                     </div>
 

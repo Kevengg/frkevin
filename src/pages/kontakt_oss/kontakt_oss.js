@@ -1,4 +1,12 @@
-import { GuideBtn, LinkBtn, GrayBox, ToppSection } from "../../component";
+import {
+    GuideBtn,
+    LinkBtnOld,
+    GrayBox,
+    ToppSection,
+    LinkBtn,
+    Chevron,
+    FrDroppDown,
+} from "../../component";
 import styles from "../../css/kontakt_oss.module.css";
 
 export default function KontaktOss() {
@@ -269,7 +277,7 @@ export default function KontaktOss() {
                                     Fobrukerrådets personvernerklæring
                                 </a>
 
-                                <LinkBtn content="Send" onClick={() => {}}></LinkBtn>
+                                <LinkBtnOld content="Send" onClick={() => {}}></LinkBtnOld>
                             </form>
 
                             <div>
@@ -370,8 +378,8 @@ export default function KontaktOss() {
                             </a>
                             .
                         </p>
-
-                        <LinkBtn content="Finn oss på kartet" external={true}></LinkBtn>
+                        <div style={{ backgroundColor: "blue" }}></div>
+                        <LinkBtnOld content="Finn oss på kartet" external={true}></LinkBtnOld>
                     </div>
                 </div>
             </div>
