@@ -10,6 +10,64 @@ import horinger from "./data/horinger.json";
 import rapporter from "./data/rapporter.json";
 
 export function LinkBtn(props) {
+    let name = props.className ? `linkBtn ${props.className}` : "linkBtn";
+
+    if (props.href) {
+        // console.log(1, props.content);
+        return (
+            <a
+                href={props.href}
+                className={name}
+                style={props.color ? { backgroundColor: props.color } : {}}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = props.hover;
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = props.color;
+                }}
+            >
+                {props.children}
+            </a>
+        );
+    } else if (props.to) {
+        // console.log(2, props.content);
+        return (
+            <Link
+                to={props.to}
+                className={name}
+                style={props.color ? { backgroundColor: props.color } : {}}
+                onClick={props.onClick}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = props.hover;
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = props.color;
+                }}
+            >
+                {props.children}
+            </Link>
+        );
+    } else {
+        // console.log(3, props.content);
+        return (
+            <div
+                className={name}
+                style={props.color ? { backgroundColor: props.color } : {}}
+                onClick={props.onClick}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = props.hover;
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = props.color;
+                }}
+            >
+                {props.children}
+            </div>
+        );
+    }
+}
+
+export function LinkBtnOld(props) {
     let href;
     if (props.external) {
         href = props.href;
@@ -87,6 +145,84 @@ export function LinkBtn(props) {
             </div>
         );
     }
+
+    // let href;
+    // if (props.external) {
+    //     href = props.href;
+    // } else if (props.download) {
+    //     href = props.download;
+    // } else if (props.href) {
+    //     href = props.href;
+    // }
+    // let name = props.className ? `linkBtn ${props.className}` : "linkBtn";
+
+    // if (!props.content) {
+    //     return;
+    // }
+    // let chevron = props.chevron ? <i className="fa-solid fa-chevron-right"></i> : "";
+
+    // if (href) {
+    //     // console.log(1, props.content);
+    //     return (
+    //         <a
+    //             href={href}
+    //             className={name}
+    //             style={props.color ? { backgroundColor: props.color } : {}}
+    //             onMouseEnter={(e) => {
+    //                 e.currentTarget.style.backgroundColor = props.hover;
+    //             }}
+    //             onMouseLeave={(e) => {
+    //                 e.currentTarget.style.backgroundColor = props.color;
+    //             }}
+    //         >
+    //             {props.content}
+    //             {props.download ? (
+    //                 <i className="fa-solid fa-download"></i>
+    //             ) : props.external ? (
+    //                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
+    //             ) : (
+    //                 chevron
+    //             )}
+    //         </a>
+    //     );
+    // } else if (props.to) {
+    //     // console.log(2, props.content);
+    //     return (
+    //         <Link
+    //             to={props.to}
+    //             className={name}
+    //             style={props.color ? { backgroundColor: props.color } : {}}
+    //             onClick={props.onClick}
+    //             onMouseEnter={(e) => {
+    //                 e.currentTarget.style.backgroundColor = props.hover;
+    //             }}
+    //             onMouseLeave={(e) => {
+    //                 e.currentTarget.style.backgroundColor = props.color;
+    //             }}
+    //         >
+    //             {props.content}
+    //             {chevron}
+    //         </Link>
+    //     );
+    // } else {
+    //     // console.log(3, props.content);
+    //     return (
+    //         <div
+    //             className={name}
+    //             style={props.color ? { backgroundColor: props.color } : {}}
+    //             onClick={props.onClick}
+    //             onMouseEnter={(e) => {
+    //                 e.currentTarget.style.backgroundColor = props.hover;
+    //             }}
+    //             onMouseLeave={(e) => {
+    //                 e.currentTarget.style.backgroundColor = props.color;
+    //             }}
+    //         >
+    //             {props.content}
+    //             {chevron}
+    //         </div>
+    //     );
+    // }
 }
 
 export function Slider(props) {
@@ -122,18 +258,32 @@ export function Slider(props) {
     );
 }
 
+export function GrayBoxCustom(props) {
+    if (props.flip) {
+        return (
+            <div id="grayBox">
+                <div className="grayBoxContent">{props.children}</div>
+                <div className="grayBoxImgWrap imgWrap">
+                    <img src={props.img ? props.img : forbrukerrtilsynet} alt={props.imgAlt} />
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <div id="grayBox">
+                <div
+                    className="grayBoxImgWrap imgWrap"
+                    // style={{ height: this.parentElement.querySelector(".grayBoxContent").height }}
+                >
+                    <img src={props.img ? props.img : forbrukerrtilsynet} alt={props.imgAlt} />
+                </div>
+                <div className="grayBoxContent">{props.children}</div>
+            </div>
+        );
+    }
+}
 export function GrayBox(props) {
     var content = props.content;
-    if (content.includes("<br />")) {
-        content = content.split("<br />").map((item) => {
-            return (
-                <>
-                    {item}
-                    <br />
-                </>
-            );
-        });
-    }
 
     if (props.flip) {
         return (
@@ -142,13 +292,13 @@ export function GrayBox(props) {
                     <h4>{props.topic}</h4>
                     <h2>{props.header}</h2>
                     <div className="smalLineSpacer" aria-hidden></div>
-                    <p>{content}</p>
+                    <p>{formatContent(content)}</p>
 
                     {props.linkBtn.length >= 3 && (
                         <div>
                             {props.linkBtn.map((btn) => {
                                 return (
-                                    <LinkBtn
+                                    <LinkBtnOld
                                         content={btn.content}
                                         chevron={btn.chevron}
                                         href={btn.href}
@@ -163,7 +313,7 @@ export function GrayBox(props) {
                         <span>
                             {props.linkBtn.map((btn) => {
                                 return (
-                                    <LinkBtn
+                                    <LinkBtnOld
                                         content={btn.content}
                                         chevron={btn.chevron}
                                         href={btn.href}
@@ -193,12 +343,12 @@ export function GrayBox(props) {
                     <h4>{props.topic}</h4>
                     <h2>{props.header}</h2>
                     <div className="smalLineSpacer" aria-hidden></div>
-                    <p>{content}</p>
+                    <p>{formatContent(content)}</p>
                     {props.linkBtn.length >= 3 && (
                         <div>
                             {props.linkBtn.map((btn) => {
                                 return (
-                                    <LinkBtn
+                                    <LinkBtnOld
                                         content={btn.content}
                                         chevron={btn.chevron}
                                         href={btn.href}
@@ -213,7 +363,7 @@ export function GrayBox(props) {
                         <span>
                             {props.linkBtn.map((btn) => {
                                 return (
-                                    <LinkBtn
+                                    <LinkBtnOld
                                         content={btn.content}
                                         chevron={btn.chevron}
                                         href={btn.href}
@@ -592,6 +742,49 @@ export function Campain(props) {
     );
 }
 
+export function ToppSectionCustom({ children, path, img, imgAlt }) {
+    return (
+        <div id="toppSection">
+            <div>
+                <div id="toppSectionContent">
+                    <div id="path">
+                        {path && (
+                            <>
+                                <a href="/">Forsiden</a>
+                                {path.map((p, index) => (
+                                    <span key={index}>
+                                        <i
+                                            key={index + 1}
+                                            className="fa-solid fa-chevron-right fa-sm"
+                                        ></i>
+                                        <a
+                                            href={
+                                                "/" +
+                                                p
+                                                    .toLowerCase()
+                                                    .replace(/[^a-zA-Z ]/g, "")
+                                                    .replace(/ /g, "_")
+                                            }
+                                        >
+                                            {p}
+                                        </a>
+                                    </span>
+                                ))}
+                            </>
+                        )}
+                    </div>
+                    {children}
+                </div>
+            </div>
+            <div className="imgWrap">
+                <img
+                    src={img || "https://picsum.photos/id/435/1300/520"}
+                    alt={imgAlt || "Default image"}
+                />
+            </div>
+        </div>
+    );
+}
 export function ToppSection({ header, content, path, img, imgAlt }) {
     // optimized and explained by chatGPT
     let formattedContent;
@@ -886,11 +1079,16 @@ export function Chevron({ size: size, color: color, left: left }) {
         }
     };
 
-    return <i className={`fa-solid fa-chevron-${left ? "left" : "right"} ${sizeCalc()} `}></i>;
+    return (
+        <i
+            className={`fa-solid fa-chevron-${left ? "left" : "right"} ${sizeCalc()}`}
+            style={{ color: color }}
+        ></i>
+    );
 }
 
 // fr droppdown
-export const FrDroppDown = ({ header, content, style, className, active }) => {
+export const FrDroppDown = ({ header, children, style, className, active }) => {
     return (
         <div
             className={`frDropDown ${active ? "frDropDownContentActive" : ""} ${className}`}
@@ -910,7 +1108,7 @@ export const FrDroppDown = ({ header, content, style, className, active }) => {
                 <h3>{header}</h3>
                 <i className="fa-solid fa-plus fa-lg "></i>
             </div>
-            <div className="frDropDownContent">{formatContent(content)}</div>
+            <div className="frDropDownContent">{children}</div>
         </div>
     );
 };
@@ -941,8 +1139,8 @@ export const ListObject = ({ type, items }) => {
 // how wuld i go ahead an ad moar to check than just content and chevron? for example external="{true}"
 // anmd the code from last itteration
 export function formatContent(input) {
-    // Split the input string into an array of strings separated by <LinkBtn />
-    let elements = input.split("<LinkBtn");
+    // Split the input string into an array of strings separated by LinkBtnOld />
+    let elements = input.split("LinkBtnOld");
     let result = [];
 
     // Iterate over each element in the `elements` array
@@ -961,8 +1159,8 @@ export function formatContent(input) {
                 let subElement = subElements[j];
                 // console.log("subElements", subElements);
 
-                // Check if the subElement matches the format of <LinkBtn />
-                if ((match = subElement.match(/(?<=<LinkBtn).*content='(.*?)'(.*?)\/>(.*)/))) {
+                // Check if the subElement matches the format of LinkBtnOld />
+                if ((match = subElement.match(/(?<=LinkBtnOld).*content='(.*?)'(.*?)\/>(.*)/))) {
                     let content = match[1];
                     let chevron = false;
                     let external = false;
@@ -991,9 +1189,9 @@ export function formatContent(input) {
                         download = downloadMatch[1];
                     }
 
-                    // Push a <LinkBtn /> component to the `result` array
+                    // Push a <LinkBtnOld /> component to the `result` array
                     result.push(
-                        <LinkBtn
+                        <LinkBtnOld
                             key={(j + 1) * Math.random(2, 200) + j}
                             content={content}
                             chevron={chevron}
@@ -1014,7 +1212,7 @@ export function formatContent(input) {
                 }
             }
         } else {
-            // Check if the element matches the format of <LinkBtn />
+            // Check if the element matches the format of LinkBtnOld />
             if ((match = element.match(/content='(.*?)'(.*?)\/>(.*)/))) {
                 let content = match[1];
                 let chevron = false;
@@ -1044,10 +1242,10 @@ export function formatContent(input) {
                     download = downloadMatch[1];
                 }
 
-                // Push a <LinkBtn /> component to the `result` array
+                // Push a LinkBtnOld /> component to the `result` array
 
                 result.push(
-                    <LinkBtn
+                    <LinkBtnOld
                         content={content}
                         chevron={chevron}
                         external={external}
@@ -1068,10 +1266,72 @@ export function formatContent(input) {
     function formatLists(items) {
         let toreturn = [];
         items.forEach((item, index) => {
-            if (typeof item == "string" && item.includes("li")) {
+            if (typeof item == "string" && item.includes("<li")) {
+                // console.log("item", item);
                 // index 0:everything, index 1: everything before, index 2: opening tagg,
                 // index 3: content, index 4: rest
-                item = item.match(/(.*?)(<ul.*?>)(.*?)((?<=<\/ul>).*)/);
+                item = item.includes("<ul")
+                    ? item.match(/(.*?)(<ul.*?>)(.*?)<\/ul>((?<=<\/ul>).*)/)
+                    : item.match(/(.*?)(<ol.*?>)(.*?)<\/ol>((?<=<\/ol>).*)/);
+                let content = item
+                    ? [...item[3].matchAll(/<li(.*?)>(.*?)<\/li>/g)].map((li, index) => {
+                          let className = li[1].match(/(?<=className=').*?(?=')/);
+                          let style = [];
+                          li[1] &&
+                              li[1].match(/(?<=style={{).*?(?=}})/) &&
+                              li[1]
+                                  .match(/(?<=style={{).*?(?=}})/)[0]
+                                  .split(/, /)
+                                  .forEach((i) => {
+                                      let keep = i.match(/(.*?(?=:)).*?((?<=').*?(?='))/);
+                                      style.push({ [keep[1]]: keep[2] });
+                                  });
+                          style = style.length
+                              ? style
+                                  ? style.reduce((result, obj) => {
+                                        return { ...result, ...obj };
+                                    })
+                                  : null
+                              : {};
+                          return (
+                              <li className={className} style={style} key={`li${index.toString()}`}>
+                                  {li[2]}
+                              </li>
+                          );
+                      })
+                    : null;
+                let className = item[2].match(/(?<=className=').*?(?=')/);
+                let style = [];
+                item[2] &&
+                    item[2].match(/(?<=style={{).*?(?=}})/) &&
+                    item[2]
+                        .match(/(?<=style={{).*?(?=}})/)[0]
+                        .split(/, /)
+                        .forEach((i) => {
+                            let keep = i.match(/(.*?(?=:)).*?((?<=').*?(?='))/);
+                            style.push({ [keep[1]]: keep[2] });
+                        });
+                style = style.length
+                    ? style
+                        ? style.reduce((result, obj) => {
+                              return { ...result, ...obj };
+                          })
+                        : null
+                    : {};
+                toreturn.push(item[1]);
+                // console.log("item", item);
+                toreturn.push(
+                    item[2].includes("<ul") ? (
+                        <ul className={className} style={style} key={`ul${index}`}>
+                            {format(content)}
+                        </ul>
+                    ) : item[2].includes("<ol") ? (
+                        <ol className={className} style={style} key={`ul${index}`}>
+                            {format(content)}
+                        </ol>
+                    ) : undefined
+                );
+                toreturn = toreturn.concat(formatLists([item[4]]));
             } else toreturn.push(item);
         });
         return toreturn;
@@ -1097,27 +1357,107 @@ export function formatContent(input) {
     function formatFrDroppDown(items) {
         let toreturn = [];
         items.forEach((item, index) => {
-            if (typeof item == "string" && item.includes("FrDroppDown")) {
-                item = item.match(/(.*)(<FrDroppDown.*?\/>)(.*)/);
-                let header = item[2].match(/(?<=header=').*?(?=')/);
-                let content = item[2].match(/(?<=content=').*?(?=')/);
-                let style = item[2].match(/(?<=style=').*?(?=')/);
-                let className = item[2].match(/(?<=className=').*?(?=')/);
-                toreturn.push(item[1]);
+            if (typeof item == "string" && item.includes("<FrDroppDown")) {
+                let remaining = item.match(/<FrDroppDown/g).length;
+                let target = item.match(/(.*?)<FrDroppDown(.*?)>(.*)/); // holds ewerything before [1], ewerything inside the opening tagg[2], and ewerything inside[3]
+                let targetIndex; // holds the index of the item containing last target closing dropdown
+                let targetRemaining; // counts how manny closing tags into an item the last closingtag is
+                for (let i = index + 1; remaining > 0 && i <= items.length; i++) {
+                    targetRemaining = remaining;
+                    typeof items[i] == "string" &&
+                        items[i].match(/<FrDroppDown/g) &&
+                        (remaining += items[i].match(/<FrDroppDown/g).length);
+
+                    typeof items[i] == "string" &&
+                        items[i].match(/<\/FrDroppDown>/g) &&
+                        (remaining -= items[i].match(/<\/FrDroppDown>/g).length);
+                    targetIndex = i;
+                    // console.log("remaining", remaining);
+                }
+                let fromItems = items.splice(index + 1, targetIndex - index);
+
+                // var that holds ewerything remaining outside in the last close, to be pushed back into items
+                let rest = [];
+                // array that holds all items inside the dropdown only
+                let insideTarget = [target[3], ...calcItems()];
+
+                function calcItems() {
+                    // rest
+
+                    // everything that shuld be returned
+                    let nr = targetRemaining;
+                    let itemsFromCalc = [
+                        ...fromItems
+                            .map((i, indexOfI) => {
+                                if (typeof i == "string") {
+                                    return i.split("</FrDroppDown>").map((iOfI, indexOfIOfI) => {
+                                        if (
+                                            nr > 0 &&
+                                            indexOfIOfI < i.split("</FrDroppDown>").length - 1
+                                        ) {
+                                            nr -= 1;
+                                            console.log("nr", nr);
+                                        }
+
+                                        if (nr == 0) {
+                                            return iOfI;
+                                        } else if (
+                                            nr > 0 &&
+                                            indexOfIOfI < i.split("</FrDroppDown>").length - 1
+                                        ) {
+                                            console.log("here");
+                                            return iOfI + "</FrDroppDown>";
+                                        } else if (nr > 0) {
+                                            return iOfI;
+                                        } else {
+                                            rest.push(iOfI);
+                                        }
+                                    });
+                                } else {
+                                    if (nr <= 0) {
+                                        rest.push(i);
+                                    } else {
+                                        return i;
+                                    }
+                                }
+                            })
+                            .flat(),
+                    ];
+                    // figure out whitch item from fromItems has the rellevant close tag
+                    // remove the rellevant closing tag
+                    // dump what is left in the rest
+                    // store items inbetween in storage
+
+                    return itemsFromCalc;
+                }
+
+                // note
+                // note
+                // note
+                // note
+                // // // // // there is an error with the pushing of the res back up
+                // // // // // it has to do with nothing ever getting pushed to rest
+
+                items.splice(index + 1, 0, ...rest);
+                console.log("items", items);
+                // console.log("items", [...items]);
+                // find props for dropdown
+                let header = target[2].match(/(?<=header=').*?(?=')/);
+                let style = target[2].match(/(?<=style=').*?(?=')/);
+                let className = target[2].match(/(?<=className=').*?(?=')/);
+
+                // push to toreturn the frdropdown and rests
+                toreturn.push(target[1]);
                 toreturn.push(
-                    item[2] ? (
-                        <FrDroppDown
-                            key={"FrDroppDown " + index.toString()}
-                            header={header ? header[0] : null}
-                            content={content ? content[0] : null}
-                            className={className ? className[0] : null}
-                            style={style ? style[0] : null}
-                        />
-                    ) : null
+                    <FrDroppDown header={header} className={className} style={style}>
+                        {format(insideTarget)}
+                        {/* {insideTarget} */}
+                    </FrDroppDown>
                 );
-                toreturn.push(formatFrDroppDown([item[3]]));
+                console.log("rest", rest);
             } else toreturn.push(item);
         });
+
         return toreturn;
     }
 
@@ -1128,12 +1468,32 @@ export function formatContent(input) {
                 item = item.match(/(.*?)(<img.*?\/>)(.*)/);
                 let src = item ? item[2].match(/(?<=src=').*?(?=')/) : null;
                 let alt = item ? item[2].match(/(?<=alt=').*?(?=')/) : null;
+                let style = [];
+                item[2] &&
+                    item[2].match(/(?<=style={{).*?(?=}})/) &&
+                    item[2]
+                        .match(/(?<=style={{).*?(?=}})/)[0]
+                        .split(/, /)
+                        .forEach((i) => {
+                            let keep = i.match(/(.*?(?=:)).*?((?<=').*?(?='))/);
+                            style.push({ [keep[1]]: keep[2] });
+                        });
+                style = style.length
+                    ? style
+                        ? style.reduce((result, obj) => {
+                              return { ...result, ...obj };
+                          })
+                        : null
+                    : {};
 
                 toreturn.push(item[1]);
-                toreturn.push(<img key={"img " + index.toString()} src={src} alt={alt} />);
-                toreturn.push(filterImg([item[3]]));
+                toreturn.push(
+                    <img key={"img " + index.toString()} src={src} alt={alt} style={style} />
+                );
+                toreturn = toreturn.concat(filterImg([item[3]]));
             } else toreturn.push(item);
         });
+
         return toreturn;
     }
 
@@ -1200,13 +1560,16 @@ export function formatContent(input) {
                         ""
                     )
                 );
-                item[3] && toreturn.push(formatHeader([item[3]]));
+                toreturn = toreturn.concat(formatHeader([item[3]]));
             } else toreturn.push(item);
         });
+
         return toreturn;
     }
-
-    return formatFrDroppDown(filterImg(formatHeader(resultV2)));
+    function format(input) {
+        return formatLists(formatFrDroppDown(filterImg(formatHeader(input))));
+    }
+    return format(resultV2);
     // return splitJSXString(result);
 }
 
@@ -1216,8 +1579,8 @@ export function formatContent(input) {
 // "<br />" than cnhange the string "<br />" whith the jsx ellement <br />
 // and the code form last itteration
 // export function formatContent(input) {
-//     // Split the input string into an array of strings separated by <LinkBtn />
-//     let elements = input.split("<LinkBtn");
+//     // Split the input string into an array of strings separated by LinkBtnOld />
+//     let elements = input.split("LinkBtnOld");
 //     let result = [];
 
 //     // Iterate over each element in the `elements` array
@@ -1235,7 +1598,7 @@ export function formatContent(input) {
 //             for (let j = 0; j < subElements.length; j++) {
 //                 let subElement = subElements[j];
 
-//                 // Check if the subElement matches the format of <LinkBtn />
+//                 // Check if the subElement matches the format of LinkBtnOld />
 //                 if ((match = subElement.match(/content='(.*?)'(.*?)\/>/))) {
 //                     let content = match[1];
 //                     let chevron = false;
@@ -1245,8 +1608,8 @@ export function formatContent(input) {
 //                         chevron = match[2].includes("true");
 //                     }
 
-//                     // Push a <LinkBtn /> component to the `result` array
-//                     result.push(<LinkBtn content={content} chevron={chevron} />);
+//                     // Push a LinkBtnOld /> component to the `result` array
+//                     result.push(LinkBtnOld content={content} chevron={chevron} />);
 //                 } else {
 //                     // If it doesn't match, push the original string as text
 //                     result.push(subElement);
@@ -1258,7 +1621,7 @@ export function formatContent(input) {
 //                 }
 //             }
 //         } else {
-//             // Check if the element matches the format of <LinkBtn />
+//             // Check if the element matches the format of LinkBtnOld />
 //             if ((match = element.match(/content='(.*?)'(.*?)\/>/))) {
 //                 let content = match[1];
 //                 let chevron = false;
@@ -1269,8 +1632,8 @@ export function formatContent(input) {
 //                     chevron = match[2].includes("true");
 //                 }
 
-//                 // Push a <LinkBtn /> component to the `result` array
-//                 result.push(<LinkBtn content={content} chevron={chevron} external={external} />);
+//                 // Push a LinkBtnOld /> component to the `result` array
+//                 result.push(LinkBtnOld content={content} chevron={chevron} external={external} />);
 //             } else {
 //                 // If it doesn't match, push the original string as text
 //                 result.push(element);
@@ -1282,15 +1645,15 @@ export function formatContent(input) {
 // second itteration of format content
 // gennerated using chatGTP
 // based on input:
-// i need to split the string = "test test test <LinkBtn content='hello' chevron={true} /> test test  <LinkBtn content='hello' /> test"
-// into a jsx object that has <LinkBtn content='' /> and some text id it based on the "<LinkBtn content='' chevron={} /> " in the string
+// i need to split the string = "test test test LinkBtnOld content='hello' chevron={true} /> test test  LinkBtnOld content='hello' /> test"
+// into a jsx object that has LinkBtnOld content='' /> and some text id it based on the "LinkBtnOld content='' chevron={} /> " in the string
 // where content is what it says that content is in the strin, and chevron is what it says it is in the string if it is there, the props
 // can also apear in a random order
 //
 // ad code to replace the string "<br />" with the jsx element <br />
 // export function formatContent(input) {
-//     // Split the input string into an array of strings separated by <LinkBtn />
-//     let elements = input.split("<LinkBtn");
+//     // Split the input string into an array of strings separated by LinkBtnOld />
+//     let elements = input.split("LinkBtnOld");
 //     let result = [];
 
 //     // Iterate over each element in the `elements` array
@@ -1304,7 +1667,7 @@ export function formatContent(input) {
 //         //     // result.push(<br />);
 //         // }
 
-//         // Check if the element matches the format of <LinkBtn />
+//         // Check if the element matches the format of LinkBtnOld />
 //         if ((match = element.match(/content='(.*?)'(.*?)\/>/))) {
 //             let content = match[1];
 //             let chevron = false;
@@ -1314,8 +1677,8 @@ export function formatContent(input) {
 //                 chevron = match[2].includes("true");
 //             }
 
-//             // Push a <LinkBtn /> component to the `result` array
-//             result.push(<LinkBtn content={content} chevron={chevron} />);
+//             // Push a LinkBtnOld /> component to the `result` array
+//             result.push(LinkBtnOld content={content} chevron={chevron} />);
 //         } else {
 //             // If it doesn't match, push the original string as text
 //             result.push(element);
@@ -1327,10 +1690,10 @@ export function formatContent(input) {
 // }
 // explaind by chatGTP as:
 // The parseString function takes in an input string as an argument. The first step it performs
-// is to split the input string into an array of strings separated by instances of "<LinkBtn".
+// is to split the input string into an array of strings separated by instances of "LinkBtnOld".
 
 // The function then iterates over each element in the resulting elements array. For each element,
-// it checks if the element matches the format of "<LinkBtn content='...' ... />". If it does, the
+// it checks if the element matches the format of "LinkBtnOld content='...' ... />". If it does, the
 // function uses regular expressions to extract the values of "content" and "chevron". If the element
 //  doesn't match the format, the original string is pushed as text to the result array.
 
@@ -1343,7 +1706,7 @@ export function formatContent(input) {
 // // prompt: continue
 
 // The code takes in a string as an input, then uses the split method to divide the string into an array
-// of substrings, separated by the string "<LinkBtn". The result of the split operation is stored in the
+// of substrings, separated by the string "LinkBtnOld". The result of the split operation is stored in the
 // elements variable.
 
 // Next, the code uses a for loop to iterate over each element in the elements array. For each iteration
@@ -1352,7 +1715,7 @@ export function formatContent(input) {
 // matches the format, the code extracts the values of the content and chevron props by using the square
 // bracket notation to access the matched groups in the regular expression.
 
-// The code then creates a <LinkBtn /> component with the extracted values as props and pushes it to the
+// The code then creates a LinkBtnOld /> component with the extracted values as props and pushes it to the
 // result array. If the current element doesn't match the format, it is pushed to the result array as text.
 
 // Finally, the result array is returned as the output of the function.
@@ -1368,9 +1731,9 @@ export function formatContent(input) {
 //             </>
 //         ));
 //     }
-//     if (formattedContent.includes("<LinkBtn")) {
+//     if (formattedContent.includes("LinkBtnOld")) {
 //         // from chatGTP:
-//         formattedContent = formattedContent.split("<LinkBtn").map((item, index) => {
+//         formattedContent = formattedContent.split("LinkBtnOld").map((item, index) => {
 //             console.log(item);
 //             let splitItem = item.split("'");
 //             let props = [];
@@ -1380,7 +1743,7 @@ export function formatContent(input) {
 //                 }
 //             });
 //             console.log(props);
-//             return <LinkBtn content={props[0]} test="test" key={index} />;
+//             return LinkBtnOld content={props[0]} test="test" key={index} />;
 //         });
 //         return formattedContent;
 //         // Explanation of changes:
@@ -1390,7 +1753,7 @@ export function formatContent(input) {
 //         //
 //         //
 //         //    original:
-//         // formattedContent = formattedContent.split("<LinkBtn").map((item, index) => {
+//         // formattedContent = formattedContent.split("LinkBtnOld").map((item, index) => {
 //         //     return item.split("/>").map((item, index) => {
 //         //         let props = [];
 //         //         let splitItem = item.split("'");
@@ -1400,7 +1763,7 @@ export function formatContent(input) {
 //         //                 props.push(item);
 //         //             }
 //         //         }
-//         //         return <LinkBtn content={props[0]} test="test" key={index} />;
+//         //         return LinkBtnOld content={props[0]} test="test" key={index} />;
 //         //     });
 //         // });
 //         // return formattedContent;
@@ -1417,9 +1780,9 @@ export function formatContent(input) {
 //         {"</div>"}
 //         {"<div>"}
 //         {"<div>"}
-//         <LinkBtn content="hello" /> <LinkBtn content="hello" chevron={true} />
-//         <LinkBtn content="hello" external={true} href="/" />
-//         <LinkBtn content="hello" download="/tester" />
+//         LinkBtnOld content="hello" /> LinkBtnOld content="hello" chevron={true} />
+//         LinkBtnOld content="hello" external={true} href="/" />
+//         LinkBtnOld content="hello" download="/tester" />
 //         {"</div>"}
 //         {"</div>"}
 //         {"</div>"}
