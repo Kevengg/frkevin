@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Chevron } from "../../../component";
-import ToppSection from "../tester_components/topp_section";
+import ToppSection from "./topp_section";
 import testsList from "../../../data/tester.json";
-import TestWrap from "../tester_components/testWrap";
+import TestWrap from "./testWrap";
 import styles from "../../../css/tester/tester_hjem.module.css";
 
 export default function TesterHjem(props) {
