@@ -468,7 +468,7 @@ export function ContactPreset(props) {
     }
 
     return (
-        <div className="pressekontakt">
+        <div className={`pressekontakt ${props.className}`}>
             <div className="pressekontaktImg">
                 <img
                     style={{ width: "auto", height: "100%" }}
@@ -522,6 +522,7 @@ export function Contacts(props) {
 
                     return (
                         <ContactPreset
+                            className={props.className}
                             key={kontaktList.indexOf(kontakt)}
                             img={img}
                             name={`${kontakt.firstName}${
