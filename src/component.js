@@ -1385,18 +1385,16 @@ export function formatContent(input) {
                     // rest
 
                     // everything that shuld be returned
+                    // everything that shuld be returned
+                    // // to mutch gets pushed to rest, last item that shuld go to itemsFromCalc goes to rest
                     let nr = targetRemaining;
                     let itemsFromCalc = [
                         ...fromItems
                             .map((i, indexOfI) => {
                                 if (typeof i == "string") {
                                     return i.split("</FrDroppDown>").map((iOfI, indexOfIOfI) => {
-                                        if (
-                                            nr > 0 &&
-                                            indexOfIOfI < i.split("</FrDroppDown>").length - 1
-                                        ) {
+                                        if (indexOfIOfI < i.split("</FrDroppDown>").length - 1) {
                                             nr -= 1;
-                                            console.log("nr", nr);
                                         }
 
                                         if (nr == 0) {
@@ -1405,7 +1403,6 @@ export function formatContent(input) {
                                             nr > 0 &&
                                             indexOfIOfI < i.split("</FrDroppDown>").length - 1
                                         ) {
-                                            console.log("here");
                                             return iOfI + "</FrDroppDown>";
                                         } else if (nr > 0) {
                                             return iOfI;
@@ -1431,15 +1428,7 @@ export function formatContent(input) {
                     return itemsFromCalc;
                 }
 
-                // note
-                // note
-                // note
-                // note
-                // // // // // there is an error with the pushing of the res back up
-                // // // // // it has to do with nothing ever getting pushed to rest
-
                 items.splice(index + 1, 0, ...rest);
-                console.log("items", items);
                 // console.log("items", [...items]);
                 // find props for dropdown
                 let header = target[2].match(/(?<=header=').*?(?=')/);
@@ -1449,12 +1438,16 @@ export function formatContent(input) {
                 // push to toreturn the frdropdown and rests
                 toreturn.push(target[1]);
                 toreturn.push(
-                    <FrDroppDown header={header} className={className} style={style}>
+                    <FrDroppDown
+                        header={header}
+                        className={className}
+                        style={style}
+                        key={`FrDroppDown ${index}`}
+                    >
                         {format(insideTarget)}
                         {/* {insideTarget} */}
                     </FrDroppDown>
                 );
-                console.log("rest", rest);
             } else toreturn.push(item);
         });
 
