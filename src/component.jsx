@@ -1266,7 +1266,7 @@ export function formatContent(input) {
 
     function formatLists(items) {
         let toreturn = [];
-        items.forEach((item, index) => {
+        items.flat(Infinity).forEach((item, index) => {
             if (typeof item == "string" && item.includes("<li")) {
                 // console.log("item", item);
                 // index 0:everything, index 1: everything before, index 2: opening tagg,
@@ -1335,6 +1335,100 @@ export function formatContent(input) {
                 toreturn = toreturn.concat(formatLists([item[4]]));
             } else toreturn.push(item);
         });
+        return toreturn;
+    }
+
+    function formatDiv(items) {
+        let toreturn = [];
+        items.flat(Infinity).forEach((item, index) => {
+            if (typeof item == "string" && item.includes("<div")) {
+                let remaining = item.match(/<div/g).length;
+                let target = item.match(/(.*?)<div(.*?)>(.*)/); // holds ewerything before [1], ewerything inside the opening tagg[2], and ewerything inside[3]
+                let targetIndex; // holds the index of the item containing last target closing dropdown
+                let targetRemaining; // counts how manny closing tags into an item the last closingtag is
+                for (let i = index + 1; remaining > 0 && i <= items.length; i++) {
+                    targetRemaining = remaining;
+                    typeof items[i] == "string" &&
+                        items[i].match(/<div/g) &&
+                        (remaining += items[i].match(/<div/g).length);
+
+                    typeof items[i] == "string" &&
+                        items[i].match(/<\/div>/g) &&
+                        (remaining -= items[i].match(/<\/div>/g).length);
+                    targetIndex = i;
+                    // console.log("remaining", remaining);
+                }
+                let fromItems = items.splice(index + 1, targetIndex - index);
+
+                // var that holds ewerything remaining outside in the last close, to be pushed back into items
+                let rest = [];
+                // array that holds all items inside the dropdown only
+                let insideTarget = [target[3], ...calcItems()];
+
+                function calcItems() {
+                    // rest
+
+                    // everything that shuld be returned
+                    // everything that shuld be returned
+                    // // to mutch gets pushed to rest, last item that shuld go to itemsFromCalc goes to rest
+                    let nr = targetRemaining;
+                    let itemsFromCalc = [
+                        ...fromItems
+                            .map((i, indexOfI) => {
+                                if (typeof i == "string") {
+                                    return i.split("</div>").map((iOfI, indexOfIOfI) => {
+                                        if (indexOfIOfI < i.split("</div>").length - 1) {
+                                            nr -= 1;
+                                        }
+
+                                        if (nr == 0) {
+                                            return iOfI;
+                                        } else if (
+                                            nr > 0 &&
+                                            indexOfIOfI < i.split("</div>").length - 1
+                                        ) {
+                                            return iOfI + "</div>";
+                                        } else if (nr > 0) {
+                                            return iOfI;
+                                        } else {
+                                            rest.push(iOfI);
+                                        }
+                                    });
+                                } else {
+                                    if (nr <= 0) {
+                                        rest.push(i);
+                                    } else {
+                                        return i;
+                                    }
+                                }
+                            })
+                            .flat(),
+                    ];
+                    // figure out whitch item from fromItems has the rellevant close tag
+                    // remove the rellevant closing tag
+                    // dump what is left in the rest
+                    // store items inbetween in storage
+                    return itemsFromCalc;
+                }
+
+                items.splice(index + 1, 0, ...rest);
+                // console.log("items", [...items]);
+                // find props for dropdown
+                let header = target[2].match(/(?<=header=').*?(?=')/);
+                let style = target[2].match(/(?<=style=').*?(?=')/);
+                let className = target[2].match(/(?<=className=').*?(?=')/);
+
+                // push to toreturn the frdropdown and rests
+                toreturn.push(target[1]);
+                toreturn.push(
+                    <div header={header} className={className} style={style} key={`div ${index}`}>
+                        {format(insideTarget)}
+                        {/* {insideTarget} */}
+                    </div>
+                );
+            } else toreturn.push(item);
+        });
+
         return toreturn;
     }
 
@@ -1491,6 +1585,54 @@ export function formatContent(input) {
         return toreturn;
     }
 
+    function formatLinks(items) {
+        let toreturn = [];
+        items.forEach((item, index) => {
+            if (typeof item == "string" && item.includes("<a")) {
+                item = item.match(/(.*?)<a(.*?)>(.*?)<\/a>(.*)/);
+
+                let href =
+                    item && item[2].match(/(?<=href=').*?(?=')/)
+                        ? item[2].match(/(?<=href=').*?(?=')/)[0]
+                        : null;
+
+                let className =
+                    item && item[2].match(/(?<=className=').*?(?=')/)
+                        ? item[2].match(/(?<=className=').*?(?=')/)[0]
+                        : null;
+
+                let style = [];
+
+                item &&
+                    item[2].match(/(?<=style={{).*?(?=}})/) &&
+                    item[2]
+                        .match(/(?<=style={{).*?(?=}})/)[0]
+                        .split(/, /)
+                        .forEach((i) => {
+                            let keep = i.match(/(.*?(?=:)).*?((?<=').*?(?='))/);
+                            style.push({ [keep[1]]: keep[2] });
+                        });
+                style = style.length
+                    ? style
+                        ? style.reduce((result, obj) => {
+                              return { ...result, ...obj };
+                          })
+                        : null
+                    : {};
+
+                toreturn.push(item ? item[1] : null);
+                toreturn.push(
+                    <a href={href} className={className} style={style} key={`a ${index}`}>
+                        {item ? item[3] : null}
+                    </a>
+                );
+                toreturn.push(formatLinks(item ? [item[4]] : []));
+            } else toreturn.push(item);
+        });
+
+        return toreturn;
+    }
+
     function formatHeader(items) {
         let toreturn = [];
         // console.log("items", items);
@@ -1561,7 +1703,9 @@ export function formatContent(input) {
         return toreturn;
     }
     function format(input) {
-        return formatLists(formatFrDroppDown(filterImg(formatHeader(input))));
+        return formatDiv(
+            formatLinks(formatLists(formatFrDroppDown(filterImg(formatHeader(input)))))
+        );
     }
     return format(resultV2);
     // return splitJSXString(result);

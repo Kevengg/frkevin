@@ -326,7 +326,7 @@ export default function TestPage({ page }) {
     return (
         <main key={reset}>
             <div className={`maxWidth ${styles.testPage}`}>
-                <nav className={styles.path}>
+                <nav className={"path"} style={{ marginTop: "0" }}>
                     <Link to="">Tester</Link>
                     <Chevron size="xxs" />
                     <Link
