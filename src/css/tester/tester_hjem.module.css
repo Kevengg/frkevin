@@ -1,5 +1,4 @@
 /* test */
-
 .testsWrap {
     width: 100%;
     display: grid;
@@ -185,7 +184,6 @@
     pointer-events: none;
     width: 20px;
     height: 20px;
-
     font-size: 20px;
 }
 
@@ -215,10 +213,43 @@
     color: var(--FR-color-db) !important;
 }
 
+@media screen and (max-width: 1176px) {
+    .testHeader h2 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .testHeader .filterWrap {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .testHeader .testSort {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .testHeader .testSortV {
+        margin-left: auto;
+        top: -54px;
+    }
+}
+
 @media screen and (max-width: 1100px) {
     .testsWrap {
         grid-template-columns: 47.5% 47.5%;
         justify-items: center;
+    }
+}
+
+@media screen and (max-width: 792px) {
+    .testHeader .filterWrap {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .testHeader .filterWrap .filter {
+        margin-bottom: 10px;
     }
 }
 

@@ -1359,38 +1359,47 @@ export function formatContent(input) {
                     // console.log("remaining", remaining);
                 }
                 let fromItems = items.splice(index + 1, targetIndex - index);
-
                 // var that holds ewerything remaining outside in the last close, to be pushed back into items
                 let rest = [];
+
                 // array that holds all items inside the dropdown only
-                let insideTarget = [target[3], ...calcItems()];
+                let insideTarget = [];
 
                 function calcItems() {
+                    let itemsFromCalc;
                     // rest
-
                     // everything that shuld be returned
                     // everything that shuld be returned
-                    // // to mutch gets pushed to rest, last item that shuld go to itemsFromCalc goes to rest
+                    // // this stil may brake if an object is inside the div, the content left in the original index may be forgotten
                     let nr = targetRemaining;
-                    let itemsFromCalc = [
-                        ...fromItems
+                    if (fromItems.length > 0 && fromItems.map((i) => !!i).includes(true)) {
+                        console.log("first");
+                        itemsFromCalc = fromItems
                             .map((i, indexOfI) => {
                                 if (typeof i == "string") {
                                     return i.split("</div>").map((iOfI, indexOfIOfI) => {
-                                        if (indexOfIOfI < i.split("</div>").length - 1) {
-                                            nr -= 1;
-                                        }
-
                                         if (nr == 0) {
-                                            return iOfI;
+                                            if (indexOfIOfI < i.split("</div>").length - 1) {
+                                                nr -= 1;
+                                            }
+                                            rest.push(iOfI);
                                         } else if (
                                             nr > 0 &&
                                             indexOfIOfI < i.split("</div>").length - 1
                                         ) {
+                                            if (indexOfIOfI < i.split("</div>").length - 1) {
+                                                nr -= 1;
+                                            }
                                             return iOfI + "</div>";
                                         } else if (nr > 0) {
+                                            if (indexOfIOfI < i.split("</div>").length - 1) {
+                                                nr -= 1;
+                                            }
                                             return iOfI;
                                         } else {
+                                            if (indexOfIOfI < i.split("</div>").length - 1) {
+                                                nr -= 1;
+                                            }
                                             rest.push(iOfI);
                                         }
                                     });
@@ -1402,20 +1411,79 @@ export function formatContent(input) {
                                     }
                                 }
                             })
-                            .flat(),
-                    ];
+                            .flat();
+                    } else {
+                        itemsFromCalc = [
+                            ...(() => {
+                                let i = target[3];
+                                if (typeof i == "string") {
+                                    return i.split("</div>").map((iOfI, indexOfIOfI) => {
+                                        if (nr == 0) {
+                                            if (indexOfIOfI < i.split("</div>").length - 1) {
+                                                nr -= 1;
+                                            }
+                                            rest.push(iOfI);
+                                        } else if (
+                                            nr > 0 &&
+                                            indexOfIOfI < i.split("</div>").length - 2
+                                        ) {
+                                            if (indexOfIOfI < i.split("</div>").length - 1) {
+                                                nr -= 1;
+                                            }
+                                            return iOfI + "</div>";
+                                        } else if (nr > 0) {
+                                            if (indexOfIOfI < i.split("</div>").length - 1) {
+                                                nr -= 1;
+                                            }
+                                            return iOfI;
+                                        } else {
+                                            if (indexOfIOfI < i.split("</div>").length - 1) {
+                                                nr -= 1;
+                                            }
+                                            rest.push(iOfI);
+                                        }
+                                    });
+                                } else {
+                                    if (nr <= 0) {
+                                        rest.push(i);
+                                    } else {
+                                        return i;
+                                    }
+                                }
+                            })(),
+                        ];
+                    }
+
                     // figure out whitch item from fromItems has the rellevant close tag
                     // remove the rellevant closing tag
                     // dump what is left in the rest
                     // store items inbetween in storage
-                    return itemsFromCalc;
+                    insideTarget = [...itemsFromCalc];
                 }
+                calcItems();
 
                 items.splice(index + 1, 0, ...rest);
                 // console.log("items", [...items]);
                 // find props for dropdown
                 let header = target[2].match(/(?<=header=').*?(?=')/);
-                let style = target[2].match(/(?<=style=').*?(?=')/);
+                let style = [];
+                target[2] &&
+                    target[2].match(/(?<=style={{).*?(?=}})/) &&
+                    target[2]
+                        .match(/(?<=style={{).*?(?=}})/)[0]
+                        .split(/, /)
+                        .forEach((i) => {
+                            let keep = i.match(/(.*?(?=:)).*?((?<=').*?(?='))/);
+                            style.push({ [keep[1]]: keep[2] });
+                        });
+                style = style.length
+                    ? style
+                        ? style.reduce((result, obj) => {
+                              return { ...result, ...obj };
+                          })
+                        : null
+                    : {};
+
                 let className = target[2].match(/(?<=className=').*?(?=')/);
 
                 // push to toreturn the frdropdown and rests
@@ -1426,7 +1494,10 @@ export function formatContent(input) {
                         {/* {insideTarget} */}
                     </div>
                 );
-            } else toreturn.push(item);
+                toreturn.push(rest);
+            } else {
+                toreturn.push(item);
+            }
         });
 
         return toreturn;
@@ -1702,13 +1773,31 @@ export function formatContent(input) {
 
         return toreturn;
     }
+
+    function formatStyle(items) {
+        let toreturn = [];
+
+        items.flat(Infinity).forEach((item, index) => {
+            console.log("[item]", [item]);
+            if (typeof item == "string" && item.includes("<style>")) {
+                console.log("[item]", [item]);
+                item = item.match(/(.*?)<style>(.*?)<\/style>(.*)/);
+                toreturn.push(item[1]);
+                toreturn.push(<style key={`style ${index.toString()}`}>{item[2]}</style>);
+                toreturn.push(item[3]);
+            } else {
+                toreturn.push(item);
+            }
+        });
+        return toreturn;
+    }
+
     function format(input) {
         return formatDiv(
-            formatLinks(formatLists(formatFrDroppDown(filterImg(formatHeader(input)))))
+            formatStyle(formatLinks(formatLists(formatFrDroppDown(filterImg(formatHeader(input))))))
         );
     }
     return format(resultV2);
-    // return splitJSXString(result);
 }
 
 // itteration 3

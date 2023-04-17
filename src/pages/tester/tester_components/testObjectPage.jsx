@@ -61,19 +61,19 @@ export default function TestObjectPage({ obj, info }) {
     return (
         <main>
             <div className={`maxWidth`}>
-                <nav className={styles.path}>
+                <nav className={"path"}>
                     <Link to="">Tester</Link>
-                    <Chevron size="xxs" />
+                    <Chevron size="xs" />
                     <Link
                         to={`?searchBar:&searchBtn:${info.topic.toLowerCase().replace(/ /g, "-")}`}
                     >
                         {info.topic}
                     </Link>
-                    <Chevron size="xxs" />
+                    <Chevron size="xs" />
                     <Link to={`?page=${info.header.toLowerCase().replace(/ /g, "-")}`}>
                         {info.header}
                     </Link>
-                    <Chevron size="xxs" />
+                    <Chevron size="xs" />
                     <span>{obj.product}</span>
                 </nav>
 

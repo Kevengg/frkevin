@@ -7,6 +7,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-height: 430px;
+    max-width: var(--site-width);
+    margin: 0 auto;
 }
 
 .testPageGrayBoxImgWrap {
@@ -112,18 +114,26 @@
 }
 
 .path {
-    margin: 0;
-}
-
-.path i {
-    margin-right: 8px;
-    margin-left: 3px;
+    padding-left: 20px;
+    width: 100%;
+    max-width: var(--site-width);
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .testHeader {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+}
+
+.testHeader .block {
+    display: inline-flex;
+    height: fit-content;
+    align-items: center;
+    width: fit-content;
+    flex-wrap: wrap;
 }
 
 .testList,
@@ -265,4 +275,40 @@
 
 .compareItemX i {
     color: white;
+}
+
+@media screen and (max-width: 920px) {
+    #testPageGrayBox {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .testList .ratingWrapWrap {
+        display: none;
+        background-color: aqua;
+    }
+
+    .testPage .content * {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .testPage .content {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .content h4,
+    .content div {
+        padding-bottom: 0px !important;
+    }
+
+    .testObject {
+        height: 115px;
+        grid-template-columns: 115px 1fr 20px;
+    }
+
+    .testList {
+        grid-template-columns: 100%;
+    }
 }

@@ -116,9 +116,7 @@ export default function TestPage({ page }) {
                     <h4>{obj.manufacturer}</h4>
                     <h5> {obj.product} </h5>
                     {obj.note && <div>{obj.note}</div>}
-                    <div style={{ textDecoration: "underline", marginBottom: "auto" }}>
-                        Les mer om produktet
-                    </div>
+                    <div style={{ textDecoration: "underline" }}>Les mer om produktet</div>
                 </div>
                 <input
                     id={`select${test.objects.indexOf(obj)}`}
@@ -325,91 +323,91 @@ export default function TestPage({ page }) {
 
     return (
         <main key={reset}>
-            <div className={`maxWidth ${styles.testPage}`}>
-                <nav className={"path"} style={{ marginTop: "0" }}>
-                    <Link to="">Tester</Link>
-                    <Chevron size="xxs" />
-                    <Link
-                        to={`?searchBar:&searchBtn:${test.topic.toLowerCase().replace(/ /g, "-")}`}
-                    >
-                        {test.topic}
-                    </Link>
-                    <Chevron size="xxs" />
-                    <span>{test.header}</span>
-                </nav>
+            <nav className={`path ${styles.path}`}>
+                <Link to="">Tester</Link>
+                <Chevron size="xs" />
+                <Link to={`?searchBar:&searchBtn:${test.topic.toLowerCase().replace(/ /g, "-")}`}>
+                    {test.topic}
+                </Link>
+                <Chevron size="xs" />
+                <span>{test.header}</span>
+            </nav>
 
-                <div id={styles.testPageGrayBox}>
-                    <div className="imgWrap">
-                        <img
-                            src={test.img.includes("://") ? test.img : "/img/" + test.img}
-                            alt={test.imgAlt}
-                        />
-                    </div>
-                    <div className={styles.testPageGrayBoxContent}>
-                        <LinkBtnOld
-                            content={test.topic}
-                            href={`?searchBar:&searchBtn:${test.topic
-                                .toLowerCase()
-                                .replace(/ /g, "-")}`}
-                        ></LinkBtnOld>
-                        <h2>{test.header}</h2>
-                        <p style={{ marginBottom: "10px" }}>
-                            Publissert: {formatDate(test.date, "DD longM YYYY")}
-                        </p>
-                        <p>{formatContent(test.content)}</p>
-                        {page.readMore && (
-                            <LinkBtnOld
-                                content="Les mer om testen"
-                                chevron
-                                href={`?page=${page.header
-                                    .toLowerCase()
-                                    .replace(/ /, "-")}&readmore=true`}
-                            ></LinkBtnOld>
-                        )}
-                    </div>
+            <div id={styles.testPageGrayBox}>
+                <div className="imgWrap">
+                    <img
+                        src={test.img.includes("://") ? test.img : "/img/" + test.img}
+                        alt={test.imgAlt}
+                    />
                 </div>
+                <div className={styles.testPageGrayBoxContent}>
+                    <LinkBtnOld
+                        content={test.topic}
+                        href={`?searchBar:&searchBtn:${test.topic
+                            .toLowerCase()
+                            .replace(/ /g, "-")}`}
+                    ></LinkBtnOld>
+                    <h2>{test.header}</h2>
+                    <p style={{ marginBottom: "10px" }}>
+                        Publissert: {formatDate(test.date, "DD longM YYYY")}
+                    </p>
+                    <p>{formatContent(test.content)}</p>
+                    {page.readMore && (
+                        <LinkBtnOld
+                            content="Les mer om testen"
+                            chevron
+                            href={`?page=${page.header
+                                .toLowerCase()
+                                .replace(/ /, "-")}&readmore=true`}
+                        ></LinkBtnOld>
+                    )}
+                </div>
+            </div>
 
+            <div className={`maxWidth ${styles.testPage}`}>
                 {/*  */}
 
                 <div className={styles.testHeader}>
                     <p>Filter</p>
-                    <LinkBtnOld
-                        content="Nulstill filter"
-                        color="transparent"
-                        hover="transparent"
-                        className={styles.filter}
-                        onClick={() => {
-                            nulstill();
-                        }}
-                    ></LinkBtnOld>
-                    <input
-                        type="text"
-                        name="search"
-                        id="search"
-                        placeholder="Søk etter produkt"
-                        value={search}
-                        onChange={(e) => setsearch(e.target.value)}
-                    />
-                    <label htmlFor="search" className={styles.search}>
-                        <i className="fa-solid fa-magnifying-glass"></i>
-                    </label>
-                    <select
-                        name="sort"
-                        id="sort"
-                        onChange={(e) => {
-                            setSortBy(e.target.value);
-                        }}
-                    >
-                        <option value="resultSynk">Testresultat stigende</option>
-                        <option value="resultRize">Testresultat synkende</option>
-                        <option value="nameSynk">Produktnavn synkende</option>
-                        <option value="nameRize">Produktnavn stigende</option>
-                        <option value="new">Nyeste først</option>
-                        <option value="old">Eldste først</option>
-                    </select>
-                    <label htmlFor="sort" className={styles.sortV}>
-                        <i className="fa-solid fa-chevron-down"></i>
-                    </label>
+                    <div className={styles.block}>
+                        <LinkBtnOld
+                            content="Nulstill filter"
+                            color="transparent"
+                            hover="transparent"
+                            className={styles.filter}
+                            onClick={() => {
+                                nulstill();
+                            }}
+                        ></LinkBtnOld>
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            placeholder="Søk etter produkt"
+                            value={search}
+                            onChange={(e) => setsearch(e.target.value)}
+                        />
+                        <label htmlFor="search" className={styles.search}>
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                        </label>
+                        <select
+                            name="sort"
+                            id="sort"
+                            onChange={(e) => {
+                                setSortBy(e.target.value);
+                            }}
+                        >
+                            <option value="resultSynk">Testresultat stigende</option>
+                            <option value="resultRize">Testresultat synkende</option>
+                            <option value="nameSynk">Produktnavn synkende</option>
+                            <option value="nameRize">Produktnavn stigende</option>
+                            <option value="new">Nyeste først</option>
+                            <option value="old">Eldste først</option>
+                        </select>
+                        <label htmlFor="sort" className={styles.sortV}>
+                            <i className="fa-solid fa-chevron-down"></i>
+                        </label>
+                    </div>
                     <LinkBtnOld
                         to={`?page=${test.header
                             .toLowerCase()
@@ -424,7 +422,7 @@ export default function TestPage({ page }) {
                 {/*  */}
 
                 <div className={styles.testList}>
-                    <div>
+                    <div className={styles.ratingWrapWrap}>
                         <h4>Vurdering</h4>
                         {test.objects[0].ratingType === "smiley" && (
                             <div className={styles.ratingWrap}>
