@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import Footer from "./includes/footer.js";
-import Header from "./includes/header.js";
+import Footer from "./includes/footer.jsx";
+import Header from "./includes/header.jsx";
 import { BrowserRouter } from "react-router-dom";
 
 // to do:
