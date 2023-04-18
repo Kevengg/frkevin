@@ -9,6 +9,7 @@ import KontaktOss from "./pages/kontakt_oss/kontakt_oss";
 import Presse from "./pages/kontakt_oss/presse_kontakt";
 import KlageGuide from "./pages/tips_og_rettigheter/klageguide";
 import SearchPage from "./pages/search/search";
+import Article from "./pages/articles/articlePreset";
 
 // app
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/kontakt_oss" element={<KontaktOss />} />
             <Route path="/kontakt_oss/presse" element={<Presse />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/siste_nytt/artikkel" element={<Article />} />
         </Routes>
     );
 }

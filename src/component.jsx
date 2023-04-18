@@ -1624,6 +1624,8 @@ export function formatContent(input) {
                 let src = item ? item[2].match(/(?<=src=').*?(?=')/) : null;
                 let alt = item ? item[2].match(/(?<=alt=').*?(?=')/) : null;
                 let style = [];
+                console.log("item", item);
+
                 item &&
                     item[2] &&
                     item[2].match(/(?<=style={{).*?(?=}})/) &&

@@ -8,10 +8,16 @@
             "tldr": {
                 "header": "Presse",
                 "content": "<a href='#'>Pressebilder av Inger Lise Blyverket</a>",
-                "btns": [{ "type": "", "content": "", "href": "" }]
+                "btns": [
+                    { "type": "", "content": "hji", "href": "#" },
+                    { "type": "", "content": "hji", "href": "#" },
+                    { "type": "", "content": "hji", "href": "#" },
+                    { "type": "", "content": "hji", "href": "#" },
+                    { "type": "", "content": "hji", "href": "#" }
+                ]
             },
-            "writers": "Bengt-Eigil",
-            "content": "<h2>Så mange som 38 prosent av oss har hatt store problemer med å bestille eller betale for en vare det siste året. Og hele 43 prosent har noen de hjelper. En ny undersøkelse gjort for Forbrukerrådet viser at viktige forbrukermarkeder er i ferd med å bli utilgjengelige for mange. </h2> <br />Mens de fleste av oss uten problemer beveger oss uten kontanter i et digitalt samfunn, opplever andre at de blir stående utenfor. Mange tusen nordmenn møter stengte dører til helt sentrale markeder fordi de mangler nødvendig nettilgang, maskin- eller programvare. <br /><br /><h3>Må ha hjelp</h3>Forbrukerrådet har gjennomført en omfattende undersøkelse av i hvor stor grad forbrukerne opplever problemer med å bestille og betale for varer og tjenester. I undersøkelsen, som YouGov har utført, svarer altså nesten fire av ti at de har hatt store problemer med å bestille eller betale minst en gang i 2021. Overraskende mange unge oppgir å ha hatt utfordringer med å handle. Det kommer også tydelig frem at veldig mange trenger hjelp for å få bestilt eller gjort opp for seg. Hele 43 prosent av de spurte svarer at de regelmessig hjelper familie eller personer i omgangskretsen med dette. De som hjelper noen, hjelper i gjennomsnitt 1,5 personer. <br /><br />– Dette viser at bak stadig mer strømlinjeformede løsninger for å få tilgang på varer og tjenester finnes det et stort mindretall med betydelige utfordringer, sier direktør Inger Lise Blyverket i Forbrukerrådet. <br /><br /><h3>Mangler viktige verktøy</h3><br />Det er flere grunner til at folk opplever utfordringer med bestilling og betaling.  Omtrent 200 000 personer har ikke Bank ID, og cirka like mange mangler smarttelefon. I tillegg forteller en betydelig gruppe som har dette at de ikke benytter seg av det. På spørsmål om hvorfor svarer drøyt ti prosent at de ikke forstår hvordan det skal brukes, mens litt flere begrunner det med at de er redd for å gjøre feil. En del oppgir funksjonsnedsettelser som årsak til at de har problemer med å gjøre opp for seg. <br /><br />– Disse gruppene blir fort satt på sidelinjen når de oppfordres til å laste ned en app for å kjøpe en vare eller tjeneste eller bes om å trykke på en lenke i en sms for å betale legebesøket. Det er ikke vanskelig å forestille seg hvor utenfor det oppleves å ikke få tilgang på noe som er viktig for deg fordi du mangler verktøy, eller på grunn av språkbarrierer, sviktende syn eller utfordringer med finmotorikk, sier Blyverket. <img src=''></img> Utfordringene er omtrent like store i alle delmarkeder, viser undersøkelsen, men kollektivtransport, helsetjenester og offentlige tjenester oppleves som noe mer vanskelig tilgjengelige enn andre. Det kan henge sammen med at dette er vesentlige tjenester som er blitt vanskeligere å gjøre opp for med kontanter, eller fordi forbrukeren trenger elektronisk identifikasjon på høyeste sikkerhetsnivå for å få bestilt. <br /><br />Et annet viktig funn i undersøkelsen er at en betydelig andel av de som oppgir at de ikke bruker digitale verktøy for å skaffe viktige varer eller tjenester, oppgir som hovedgrunn at de mangler nettilgang der de bor og handler. <br /><h3>Pandemien har økt utenforskapet</h3><br />To år med korona har økt digitaliseringen og dermed behovet for digital deltakelse hos den jevne forbruker. Kompetanse Norge kartla i fjor at mange sysselsatte har opplevd å utvikle seg i takt, og at det her har blitt et større sprik til de som står utenfor. <br /><br /><ul><li> Mangel på kompetanse og motivasjon er en viktig del av problemet. Det er det også mange som er klar over og arbeider seriøst med, ikke minst Kompetanse Norge, sier forbrukerdirektør Inger Lise Blyverket, før hun avslutter med et «men…»</li><li> hvis ikke forbrukerne har tilgang til verktøyene de trenger for å få skaffet varer og tjenester, vil det ikke hjelpe å øke kompetansen og motivasjonen deres.</li></ul>",
+            "writers": ["Bengt-Eigil"],
+            "content": "<h2>Så mange som 38 prosent av oss har hatt store problemer med å bestille eller betale for en vare det siste året. Og hele 43 prosent har noen de hjelper. En ny undersøkelse gjort for Forbrukerrådet viser at viktige forbrukermarkeder er i ferd med å bli utilgjengelige for mange. </h2> <br />Mens de fleste av oss uten problemer beveger oss uten kontanter i et digitalt samfunn, opplever andre at de blir stående utenfor. Mange tusen nordmenn møter stengte dører til helt sentrale markeder fordi de mangler nødvendig nettilgang, maskin- eller programvare. <br /><br /><h3>Må ha hjelp</h3><br />Forbrukerrådet har gjennomført en omfattende undersøkelse av i hvor stor grad forbrukerne opplever problemer med å bestille og betale for varer og tjenester. I undersøkelsen, som YouGov har utført, svarer altså nesten fire av ti at de har hatt store problemer med å bestille eller betale minst en gang i 2021. Overraskende mange unge oppgir å ha hatt utfordringer med å handle. Det kommer også tydelig frem at veldig mange trenger hjelp for å få bestilt eller gjort opp for seg. Hele 43 prosent av de spurte svarer at de regelmessig hjelper familie eller personer i omgangskretsen med dette. De som hjelper noen, hjelper i gjennomsnitt 1,5 personer. <br /><br />– Dette viser at bak stadig mer strømlinjeformede løsninger for å få tilgang på varer og tjenester finnes det et stort mindretall med betydelige utfordringer, sier direktør Inger Lise Blyverket i Forbrukerrådet. <br /><br /><h3>Mangler viktige verktøy</h3><br />Det er flere grunner til at folk opplever utfordringer med bestilling og betaling.  Omtrent 200 000 personer har ikke Bank ID, og cirka like mange mangler smarttelefon. I tillegg forteller en betydelig gruppe som har dette at de ikke benytter seg av det. På spørsmål om hvorfor svarer drøyt ti prosent at de ikke forstår hvordan det skal brukes, mens litt flere begrunner det med at de er redd for å gjøre feil. En del oppgir funksjonsnedsettelser som årsak til at de har problemer med å gjøre opp for seg. <br /><br />– Disse gruppene blir fort satt på sidelinjen når de oppfordres til å laste ned en app for å kjøpe en vare eller tjeneste eller bes om å trykke på en lenke i en sms for å betale legebesøket. Det er ikke vanskelig å forestille seg hvor utenfor det oppleves å ikke få tilgang på noe som er viktig for deg fordi du mangler verktøy, eller på grunn av språkbarrierer, sviktende syn eller utfordringer med finmotorikk, sier Blyverket. <img src='https://storage02.forbrukerradet.no/media/2018/11/mobiltelefon.jpg'/> Utfordringene er omtrent like store i alle delmarkeder, viser undersøkelsen, men kollektivtransport, helsetjenester og offentlige tjenester oppleves som noe mer vanskelig tilgjengelige enn andre. Det kan henge sammen med at dette er vesentlige tjenester som er blitt vanskeligere å gjøre opp for med kontanter, eller fordi forbrukeren trenger elektronisk identifikasjon på høyeste sikkerhetsnivå for å få bestilt. <br /><br />Et annet viktig funn i undersøkelsen er at en betydelig andel av de som oppgir at de ikke bruker digitale verktøy for å skaffe viktige varer eller tjenester, oppgir som hovedgrunn at de mangler nettilgang der de bor og handler. <br /><br /><h3>Pandemien har økt utenforskapet</h3><br />To år med korona har økt digitaliseringen og dermed behovet for digital deltakelse hos den jevne forbruker. Kompetanse Norge kartla i fjor at mange sysselsatte har opplevd å utvikle seg i takt, og at det her har blitt et større sprik til de som står utenfor. <br /><br /><ul><li> Mangel på kompetanse og motivasjon er en viktig del av problemet. Det er det også mange som er klar over og arbeider seriøst med, ikke minst Kompetanse Norge, sier forbrukerdirektør Inger Lise Blyverket, før hun avslutter med et «men…»</li><li> hvis ikke forbrukerne har tilgang til verktøyene de trenger for å få skaffet varer og tjenester, vil det ikke hjelpe å øke kompetansen og motivasjonen deres.</li></ul>",
             "podcast": "",
             "keywords": []
         }
@@ -26,7 +32,7 @@
                 "header": "",
                 "content": ""
             },
-            "writers": "",
+            "writers": [],
             "content": "",
             "podcast": "",
             "keywords": []
@@ -43,7 +49,7 @@
                 "content": "",
                 "btns": [{ "type": "", "content": "", "href": "" }]
             },
-            "writers": "",
+            "writers": [],
             "content": "",
             "podcast": "",
             "keywords": []
@@ -61,7 +67,7 @@
                 "content": "",
                 "btns": [{ "type": "", "content": "", "href": "" }]
             },
-            "writers": "",
+            "writers": [],
             "content": "",
             "podcast": "",
             "keywords": []
@@ -78,7 +84,7 @@
                 "content": "",
                 "btns": [{ "type": "", "content": "", "href": "" }]
             },
-            "writers": "",
+            "writers": [],
             "content": "",
             "podcast": "",
             "keywords": []
@@ -95,7 +101,7 @@
                 "content": "",
                 "btns": [{ "type": "", "content": "", "href": "" }]
             },
-            "writers": "",
+            "writers": [],
             "content": "",
             "podcast": "",
             "keywords": []
@@ -112,7 +118,7 @@
                 "content": "",
                 "btns": [{ "type": "", "content": "", "href": "" }]
             },
-            "writers": "",
+            "writers": [],
             "content": "",
             "podcast": "",
             "keywords": []
@@ -129,7 +135,7 @@
                 "content": "",
                 "btns": [{ "type": "", "content": "", "href": "" }]
             },
-            "writers": "",
+            "writers": [],
             "content": "",
             "podcast": "",
             "keywords": []

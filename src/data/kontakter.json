@@ -178,5 +178,15 @@
         "tlf": "",
         "email": "nora.gloersen@forbrukerradet.no",
         "pictures": "#"
+    },
+    {
+        "img": "bengt-eigil.jpg",
+        "firstName": "Bengt-Eigil",
+        "secondName": "",
+        "lastName": "Ruud",
+        "position": "Kommunikasjonsrådgiver - forbrukerrettigheter, bolig og dagligvare",
+        "tlf": "906 67 828",
+        "email": "benruu@forbrukerradet.no",
+        "pictures": "#"
     }
 ]
