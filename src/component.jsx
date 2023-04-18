@@ -482,8 +482,20 @@ export function ContactPreset(props) {
 }
 
 export function Contacts(props) {
+    if (!props.names) {
+        return (
+            <div className={`pressekontakt ${props.className}`} style={{ color: "red" }}>
+                something whent wrong! no names
+            </div>
+        );
+    } else if (typeof props.names != "object") {
+        return (
+            <div className={`pressekontakt ${props.className}`} style={{ color: "red" }}>
+                something whent wrong! not object
+            </div>
+        );
+    }
     var kontaktList = [];
-    var strandskog = "Andreas Strandskog";
     props.names.map((name) => {
         for (let index = 0; index < kontakter.length; index++) {
             if (kontakter[index].firstName.toLowerCase() == name.toLowerCase()) {
@@ -504,6 +516,13 @@ export function Contacts(props) {
         }
     }
 
+    if (kontaktList.length == 0) {
+        return (
+            <div className={`pressekontakt ${props.className}`} style={{ color: "red" }}>
+                something whent wrong! no contacts with that name
+            </div>
+        );
+    }
     return (
         <div style={{ margin: "70px 0" }}>
             {header()}
@@ -1600,12 +1619,13 @@ export function formatContent(input) {
     function filterImg(items) {
         let toreturn = [];
         items.forEach((item, index) => {
-            if (typeof item == "string" && item.includes("<img")) {
+            if (typeof item == "string" && item.includes("<img") && item) {
                 item = item.match(/(.*?)(<img.*?\/>)(.*)/);
                 let src = item ? item[2].match(/(?<=src=').*?(?=')/) : null;
                 let alt = item ? item[2].match(/(?<=alt=').*?(?=')/) : null;
                 let style = [];
-                item[2] &&
+                item &&
+                    item[2] &&
                     item[2].match(/(?<=style={{).*?(?=}})/) &&
                     item[2]
                         .match(/(?<=style={{).*?(?=}})/)[0]
@@ -1622,11 +1642,11 @@ export function formatContent(input) {
                         : null
                     : {};
 
-                toreturn.push(item[1]);
+                toreturn.push(item && item[1]);
                 toreturn.push(
                     <img key={"img " + index.toString()} src={src} alt={alt} style={style} />
                 );
-                toreturn = toreturn.concat(filterImg([item[3]]));
+                toreturn = toreturn.concat(filterImg([item && item[3]]));
             } else toreturn.push(item);
         });
 
