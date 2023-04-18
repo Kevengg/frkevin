@@ -81,6 +81,7 @@ body {
 
 main .maxWidthMedium {
     margin: 0 auto;
+    padding: 70px 0;
     max-width: var(--site-width-medium);
 }
 
@@ -256,7 +257,7 @@ footer a:hover {
 }
 
 header {
-    padding: 10px 0;
+    /* padding: 10px 0; */
     border-bottom: 2px solid var(--FR-color-lighterg);
     border-top: 2px solid var(--FR-color-lighterg);
     background-color: var(--site-backround-color);
@@ -329,6 +330,7 @@ header {
 /*  */
 
 header nav {
+    padding: 10px 0;
     display: grid;
     grid-template-columns: auto 5fr 1fr 2fr;
 }
@@ -387,7 +389,6 @@ header {
     height: fit-content;
     padding: 60px 100px;
     max-height: 85%;
-    overflow-y: scroll;
     scrollbar-width: 0;
 }
 
@@ -417,6 +418,15 @@ header {
     right: 0;
     height: 100%;
     z-index: 10;
+    transition: opacity 0.1s cubic-bezier(0.53, 0.46, 0.52, 0.49);
+    opacity: 100%;
+    pointer-events: all;
+}
+
+#menuHide.menuHidden {
+    transition: opacity 0.1s cubic-bezier(0.53, 0.46, 0.52, 0.49);
+    opacity: 0%;
+    pointer-events: none;
 }
 
 .menuClose {
@@ -434,6 +444,104 @@ header {
     grid-template-rows: 25px 12px 25px;
     grid-auto-rows: 25px;
     gap: 10px;
+}
+
+/* header search bar */
+
+/* box arround search bar */
+#headerSearchBox {
+    margin-top: 10px;
+    height: 130px;
+    background-color: var(--FR-color-lighterb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+}
+/* to hide search feeld */
+#headerSearchHide {
+    transition: opacity 0.1s cubic-bezier(0.53, 0.46, 0.52, 0.49);
+    opacity: 100%;
+    position: absolute;
+    width: 100%;
+    margin-top: -10px;
+    pointer-events: all;
+}
+
+#headerSearchHide.headerSearchHidden {
+    opacity: 0%;
+    pointer-events: none;
+}
+
+/* to make things work */
+#headerSearchBox #headerSearchBarSpacer {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 80px;
+    max-width: 700px;
+    width: 100%;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+#headerSearchBox #headerSearchBarSpacer:focus-within {
+    outline: solid var(--FR-color-b) 2px;
+}
+
+/* the search bar */
+#headerSearchBox #headerSearchBar {
+    background-color: white;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid var(--FR-color-g);
+}
+
+/* the search feld for the bar */
+#headerSearchBox #headerSearchBar #headerSearch {
+    height: 100%;
+    width: calc(100% - 80px);
+    border: none;
+    background-color: white;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#headerSearchBox #headerSearchBar #headerSearch:focus-within {
+    outline: none;
+}
+
+/* the button for search */
+#headerSearchBox #headerSearchBar #headerSearchBtn {
+    width: 80px;
+    height: 100%;
+    border: none;
+    padding: 3px;
+    border-radius: 4px;
+    background-color: white;
+}
+
+#headerSearchBox #headerSearchBar #headerSearchBtn div {
+    width: 100%;
+    height: 100%;
+    background-color: var(--FR-color-darkerb);
+    color: white;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#headerSearchBox #headerSearchBar #headerSearchBtn div i {
+    color: white;
+    margin-right: 3px;
+    margin-bottom: -3px;
 }
 
 /*footer*/
