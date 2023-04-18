@@ -13,7 +13,6 @@ export function LinkBtn(props) {
     let name = props.className ? `linkBtn ${props.className}` : "linkBtn";
 
     if (props.href) {
-        // console.log(1, props.content);
         return (
             <a
                 href={props.href}
@@ -30,7 +29,6 @@ export function LinkBtn(props) {
             </a>
         );
     } else if (props.to) {
-        // console.log(2, props.content);
         return (
             <Link
                 to={props.to}
@@ -48,7 +46,6 @@ export function LinkBtn(props) {
             </Link>
         );
     } else {
-        // console.log(3, props.content);
         return (
             <div
                 className={name}
@@ -84,7 +81,6 @@ export function LinkBtnOld(props) {
     let chevron = props.chevron ? <i className="fa-solid fa-chevron-right"></i> : "";
 
     if (href) {
-        // console.log(1, props.content);
         return (
             <a
                 href={href}
@@ -108,7 +104,6 @@ export function LinkBtnOld(props) {
             </a>
         );
     } else if (props.to) {
-        // console.log(2, props.content);
         return (
             <Link
                 to={props.to}
@@ -127,7 +122,6 @@ export function LinkBtnOld(props) {
             </Link>
         );
     } else {
-        // console.log(3, props.content);
         return (
             <div
                 className={name}
@@ -162,7 +156,6 @@ export function LinkBtnOld(props) {
     // let chevron = props.chevron ? <i className="fa-solid fa-chevron-right"></i> : "";
 
     // if (href) {
-    //     // console.log(1, props.content);
     //     return (
     //         <a
     //             href={href}
@@ -186,7 +179,6 @@ export function LinkBtnOld(props) {
     //         </a>
     //     );
     // } else if (props.to) {
-    //     // console.log(2, props.content);
     //     return (
     //         <Link
     //             to={props.to}
@@ -205,7 +197,6 @@ export function LinkBtnOld(props) {
     //         </Link>
     //     );
     // } else {
-    //     // console.log(3, props.content);
     //     return (
     //         <div
     //             className={name}
@@ -599,7 +590,6 @@ export function Raporter(props) {
 }
 
 export function Tester(props) {
-    // console.log("props", props);
     if (props.sort) {
         var testerList = [];
         for (let index = 0; index < tester.length; index++) {
@@ -616,12 +606,9 @@ export function Tester(props) {
         var testerList = [];
         testerList.push(tester.slice(-3));
     }
-    // console.log("testerList", testerList);
     function testForTest() {
         if (testerList[0]) {
             return testerList.map((test, index) => {
-                // console.log("test", test);
-
                 return (
                     <Nytt
                         key={index}
@@ -1158,7 +1145,6 @@ export function formatContent(input) {
             // Iterate over each subElement in the `subElements` array
             for (let j = 0; j < subElements.length; j++) {
                 let subElement = subElements[j];
-                // console.log("subElements", subElements);
 
                 // Check if the subElement matches the format of LinkBtnOld />
                 if ((match = subElement.match(/(?<=LinkBtnOld).*content='(.*?)'(.*?)\/>(.*)/))) {
@@ -1262,13 +1248,11 @@ export function formatContent(input) {
             }
         }
     }
-    // console.log("result before", result);
 
     function formatLists(items) {
         let toreturn = [];
         items.flat(Infinity).forEach((item, index) => {
             if (typeof item == "string" && item.includes("<li")) {
-                // console.log("item", item);
                 // index 0:everything, index 1: everything before, index 2: opening tagg,
                 // index 3: content, index 4: rest
                 item = item.includes("<ul")
@@ -1320,7 +1304,6 @@ export function formatContent(input) {
                         : null
                     : {};
                 toreturn.push(item[1]);
-                // console.log("item", item);
                 toreturn.push(
                     item[2].includes("<ul") ? (
                         <ul className={className} style={style} key={`ul${index}`}>
@@ -1356,7 +1339,6 @@ export function formatContent(input) {
                         items[i].match(/<\/div>/g) &&
                         (remaining -= items[i].match(/<\/div>/g).length);
                     targetIndex = i;
-                    // console.log("remaining", remaining);
                 }
                 let fromItems = items.splice(index + 1, targetIndex - index);
                 // var that holds ewerything remaining outside in the last close, to be pushed back into items
@@ -1373,7 +1355,6 @@ export function formatContent(input) {
                     // // this stil may brake if an object is inside the div, the content left in the original index may be forgotten
                     let nr = targetRemaining;
                     if (fromItems.length > 0 && fromItems.map((i) => !!i).includes(true)) {
-                        console.log("first");
                         itemsFromCalc = fromItems
                             .map((i, indexOfI) => {
                                 if (typeof i == "string") {
@@ -1463,7 +1444,6 @@ export function formatContent(input) {
                 calcItems();
 
                 items.splice(index + 1, 0, ...rest);
-                // console.log("items", [...items]);
                 // find props for dropdown
                 let header = target[2].match(/(?<=header=').*?(?=')/);
                 let style = [];
@@ -1510,7 +1490,6 @@ export function formatContent(input) {
             let type = r[2].match(/(?<=type=').*?(?=')/);
             let items = r[2];
             items = items.match(/(?<=items=\[).*?(?=\])/)[0].match(/(?<=')(?!,).*?(?=')/g);
-            // console.log("items, type", items, type);
             resultV2.push(
                 r[1] ? r[1] : null,
                 r[2] ? <ListObject key={result.length + index} type={type} items={items} /> : null,
@@ -1538,7 +1517,6 @@ export function formatContent(input) {
                         items[i].match(/<\/FrDroppDown>/g) &&
                         (remaining -= items[i].match(/<\/FrDroppDown>/g).length);
                     targetIndex = i;
-                    // console.log("remaining", remaining);
                 }
                 let fromItems = items.splice(index + 1, targetIndex - index);
 
@@ -1595,7 +1573,6 @@ export function formatContent(input) {
                 }
 
                 items.splice(index + 1, 0, ...rest);
-                // console.log("items", [...items]);
                 // find props for dropdown
                 let header = target[2].match(/(?<=header=').*?(?=')/);
                 let style = target[2].match(/(?<=style=').*?(?=')/);
@@ -1706,7 +1683,6 @@ export function formatContent(input) {
 
     function formatHeader(items) {
         let toreturn = [];
-        // console.log("items", items);
         items.forEach((item, index) => {
             if (typeof item == "string" && item.includes("<h")) {
                 item = item.match(/(.*?)(<h..*?\/h.>)(.*)/);
@@ -1778,9 +1754,7 @@ export function formatContent(input) {
         let toreturn = [];
 
         items.flat(Infinity).forEach((item, index) => {
-            console.log("[item]", [item]);
             if (typeof item == "string" && item.includes("<style>")) {
-                console.log("[item]", [item]);
                 item = item.match(/(.*?)<style>(.*?)<\/style>(.*)/);
                 toreturn.push(item[1]);
                 toreturn.push(<style key={`style ${index.toString()}`}>{item[2]}</style>);
@@ -1911,7 +1885,6 @@ export function formatContent(input) {
 //             result.push(element);
 //         }
 //     }
-//     console.log(result);
 
 //     return result;
 // }
@@ -1961,7 +1934,6 @@ export function formatContent(input) {
 //     if (formattedContent.includes("LinkBtnOld")) {
 //         // from chatGTP:
 //         formattedContent = formattedContent.split("LinkBtnOld").map((item, index) => {
-//             console.log(item);
 //             let splitItem = item.split("'");
 //             let props = [];
 //             splitItem.forEach((item) => {
@@ -1969,7 +1941,6 @@ export function formatContent(input) {
 //                     props.push(item);
 //                 }
 //             });
-//             console.log(props);
 //             return LinkBtnOld content={props[0]} test="test" key={index} />;
 //         });
 //         return formattedContent;
@@ -2060,12 +2031,9 @@ function splitJSXString(jsx) {
         let num = 0;
         if (typeof item === "string" && item.includes("<div>")) {
             let itemHold = [item];
-            // console.log("item", item);
-            // console.log("itemHold", itemHold);
 
             while (itemHold.includes("<div>")) {
                 num++;
-                // console.log(num);
                 let newItem = [];
                 itemHold.map((item, index) => {
                     if (typeof item === "string") {
@@ -2088,7 +2056,6 @@ function splitJSXString(jsx) {
                 });
                 itemHold = newItem;
             }
-            // console.log("new itemHold", itemHold);
         }
 
         // if (typeof item == "string") {
@@ -2111,8 +2078,6 @@ function splitJSXString(jsx) {
         // while (itemHold && itemHold.includes("<div>")) {
         //     modItemArr = itemHold.match(/(.*?)(<div>(?!.*(?<!<\/div>)(?:<div>)).*?<\/div>)(.*)/g);
         //     modItemArr[1] = <div>{modItemArr[2].replace(/<\/?div>/g, "")}</div>;
-        //     console.log(modItemArr);
-        //     console.log(itemHold);
         //     modItemArr = [modItemArr[1],modItemArr[2],modItemArr[3]]
         //     num++;
         //     if (num > 5) {
@@ -2141,21 +2106,18 @@ function splitJSXString(jsx) {
     //     if (cases[2]) {
     //         out.push(cases[2]);
     //     }
-    //     console.log("out", out);
     //     break;
     // }
     // return out;
     // for (let index = 0; index < jsx.length; index++) {
 
     //     if (typeof item == "string") {
-    //         console.log(item);
     //         for (let index = 1; index; index) {
     //             let cases = [];
     //             cases = item.match(/<div>(.*?)<\/div>$/g);
     //             if (cases) {
     //                 // break;
     //             }
-    //             console.log("cases", cases);
     //             break;
     //         }
     //     }
@@ -2178,18 +2140,6 @@ function splitJSXString(jsx) {
 //         let currentElement = splitJSXElements.shift();
 //         let temp = [];
 //         if (typeof currentElement === "string") {
-//             console.log(
-//                 currentElement.split("<div>").map((item, index) => {
-//                     return item.split("</div>");
-//                 }).map((item))
-
-//                , "work",
-//                 currentElement.split("<div>").map((item, index) => {
-//                     return item.split("</div>");
-//                 })
-//             );
-//             // console.log("currentElement", currentElement);
-
 //             // const startIndex = currentElement.indexOf("<div>");
 //             // const endIndex = currentElement.indexOf("</div>");
 //             // if (startIndex === -1 && endIndex === -1) {
@@ -2197,7 +2147,6 @@ function splitJSXString(jsx) {
 //             // } else if (startIndex !== -1 && (startIndex < endIndex || endIndex === -1)) {
 //             //     const content = currentElement.substring(startIndex, endIndex);
 //             //     modifiedJSXElements.push(<div>{content}</div>);
-//             //     // console.log(currentElement.substring(endIndex + 6), endIndex);
 //             //     splitJSXElements.unshift(currentElement.substring(endIndex + 6));
 //             // }
 //         } else {

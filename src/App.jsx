@@ -8,6 +8,7 @@ import TesterV2 from "./pages/tester/testerv2";
 import KontaktOss from "./pages/kontakt_oss/kontakt_oss";
 import Presse from "./pages/kontakt_oss/presse_kontakt";
 import KlageGuide from "./pages/tips_og_rettigheter/klageguide";
+import SearchPage from "./pages/search/search";
 
 // app
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/tips_og_rettigheter/slik_klager_du" element={<KlageGuide />} />
             <Route path="/kontakt_oss" element={<KontaktOss />} />
             <Route path="/kontakt_oss/presse" element={<Presse />} />
+            <Route path="/search" element={<SearchPage />} />
         </Routes>
     );
 }
