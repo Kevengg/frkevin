@@ -1093,7 +1093,7 @@ export const Rettigheter = () => {
 };
 
 // simple font awsome
-export function Chevron({ size: size, color: color, left: left }) {
+export function Chevron({ size: size, color: color, left: left, style: style }) {
     const sizeCalc = () => {
         if (size == "xxs" || size == "2xs") {
             return "fa-2xs";
@@ -1113,7 +1113,7 @@ export function Chevron({ size: size, color: color, left: left }) {
     return (
         <i
             className={`fa-solid fa-chevron-${left ? "left" : "right"} ${sizeCalc()}`}
-            style={{ color: color }}
+            style={{ color: color, ...style }}
         ></i>
     );
 }

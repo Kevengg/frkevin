@@ -79,6 +79,18 @@
     opacity: 50%;
 }
 
+.pageNr {
+    margin: 0 auto;
+    width: fit-content;
+}
+
 .pageNr span {
-    padding: 0 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin: 0 0px;
+    user-select: none;
 }
