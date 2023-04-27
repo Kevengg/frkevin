@@ -64,7 +64,7 @@
 
 .result {
     padding: 0 6px;
-    margin-bottom: 30px;
+    padding-top: 30px;
     border-bottom: 1px solid var(--FR-color-lg);
 }
 
@@ -93,4 +93,22 @@
     border-radius: 50%;
     margin: 0 0px;
     user-select: none;
+}
+
+.personResult {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr 1fr;
+    max-height: 160px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.personResult .personResultImg {
+    opacity: 100%;
+    max-width: 220px;
+    max-height: 220px;
+    margin: 0;
+    margin-right: 10px;
+    grid-row: span 2;
 }

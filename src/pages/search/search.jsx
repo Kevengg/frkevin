@@ -15,6 +15,7 @@ export default function SearchPage(params) {
     const [searchResult, setSearchResult] = useState([]);
     const [searchTester, setSearchTester] = useState([]);
     const [searchNyheter, setSearchNyheter] = useState([]);
+    const [searchKontakter, setSearchKontakter] = useState([]);
 
     const [page, setPage] = useState(1);
 
@@ -25,6 +26,7 @@ export default function SearchPage(params) {
         let newData = [];
         let newNyheter = [];
         let newTester = [];
+        let newKontakter = [];
 
         // tester
         tester.forEach((test) => {
@@ -48,6 +50,21 @@ export default function SearchPage(params) {
             }
         });
 
+        kontakter.forEach((kontakt) => {
+            if (
+                kontakt.img.includes(searchKey) &&
+                kontakt.firstName.includes(searchKey) &&
+                kontakt.secondName.includes(searchKey) &&
+                kontakt.lastName.includes(searchKey) &&
+                kontakt.position.includes(searchKey) &&
+                kontakt.tlf.includes(searchKey) &&
+                kontakt.email.includes(searchKey)
+            ) {
+                newData.push(kontakt);
+                newKontakter.push(kontakt);
+            }
+        });
+
         // nyheter
         nyheter.forEach((nytt) => {
             if (nytt.header.includes(searchKey) || nytt.topic.includes(searchKey)) {
@@ -57,11 +74,41 @@ export default function SearchPage(params) {
         });
 
         function sortData(a, b) {
-            if (a.article ? a.article.date : a.date > b.article ? b.article.date : b.date) {
+            if (
+                a.article
+                    ? a.article.date
+                    : a.date
+                    ? a.date
+                    : 1 > b.article
+                    ? b.article.date
+                    : b.date
+                    ? b.date
+                    : 1
+            ) {
                 return -1;
-            } else if (a.article ? a.article.date : a.date < b.article ? b.article.date : b.date) {
+            } else if (
+                a.article
+                    ? a.article.date
+                    : a.date
+                    ? a.date
+                    : 1 < b.article
+                    ? b.article.date
+                    : b.date
+                    ? b.date
+                    : 1
+            ) {
                 return 1;
-            } else if (a.article ? a.article.date : a.date == b.article ? b.article.date : b.date) {
+            } else if (
+                a.article
+                    ? a.article.date
+                    : a.date
+                    ? a.date
+                    : 1 == b.article
+                    ? b.article.date
+                    : b.date
+                    ? b.date
+                    : 1
+            ) {
                 return 0;
             }
         }
@@ -69,6 +116,7 @@ export default function SearchPage(params) {
         setSearchResult(newData.sort(sortData));
         setSearchNyheter(newNyheter);
         setSearchTester(newTester);
+        setSearchKontakter(newKontakter);
     }, [location.search]);
 
     const pageNr = () => {
@@ -222,6 +270,36 @@ export default function SearchPage(params) {
                                                 </div>
                                             </a>
                                         );
+                                    } else if (result.firstName) {
+                                        return (
+                                            <a
+                                                href={`/kontakter?preson=${result.firstName
+                                                    .toLowerCase()
+                                                    .replace(/ /g, "-")}-${result.secondName
+                                                    .toLowerCase()
+                                                    .replace(/ /g, "-")}-${result.lastName
+                                                    .toLowerCase()
+                                                    .replace(/ /g, "-")}`}
+                                                className={style.result + " " + style.personResult}
+                                                key={`kontakt${index}`}
+                                            >
+                                                <div className={`imgWrap ${style.personResultImg}`}>
+                                                    <img
+                                                        src={
+                                                            result.img.includes("://")
+                                                                ? result.img
+                                                                : `/img/${result.img}`
+                                                        }
+                                                        alt={result.alt}
+                                                    />
+                                                </div>
+                                                <h2>
+                                                    {result.firstName} {result.secondName}{" "}
+                                                    {result.lastName}
+                                                </h2>
+                                                <div>{result.position}</div>
+                                            </a>
+                                        );
                                     } else {
                                         return (
                                             <a href="" className={style.result}>
@@ -323,7 +401,7 @@ export default function SearchPage(params) {
                             <div className={style.searchFilterFilter}>
                                 <input type="checkbox" name="" id="" />
                                 <div>
-                                    Personer <section>{`(${value})`}</section>
+                                    Personer <section>{`(${searchKontakter.length})`}</section>
                                 </div>
                             </div>
                         </div>
