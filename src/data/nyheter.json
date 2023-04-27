@@ -1,10 +1,282 @@
 [
     {
+        "header": "Bruker design til å lure oss for tid, penger og personopplysninger",
+        "topic": "Digitalt",
+        "img": "manipulerende_design.jpg",
+        "alt": "2022-12-01T00:00:00.000Z",
+        "article": {
+            "date": "2022-12-13T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": ""
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+
+    {
+        "header": "Ny jobb? Husk å beholde forsikringen",
+        "topic": "Økonomi",
+        "img": "artikkelbilde-forsikring.png",
+        "alt": "",
+        "article": {
+            "date": "2023-01-12T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "Nå kan du klage på både Facebook, Dropbox og Netflix",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+
+    {
+        "header": "1",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "2",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "3",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "4",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "5",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "9",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "6",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "7",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "8",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "10",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "11",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
+        "header": "12",
+        "topic": "Forbrukerretigheter",
+        "img": "digitale-tips.jpg",
+        "alt": "",
+        "article": {
+            "date": "2023-01-04T00:00:00.000Z",
+            "tldr": {
+                "header": "",
+                "content": "",
+                "btns": [{ "type": "", "content": "", "href": "" }]
+            },
+            "writers": [],
+            "content": "",
+            "podcast": "",
+            "keywords": []
+        }
+    },
+    {
         "header": "Mange faller utenfor viktige markeder",
         "topic": "Økonomi",
         "img": "handel-illustrasjon.jpg",
+        "alt": "alt",
         "article": {
-            "date": "2023-01-06T00:00:00.000Z",
+            "date": "2023-01-6T00:00:00.000Z",
             "tldr": {
                 "header": "Presse",
                 "content": "<a href='#'>Pressebilder av Inger Lise Blyverket</a>",
@@ -23,79 +295,12 @@
         }
     },
     {
-        "header": "Bruker design til å lure oss for tid, penger og personopplysninger",
-        "topic": "Digitalt",
-        "img": "manipulerende_design.jpg",
-        "article": {
-            "date": "",
-            "tldr": {
-                "header": "",
-                "content": ""
-            },
-            "writers": [],
-            "content": "",
-            "podcast": "",
-            "keywords": []
-        }
-    },
-    {
-        "header": "Test av stavmiksere: Enorme kvalitetsforskjeller",
-        "topic": "Bærekraft",
-        "img": "forside-stavmikser.png",
-        "article": {
-            "date": "",
-            "tldr": {
-                "header": "",
-                "content": "",
-                "btns": [{ "type": "", "content": "", "href": "" }]
-            },
-            "writers": [],
-            "content": "",
-            "podcast": "",
-            "keywords": []
-        }
-    },
-
-    {
-        "header": "Ny jobb? Husk å beholde forsikringen",
-        "topic": "Økonomi",
-        "img": "artikkelbilde-forsikring.png",
-        "article": {
-            "date": "",
-            "tldr": {
-                "header": "",
-                "content": "",
-                "btns": [{ "type": "", "content": "", "href": "" }]
-            },
-            "writers": [],
-            "content": "",
-            "podcast": "",
-            "keywords": []
-        }
-    },
-    {
-        "header": "Nå kan du klage på både Facebook, Dropbox og Netflix",
-        "topic": "Forbrukerretigheter",
-        "img": "digitale-tips.jpg",
-        "article": {
-            "date": "",
-            "tldr": {
-                "header": "",
-                "content": "",
-                "btns": [{ "type": "", "content": "", "href": "" }]
-            },
-            "writers": [],
-            "content": "",
-            "podcast": "",
-            "keywords": []
-        }
-    },
-    {
         "header": "Forbrukerrådet, Leieboerforeningen og LO feirer Husleielovutvalg",
         "topic": "Bolig",
         "img": "husleieutvalg.jpg",
+        "alt": "",
         "article": {
-            "date": "",
+            "date": "2022-11-30T00:00:00.000Z",
             "tldr": {
                 "header": "",
                 "content": "",
@@ -111,8 +316,9 @@
         "header": "Styr unna ulovlige bakeformer i silikon",
         "topic": "Mat",
         "img": "bakeform.png",
+        "alt": "",
         "article": {
-            "date": "",
+            "date": "2022-12-14T00:00:00.000Z",
             "tldr": {
                 "header": "",
                 "content": "",
@@ -128,8 +334,9 @@
         "header": "Forbrukerrådet nedringt av fortvilte strømkunder",
         "topic": "Strøm",
         "img": "kvinne-med-mobil.jpg",
+        "alt": "alt",
         "article": {
-            "date": "",
+            "date": "2023-01-23T00:00:00.000Z",
             "tldr": {
                 "header": "",
                 "content": "",
