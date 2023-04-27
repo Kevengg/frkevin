@@ -17,11 +17,12 @@ export default function SisteNytt(params) {
         ) {
             arr.push(
                 <span
+                    style={{ [page == index + 2 ? "backgroundColor" : ""]: "var(--FR-color-lb)" }}
                     className={style.pageNr}
                     onClick={() => {
                         setPage(index + 2);
                         if (page != index + 2) {
-                            window.scrollTo(0, 0);
+                            window.scrollTo({ top: 1 });
                         }
                     }}
                     key={`pageNr${index + 2}`}
@@ -114,7 +115,7 @@ export default function SisteNytt(params) {
                         chevron={false}
                         onClick={() => {
                             updateNewsFilter(null);
-                            setPage(1);
+                            newsFilter != null && setPage(1);
                         }}
                         color={(newsFilter == null && "var(--FR-color-db)") || "var(--FR-color-g)"}
                         hover={(newsFilter == null && "var(--FR-color-db)") || "var(--FR-color-g)"}
@@ -128,7 +129,7 @@ export default function SisteNytt(params) {
                                 chevron={false}
                                 onClick={() => {
                                     updateNewsFilter(t);
-                                    setPage(1);
+                                    newsFilter != t && setPage(1);
                                 }}
                                 color={
                                     (newsFilter == t && "var(--FR-color-db)") || "var(--FR-color-g)"
@@ -141,7 +142,14 @@ export default function SisteNytt(params) {
                         );
                     })}
                 </div>
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginBottom: "10px",
+                        marginTop: "20px",
+                    }}
+                >
                     <h2 style={{ marginRight: "10px" }}>
                         {newsFilter == null ? "Alle nyheter" : newsFilter}
                     </h2>
@@ -188,6 +196,7 @@ export default function SisteNytt(params) {
                         <Chevron left size="L"></Chevron>
                     </span>
                     <span
+                        style={{ [page == 1 ? "backgroundColor" : ""]: "var(--FR-color-lb)" }}
                         className={style.pageNr}
                         onClick={() => {
                             setPage(1);
