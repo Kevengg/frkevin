@@ -47,8 +47,17 @@ export default function SearchPage(params) {
             }
         });
 
-        console.log("newData", newData);
-        setSearchResult(newData);
+        function sortData(a, b) {
+            if (a.article ? a.article.date : a.date > b.article ? b.article.date : b.date) {
+                return -1;
+            } else if (a.article ? a.article.date : a.date < b.article ? b.article.date : b.date) {
+                return 1;
+            } else if (a.article ? a.article.date : a.date == b.article ? b.article.date : b.date) {
+                return 0;
+            }
+        }
+
+        setSearchResult(newData.sort(sortData));
     }, [location.search]);
 
     return (
@@ -82,7 +91,12 @@ export default function SearchPage(params) {
                             {searchResult.map((result) => {
                                 if (result.objects) {
                                     return (
-                                        <a href="" className={style.result}>
+                                        <a
+                                            href={`/tester?page=${result.header
+                                                .toLowerCase()
+                                                .replace(/ /g, "-")}`}
+                                            className={style.result}
+                                        >
                                             <h2>{result.header}</h2>
                                             {/*header from page or artikle*/}
                                             <article>
@@ -100,6 +114,53 @@ export default function SearchPage(params) {
                                             {/*first bitt of content*/}
                                             <div> {formatDate(result.date, "DD.longM.YYYY")} </div>
                                             {/*date*/}
+                                            <div style={{ marginTop: "-30px", marginLeft: "90%" }}>
+                                                Test
+                                            </div>
+                                        </a>
+                                    );
+                                } else if (!!result.article) {
+                                    return (
+                                        <a
+                                            href={`/siste_nytt/artikkel?artikkel=${result.header
+                                                .toLowerCase()
+                                                .replace(/ /g, "-")}`}
+                                            className={style.result}
+                                        >
+                                            <h2>{result.header}</h2>
+                                            {/*header from page or artikle*/}
+                                            <article>
+                                                {formatContent(
+                                                    result.article.content
+                                                        .substring(0, 294)
+                                                        .includes("<br />")
+                                                        ? result.article.content
+                                                              .substring(0, 294)
+                                                              .split("<br />")[0]
+                                                              .includes("<h2>")
+                                                            ? result.article.content
+                                                                  .substring(0, 294)
+                                                                  .split("<br />")[0]
+                                                                  .match(/(<h2>)(.*?)(<\/h2>)/)[2]
+                                                            : result.article.content
+                                                                  .substring(0, 294)
+                                                                  .split("<br />")[0]
+                                                        : result.article.content
+                                                              .substring(0, 294)
+                                                              .includes("<h2>")
+                                                        ? result.article.content
+                                                              .substring(0, 294)
+                                                              .match(/(<h2>)(.*?)(<\/h2>)/)[2]
+                                                        : result.article.content.substring(0, 294)
+                                                )}
+                                                ...
+                                            </article>
+                                            {/*first bitt of content*/}
+                                            <div> {formatDate(result.date, "DD.longM.YYYY")} </div>
+                                            {/*date*/}
+                                            <div style={{ marginTop: "-30px", marginLeft: "90%" }}>
+                                                Nytt
+                                            </div>
                                         </a>
                                     );
                                 } else {

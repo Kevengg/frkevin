@@ -79,7 +79,10 @@ export default function Headers() {
                     role="search"
                     aria-label="Søk"
                     tabIndex="0"
-                    onClick={() => openSearch()}
+                    onClick={(e) => {
+                        openSearch();
+                        e.target.closest("header").querySelector("#headerSearch").focus();
+                    }}
                 >
                     <i
                         style={{ color: "#9a9a9a" }}
@@ -113,8 +116,19 @@ export default function Headers() {
                     </div>
                 </div>
             </nav>
-            <div className="headerSearchHidden" id="headerSearchHide">
-                <div id="headerSearchBox">
+            <div
+                className="headerSearchHidden"
+                id="headerSearchHide"
+                onClick={() => {
+                    openSearch();
+                }}
+            >
+                <div
+                    id="headerSearchBox"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                    }}
+                >
                     <div id="headerSearchBarSpacer">
                         <div id="headerSearchBar">
                             <input
@@ -125,6 +139,14 @@ export default function Headers() {
                                 value={headerSearch}
                                 onChange={(e) => {
                                     setHeaderSearch(e.target.value);
+                                }}
+                                onKeyDown={(e) => {
+                                    if (e.key == "Enter") {
+                                        e.target
+                                            .closest("#headerSearchBar")
+                                            .querySelector("a")
+                                            .click();
+                                    }
                                 }}
                             />
                             <a
