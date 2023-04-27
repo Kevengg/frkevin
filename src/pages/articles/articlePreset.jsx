@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import nyheter from "../../data/nyheter.json";
-import { Chevron, Contacts, Nyheter, formatContent, formatDate } from "../../component";
+import { Chevron, Contacts, Nyheter, formatContent, formatDate, Error } from "../../component";
 import style from "../../css/tester/readMore.module.css";
 
 export default function Article(params) {
@@ -10,7 +10,7 @@ export default function Article(params) {
     const [page, setPage] = useState();
 
     useEffect(() => {
-        var article = queryParams.get("article");
+        var article = queryParams.get("artikkel");
         nyheter.forEach((news) => {
             if (
                 typeof article == "string" &&
@@ -21,12 +21,11 @@ export default function Article(params) {
             }
         });
         setPage(article);
-        console.log("article", article);
     }, [location.search]);
 
     return (
         <>
-            {page && (
+            {(typeof page == "object" && (
                 <main>
                     <div className="maxWidthSmall">
                         <nav className="path">
@@ -43,11 +42,16 @@ export default function Article(params) {
                             <span>{page.header}</span>
                         </nav>
                         <h1 className={style.pageHeader}>{page.header}</h1>
-                        <div className={style.date}>{formatDate(page.date, "DD.longM.YYYY")}</div>
+                        <div className={style.date}>
+                            {formatDate(page.article.date, "DD.longM.YYYY")}
+                        </div>
                         <div className={style.page}>
                             <div className={style.pageLeft}>
-                                {" "}
-                                {formatContent(page.article.content)}{" "}
+                                {page.article.content ? (
+                                    formatContent(page.article.content)
+                                ) : (
+                                    <Error back={"/siste-nytt"}></Error>
+                                )}
                             </div>
                             <div className={style.pageRight}>
                                 <Contacts
@@ -61,18 +65,20 @@ export default function Article(params) {
                                     <article>{formatContent(page.article.tldr.content)}</article>
                                 </div>
                                 <div>
-                                    {page.article.tldr.btns.map((btn, index) => {
-                                        return (
-                                            <a
-                                                className={style.newsLetter}
-                                                href={btn.href}
-                                                style={{ textDecoration: "none" }}
-                                                key={index}
-                                            >
-                                                {formatContent(btn.content)}
-                                            </a>
-                                        );
-                                    })}
+                                    {page.article.tldr.btns
+                                        ? page.article.tldr.btns.map((btn, index) => {
+                                              return (
+                                                  <a
+                                                      className={style.newsLetter}
+                                                      href={btn.href}
+                                                      style={{ textDecoration: "none" }}
+                                                      key={index}
+                                                  >
+                                                      {formatContent(btn.content)}
+                                                  </a>
+                                              );
+                                          })
+                                        : null}
                                 </div>
                             </div>
                         </div>
@@ -84,7 +90,7 @@ export default function Article(params) {
                         <Nyheter />
                     </div>
                 </main>
-            )}
+            )) || <Error type="404"></Error>}
         </>
     );
 }

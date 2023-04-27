@@ -6,6 +6,7 @@ import TestObjectPage from "./tester_components/testObjectPage";
 import testsList from "../../data/tester.json";
 import ComparePage from "./tester_components/comparePage";
 import ReadMore from "./tester_components/readMore";
+import { Error } from "../../component";
 
 export default function TesterV2() {
     const [page, setPage] = useState(<TesterHjem updatePage={updatePage}></TesterHjem>);
@@ -18,8 +19,6 @@ export default function TesterV2() {
         var readMore = queryParams.get("readmore");
 
         if (compare) {
-            // [{testObject}, {testObject}], [index, index]
-
             updatePage(
                 testsList.find((obj) => obj.header.toLowerCase().replace(/ /g, "-") === url)
                     .objects,
@@ -33,11 +32,15 @@ export default function TesterV2() {
                 testsList.find((obj) => obj.header.toLowerCase().replace(/ /g, "-") === page[0]),
             ];
 
-            pageUrl.push(
-                pageUrl[0].objects.find(
-                    (obj) => obj.product.toLowerCase().replace(/ /g, "-") === page[1]
-                )
-            );
+            !!pageUrl[0] &&
+                pageUrl.push(
+                    (pageUrl &&
+                        pageUrl[0].objects &&
+                        pageUrl[0].objects.find(
+                            (obj) => obj.product.toLowerCase().replace(/ /g, "-") === page[1]
+                        )) ||
+                        null
+                );
 
             updatePage(pageUrl[1] ? pageUrl[1] : pageUrl[0], pageUrl[1] ? pageUrl[0] : undefined);
         } else updatePage();
@@ -46,6 +49,7 @@ export default function TesterV2() {
 
     function updatePage(page, info, info2) {
         var readMore = queryParams.get("readmore");
+        var url = queryParams.get("page");
         // console.log(page);
         // console.log(typeof page);
         // console.log("info", info);
@@ -61,6 +65,8 @@ export default function TesterV2() {
             } else {
                 setPage(<ComparePage obj={page} info={info} parent={info2}></ComparePage>);
             }
+        } else if (url) {
+            setPage(<Error type="404"></Error>);
         } else setPage(<TesterHjem updatePage={updatePage} />);
         window.scrollTo(0, 0);
     }

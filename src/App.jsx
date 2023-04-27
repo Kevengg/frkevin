@@ -10,6 +10,7 @@ import Presse from "./pages/kontakt_oss/presse_kontakt";
 import KlageGuide from "./pages/tips_og_rettigheter/klageguide";
 import SearchPage from "./pages/search/search";
 import Article from "./pages/articles/articlePreset";
+import SisteNytt from "./pages/siste_nytt/sisteNytt";
 
 // app
 export default function App() {
@@ -25,7 +26,8 @@ export default function App() {
             <Route path="/kontakt_oss" element={<KontaktOss />} />
             <Route path="/kontakt_oss/presse" element={<Presse />} />
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/siste_nytt/artikkel" element={<Article />} />
+            <Route path="/siste-nytt" element={<SisteNytt />} />
+            <Route path="/siste-nytt/artikkel" element={<Article />} />
         </Routes>
     );
 }
