@@ -9,6 +9,16 @@ import kontakter from "./data/kontakter.json";
 import horinger from "./data/horinger.json";
 import rapporter from "./data/rapporter.json";
 
+export function sortAlfa(a, b) {
+    if (a > b) {
+        return 1;
+    } else if (a < b) {
+        return -1;
+    } else if (a == b) {
+        return 0;
+    }
+}
+
 export function LinkBtn(props) {
     let name = props.className ? `linkBtn ${props.className}` : "linkBtn";
 
@@ -17,7 +27,7 @@ export function LinkBtn(props) {
             <a
                 href={props.href}
                 className={name}
-                style={props.color ? { backgroundColor: props.color } : {}}
+                style={{ ...props.style, ...(props.color ? { backgroundColor: props.color } : {}) }}
                 onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = props.hover;
                 }}
@@ -33,7 +43,7 @@ export function LinkBtn(props) {
             <Link
                 to={props.to}
                 className={name}
-                style={props.color ? { backgroundColor: props.color } : {}}
+                style={{ ...props.style, ...(props.color ? { backgroundColor: props.color } : {}) }}
                 onClick={props.onClick}
                 onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = props.hover;
@@ -49,7 +59,7 @@ export function LinkBtn(props) {
         return (
             <div
                 className={name}
-                style={props.color ? { backgroundColor: props.color } : {}}
+                style={{ ...props.style, ...(props.color ? { backgroundColor: props.color } : {}) }}
                 onClick={props.onClick}
                 onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = props.hover;
@@ -64,78 +74,90 @@ export function LinkBtn(props) {
     }
 }
 
-export function LinkBtnOld(props) {
-    let href;
-    if (props.external) {
-        href = props.href;
-    } else if (props.download) {
-        href = props.download;
-    } else if (props.href) {
-        href = props.href;
+export function LinkBtnOld({
+    external,
+    href,
+    download,
+    className,
+    content,
+    color,
+    hover,
+    onClick,
+    to,
+    chevron,
+    style,
+}) {
+    let propHref;
+    if (external) {
+        propHref = href;
+    } else if (download) {
+        propHref = download;
+    } else if (href) {
+        propHref = href;
     }
-    let name = props.className ? `linkBtn ${props.className}` : "linkBtn";
+    let name = className ? `linkBtn ${className}` : "linkBtn";
 
-    if (!props.content) {
+    if (!content) {
         return;
     }
-    let chevron = props.chevron ? <i className="fa-solid fa-chevron-right"></i> : "";
+    let propChevron = chevron ? <i className="fa-solid fa-chevron-right"></i> : "";
 
-    if (href) {
+    if (propHref) {
         return (
             <a
-                href={href}
+                href={propHref}
                 className={name}
-                style={props.color ? { backgroundColor: props.color } : {}}
+                style={{ ...style, ...(color ? { backgroundColor: color } : {}) }}
                 onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = props.hover;
+                    e.currentTarget.style.backgroundColor = hover;
                 }}
                 onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = props.color;
+                    e.currentTarget.style.backgroundColor = color;
                 }}
             >
-                {props.content}
-                {props.download ? (
+                {content}
+                {download ? (
                     <i className="fa-solid fa-download"></i>
-                ) : props.external ? (
+                ) : external ? (
                     <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 ) : (
-                    chevron
+                    propChevron
                 )}
             </a>
         );
-    } else if (props.to) {
+    } else if (to) {
         return (
             <Link
-                to={props.to}
+                to={to}
                 className={name}
-                style={props.color ? { backgroundColor: props.color } : {}}
-                onClick={props.onClick}
+                style={{ ...style, ...(color ? { backgroundColor: color } : {}) }}
+                onClick={onClick}
                 onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = props.hover;
+                    e.currentTarget.style.backgroundColor = hover;
                 }}
                 onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = props.color;
+                    e.currentTarget.style.backgroundColor = color;
                 }}
             >
-                {props.content}
-                {chevron}
+                {content}
+                {propChevron}
             </Link>
         );
     } else {
         return (
             <div
                 className={name}
-                style={props.color ? { backgroundColor: props.color } : {}}
-                onClick={props.onClick}
+                style={{ ...style, ...(color ? { backgroundColor: color } : {}) }}
+                onClick={onClick}
                 onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = props.hover;
+                    e.currentTarget.style.backgroundColor = hover;
                 }}
                 onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = props.color;
+                    e.currentTarget.style.backgroundColor = color;
                 }}
             >
-                {props.content}
-                {chevron}
+                {content}
+                {propChevron}
             </div>
         );
     }
@@ -273,6 +295,7 @@ export function GrayBoxCustom(props) {
         );
     }
 }
+
 export function GrayBox(props) {
     var content = props.content;
 
@@ -426,7 +449,7 @@ export function Nyheter(props) {
             {props.header && (
                 <div id="sisteNyttHeaderWrapper">
                     <h2 style={{ marginBottom: "20px" }}>{props.header}</h2>
-                    <a href="">
+                    <a href="/siste-nytt">
                         les mer
                         <i
                             style={{ verticalAlign: "baseline" }}
@@ -749,10 +772,10 @@ export function Campain(props) {
     );
 }
 
-export function ToppSectionCustom({ children, path, img, imgAlt }) {
+export function ToppSectionCustom({ children, path, img, imgAlt, maxWidth }) {
     return (
         <div id="toppSection">
-            <div>
+            <div style={{ backgroundColor: "var(--FR-color-lb)" }}>
                 <div id="toppSectionContent">
                     <div id="path">
                         {path && (
@@ -770,7 +793,7 @@ export function ToppSectionCustom({ children, path, img, imgAlt }) {
                                                 p
                                                     .toLowerCase()
                                                     .replace(/[^a-zA-Z ]/g, "")
-                                                    .replace(/ /g, "_")
+                                                    .replace(/ /g, "-")
                                             }
                                         >
                                             {p}
@@ -792,6 +815,7 @@ export function ToppSectionCustom({ children, path, img, imgAlt }) {
         </div>
     );
 }
+
 export function ToppSection({ header, content, path, img, imgAlt }) {
     // optimized and explained by chatGPT
     let formattedContent;
@@ -802,7 +826,7 @@ export function ToppSection({ header, content, path, img, imgAlt }) {
 
     return (
         <div id="toppSection">
-            <div>
+            <div style={{ backgroundColor: "var(--FR-color-lb)" }}>
                 <div id="toppSectionContent">
                     <div id="path">
                         {path && (
@@ -820,7 +844,7 @@ export function ToppSection({ header, content, path, img, imgAlt }) {
                                                 p
                                                     .toLowerCase()
                                                     .replace(/[^a-zA-Z ]/g, "")
-                                                    .replace(/ /g, "_")
+                                                    .replace(/ /g, "-")
                                             }
                                         >
                                             {p}
@@ -1120,6 +1144,41 @@ export const FrDroppDown = ({ header, children, style, className, active }) => {
     );
 };
 
+// error pages
+export function Error({ type, back }) {
+    return (
+        <div className="maxWidthSmall">
+            <div className="error">
+                <div className="imgWrap">
+                    <img
+                        src="https://www.forbrukerradet.no/wp-content/themes/fr/img/404.png"
+                        alt="feilmelling 404.ilustrasjon"
+                    />
+                </div>
+                <div>
+                    {(type == "404" && (
+                        <>
+                            <h1>Siden finnes ikke</h1>
+                            <h2>
+                                Beklager, vi finner ikke siden du lette etter. Vil du tilbake?{" "}
+                                <a href="/">Klikk her.</a>
+                            </h2>
+                        </>
+                    )) || (
+                        <>
+                            <h1>ops! Noe gjik galt</h1>
+                            <h2>
+                                Beklager, noe gjik galt mere informasjon er ikke tiljengelig. Vil du
+                                tilbake? <a href={back ? back : "/"}>Klikk her.</a>
+                            </h2>
+                        </>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // to make a ul/ol from an object, mainly for translating text to lists
 export const ListObject = ({ type, items }) => {
     if (type == "ul" || type == "unordered list" || type == "unorderedlist") {
@@ -1141,7 +1200,7 @@ export const ListObject = ({ type, items }) => {
     }
 };
 
-// gennerated using chatGTP
+// parsly gennerated using chatGTP
 // based on prompt:
 // how wuld i go ahead an ad moar to check than just content and chevron? for example external="{true}"
 // anmd the code from last itteration
