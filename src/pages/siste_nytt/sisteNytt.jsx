@@ -96,7 +96,7 @@ export default function SisteNytt(params) {
     allTopics.forEach((i) => {
         !topics.includes(i) && topics.push(i);
     });
-    // hello there
+    // hello there test
 
     return (
         <main>
