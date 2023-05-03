@@ -484,11 +484,7 @@ export function ContactPreset(props) {
     return (
         <div className={`pressekontakt ${props.className}`}>
             <div className="pressekontaktImg">
-                <img
-                    style={{ width: "auto", height: "100%" }}
-                    src={img}
-                    alt={"bilde av " + props.name}
-                />
+                <img src={img} alt={"bilde av " + props.name} />
             </div>
 
             <div className="pressekontaktContent">

@@ -1032,9 +1032,9 @@ footer nav {
 }
 
 .pressekontaktImg img {
-    object-fit: cover;
     height: 100%;
-    min-width: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .pressekontaktContent {
