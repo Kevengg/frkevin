@@ -168,9 +168,10 @@ export default function SearchPage(params) {
                                 </form>
                             </div>
                         </div>
+                        {console.log("searchResult", searchResult)}
                         <div className={style.resultList}>
                             {searchResult.map((result, index) => {
-                                if (index > (page - 1) * 10 && index < page * 10 + 1) {
+                                if (index + 1 > (page - 1) * 10 && index < page * 10) {
                                     if (result.objects) {
                                         return (
                                             <a
@@ -196,8 +197,7 @@ export default function SearchPage(params) {
                                                 </article>
                                                 {/*first bitt of content*/}
                                                 <div>
-                                                    {" "}
-                                                    {formatDate(result.date, "DD.longM.YYYY")}{" "}
+                                                    {formatDate(result.date, "DD.longM.YYYY")}
                                                 </div>
                                                 {/*date*/}
                                                 <div
@@ -213,7 +213,7 @@ export default function SearchPage(params) {
                                     } else if (!!result.article) {
                                         return (
                                             <a
-                                                href={`/siste_nytt/artikkel?artikkel=${result.header
+                                                href={`/siste-nytt/artikkel?artikkel=${result.header
                                                     .toLowerCase()
                                                     .replace(/ /g, "-")}`}
                                                 className={style.result}
@@ -273,7 +273,7 @@ export default function SearchPage(params) {
                                     } else if (result.firstName) {
                                         return (
                                             <a
-                                                href={`/kontakter?preson=${result.firstName
+                                                href={`/kontakt-oss/presse/kontakter?preson=${result.firstName
                                                     .toLowerCase()
                                                     .replace(/ /g, "-")}-${result.secondName
                                                     .toLowerCase()
@@ -315,7 +315,14 @@ export default function SearchPage(params) {
                                 }
                             })}
                         </div>
-                        <div style={{ maxWidth: "700px", marginLeft: "0px" }}>
+                        <div
+                            style={{
+                                maxWidth: "700px",
+                                marginLeft: "0px",
+                                marginTop: "30px",
+                                display: searchResult.length > 10 ? "block" : "none",
+                            }}
+                        >
                             <div className={style.pageNr}>
                                 <span
                                     className={style.pageBtn}

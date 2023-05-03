@@ -185,42 +185,84 @@ export default function SisteNytt(params) {
                     })}
                 </div>
                 <div className={style.pageNrWrap}>
-                    <span
-                        className={style.pageBtn}
-                        onClick={() => {
-                            if (page != 1) {
-                                setPage(page - 1);
+                    {page > 2 && (
+                        <span
+                            className={style.pageBtn}
+                            onClick={() => {
+                                if (page != 1) {
+                                    setPage(1);
+                                    window.scrollTo({ top: 1 });
+                                }
+                            }}
+                        >
+                            <Chevron left size="L" style={{ marginRight: "-5px" }}></Chevron>
+                            <Chevron left size="L"></Chevron>
+                        </span>
+                    )}
+                    {page != 1 && (
+                        <span
+                            className={style.pageBtn}
+                            onClick={() => {
+                                if (page != 1) {
+                                    setPage(page - 1);
+                                    window.scrollTo({ top: 1 });
+                                }
+                            }}
+                        >
+                            <Chevron left size="L"></Chevron>
+                        </span>
+                    )}
+
+                    {Math.ceil((newsList.sort(sortData).length - 17) / 18 + 1) != 1 && (
+                        <span
+                            style={{ [page == 1 ? "backgroundColor" : ""]: "var(--FR-color-lb)" }}
+                            className={style.pageNr}
+                            onClick={() => {
+                                setPage(1);
                                 window.scrollTo({ top: 1 });
-                            }
-                        }}
-                    >
-                        <Chevron left size="L"></Chevron>
-                    </span>
-                    <span
-                        style={{ [page == 1 ? "backgroundColor" : ""]: "var(--FR-color-lb)" }}
-                        className={style.pageNr}
-                        onClick={() => {
-                            setPage(1);
-                            window.scrollTo({ top: 1 });
-                        }}
-                    >
-                        1
-                    </span>
+                            }}
+                        >
+                            1
+                        </span>
+                    )}
                     {pageNrs()}
-                    <span
-                        className={style.pageBtn}
-                        onClick={() => {
-                            if (
-                                page + 1 <=
-                                Math.ceil((newsList.sort(sortData).length - 17) / 18 + 1)
-                            ) {
-                                setPage(page + 1);
-                                window.scrollTo({ top: 1 });
-                            }
-                        }}
-                    >
-                        <Chevron size="L"></Chevron>
-                    </span>
+
+                    {page + 1 <= Math.ceil((newsList.sort(sortData).length - 17) / 18 + 1) && (
+                        <span
+                            className={style.pageBtn}
+                            onClick={() => {
+                                if (
+                                    page + 1 <=
+                                    Math.ceil((newsList.sort(sortData).length - 17) / 18 + 1)
+                                ) {
+                                    setPage(page + 1);
+                                    window.scrollTo({ top: 1 });
+                                }
+                            }}
+                        >
+                            <Chevron size="L"></Chevron>
+                        </span>
+                    )}
+
+                    {page < Math.ceil((newsList.sort(sortData).length - 17) / 18 + 1) - 2 && (
+                        <span
+                            className={style.pageBtn}
+                            onClick={() => {
+                                if (
+                                    page + 1 <=
+                                    Math.ceil((newsList.sort(sortData).length - 17) / 18 + 1)
+                                ) {
+                                    setPage(
+                                        Math.ceil((newsList.sort(sortData).length - 17) / 18 + 1)
+                                    );
+                                    window.scrollTo({ top: 1 });
+                                }
+                            }}
+                        >
+                            <Chevron size="L"></Chevron>
+                            <Chevron size="L" style={{ marginLeft: "-5px" }}></Chevron>
+                        </span>
+                    )}
                 </div>
             </div>
         </main>
