@@ -23,11 +23,12 @@ export default function App() {
             <Route path="/tips_og_rettigheter/kontrakter" element={<Kontrakter />} />
             <Route path="/tips_og_rettigheter/har_du_en_sak" element={<HarDuEnSak />} />
             <Route path="/tips_og_rettigheter/slik_klager_du" element={<KlageGuide />} />
-            <Route path="/kontakt_oss" element={<KontaktOss />} />
-            <Route path="/kontakt_oss/presse" element={<Presse />} />
+            <Route path="/kontakt-oss" element={<KontaktOss />} />
+            <Route path="/kontakt-oss/presse" element={<Presse />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/siste-nytt" element={<SisteNytt />} />
             <Route path="/siste-nytt/artikkel" element={<Article />} />
+            <Route path="/kontakt-oss/presse/kontakter" element={<Article />} />
         </Routes>
     );
 }

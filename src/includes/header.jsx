@@ -71,7 +71,7 @@ export default function Headers() {
 
                     <a href="/forbrukerpolitikk">Forbrukerpolitikk</a>
 
-                    <a href="/kontakt_oss"> kontakt oss </a>
+                    <a href="/kontakt-oss"> kontakt oss </a>
                 </div>
 
                 <div
@@ -215,11 +215,11 @@ export default function Headers() {
                             </a>
                             <div className="menuSpacer"></div>
                             <a href="">Om oss</a>
-                            <a href="/kontakt_oss">Kontakt oss</a>
+                            <a href="/kontakt-oss">Kontakt oss</a>
                             <a href="">Jobb hos oss</a>
                             <a href="">Klagebrev</a>
-                            <a href="/kontakt_oss/presse">Presse</a>
-                            <a href="">Siste nytt</a>
+                            <a href="/kontakt-oss/presse">Presse</a>
+                            <a href="/siste-nytt">Siste nytt</a>
                             <a href="">Høringssvars</a>
                         </div>
                     </nav>

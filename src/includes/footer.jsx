@@ -9,7 +9,7 @@ export default function Footer() {
                         </a>
                         <div className="menuSpacer"></div>
                         <a href="">Om oss</a>
-                        <a href="/kontakt_oss">Kontakt oss</a>
+                        <a href="/kontakt-oss">Kontakt oss</a>
                         <a href="">Jobb hos oss</a>
                         <a href="">Personvernerklæring</a>
                     </div>
@@ -18,9 +18,9 @@ export default function Footer() {
                             <h3>Hold deg oppdatert</h3>
                         </a>
                         <div className="menuSpacer"></div>
-                        <a href="">Siste nytt</a>
+                        <a href="/siste-nytt">Siste nytt</a>
                         <a href="">Høringssvar</a>
-                        <a href="/kontakt_oss/presse">Presse</a>
+                        <a href="/kontakt-oss/presse">Presse</a>
                     </div>
                     <div id="utvalgteUndersider" className="menuColum">
                         <a href="" className="menuHeader">
