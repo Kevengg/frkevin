@@ -1,0 +1,34 @@
+.topsection {
+    width: 100%;
+    height: 400px;
+    background-color: var(--FR-color-lb);
+}
+
+.topsectionDivider {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.topsection div {
+    height: 100%;
+    padding: 0;
+}
+
+.imagesWrap {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.imgPreset {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.imgUnder {
+    background-color: var(--FR-color-lb);
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+}

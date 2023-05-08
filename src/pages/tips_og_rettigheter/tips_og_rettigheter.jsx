@@ -26,7 +26,7 @@ const TipsOgRettigheter = () => {
                         </p>
                     </div>
                     <div>
-                        <a className="linkBtn" href="frkevin/konakt_oss/kontakt-oss.php">
+                        <a className="linkBtn" href="/konakt-oss/kontakt-oss.php">
                             Kontakt oss
                             <i className="fa-solid fa-chevron-right"></i>
                         </a>
