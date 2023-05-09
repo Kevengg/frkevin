@@ -115,3 +115,14 @@
     margin-right: 8px;
     margin-left: 3px;
 }
+
+@media screen and (max-width: 970px) {
+    .pageWrap {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .statWrap {
+        margin-top: 30px;
+    }
+}

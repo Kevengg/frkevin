@@ -1277,6 +1277,7 @@ input.checkbox:checked + label.checkmark:after {
     margin-left: 20px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .path a {
