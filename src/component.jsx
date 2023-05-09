@@ -924,6 +924,22 @@ export const GuideBtn = (props) => {
     );
 };
 
+export function BreadCrumb({ names, path }) {
+    return (
+        <nav className="path">
+            {names.map((name, i) => {
+                return (
+                    <>
+                        {i != 0 && <Chevron size={"xs"}></Chevron>}
+                        {i != path.length && <a href={path[i]}>{name}</a>}
+                        {i == path.length && <span href={path[i]}>{name}</span>}
+                    </>
+                );
+            })}
+        </nav>
+    );
+}
+
 export function getNthOccurrence(str, target, n) {
     let start = str.indexOf(target);
     let end = start;
