@@ -312,24 +312,7 @@
             "keywords": []
         }
     },
-    {
-        "header": "Styr unna ulovlige bakeformer i silikon",
-        "topic": "Mat",
-        "img": "bakeform.png",
-        "alt": "",
-        "article": {
-            "date": "2022-12-14T00:00:00.000Z",
-            "tldr": {
-                "header": "",
-                "content": "",
-                "btns": [{ "type": "", "content": "", "href": "" }]
-            },
-            "writers": [],
-            "content": "",
-            "podcast": "",
-            "keywords": []
-        }
-    },
+
     {
         "header": "Forbrukerrådet nedringt av fortvilte strømkunder",
         "topic": "Strøm",
@@ -347,5 +330,8 @@
             "podcast": "",
             "keywords": []
         }
+    },
+    {
+        "test": "Bakeformer"
     }
 ]

@@ -587,8 +587,16 @@ export default function TestPage({ page }) {
                                         1 - 2
                                     </span>
                                 </div>
-                                <p>Pris {`(Kr. ${calcPriceMin()} - ${calcPriceMax()},-)`}</p>
-                                <div style={{ width: "50%", margin: "0 auto" }}>
+                                <p style={{ marginTop: "20px" }}>
+                                    Pris {`(Kr. ${calcPriceMin()} - ${calcPriceMax()},-)`}
+                                </p>
+                                <div
+                                    style={{
+                                        width: "50%",
+                                        margin: "20px 0",
+                                        marginright: "auto",
+                                    }}
+                                >
                                     <Slider
                                         max={calcPriceMax()}
                                         min={calcPriceMin()}

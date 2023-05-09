@@ -1236,6 +1236,19 @@ input.checkbox:checked + label.checkmark:after {
     z-index: 1;
 }
 
+.sliderChevronWrap {
+    transform: translateY(-14px);
+}
+
+.sliderChevronWrap i {
+    color: white;
+    position: relative;
+}
+
+.sliderChevronWrap i::after {
+    z-index: 10;
+}
+
 .frDropDown {
     width: 99%;
     margin: 0 auto;
@@ -1301,9 +1314,6 @@ input.checkbox:checked + label.checkmark:after {
 .error .imgWrap img {
     object-fit: contain;
     margin: 0;
-}
-
-.error .imgWrap {
 }
 
 /* add padding when needed */

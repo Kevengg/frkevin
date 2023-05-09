@@ -265,8 +265,20 @@ export function Slider(props) {
                     if (props.maxValue - parseInt(e.target.value) > gap) {
                         props.setMinValue(parseInt(e.target.value));
                     } else props.setMinValue(props.maxValue - (gap + 1));
+                    console.log("first");
+                }}
+                onClick={() => {
+                    console.log("first");
                 }}
             />
+            {/* <div className="sliderChevronWrap">
+                <Chevron
+                    style={{ marginLeft: "15px" }}
+                    onClick={(e) => {
+                        e.target.closest(".slider").querySelector(".sliderMin");
+                    }}
+                ></Chevron>
+            </div> */}
         </div>
     );
 }
@@ -401,8 +413,11 @@ function Nytt(props) {
         <a
             className="nytt"
             href={
-                props.header &&
-                `/siste-nytt/artikkel?artikkel=${props.header.toLowerCase().replace(/ /g, "-")}`
+                (props.href && props.href) ||
+                (props.header &&
+                    `/siste-nytt/artikkel?artikkel=${props.header
+                        .toLowerCase()
+                        .replace(/ /g, "-")}`)
             }
         >
             <div className="imgWrap">
@@ -418,28 +433,98 @@ function Nytt(props) {
 
 export function Nyheter(props) {
     // optimized and explained by chatGPT
+
+    function sortNews(a, b) {
+        if (a.test) {
+            a = tester
+                .map((test) => {
+                    if (test.header == a.test) {
+                        return test;
+                    }
+                })
+                .filter((item) => item !== undefined)[0].date;
+        } else {
+            a = a.article.date;
+        }
+
+        if (b.test) {
+            b = tester
+                .map((test) => {
+                    if (test.header == b.test) {
+                        return test;
+                    }
+                })
+                .filter((item) => item !== undefined)[0].date;
+        } else {
+            b = b.article.date;
+        }
+
+        if (a < b) {
+            return 1;
+        }
+        if (a > b) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
     let nyheterList;
     if (props.sort) {
-        nyheterList = nyheter.filter(
-            (item) => item.topic.toLowerCase() === props.sort.toLowerCase()
+        nyheterList = nyheter.filter((item) =>
+            !item.test
+                ? item.topic.toLowerCase() === props.sort.toLowerCase()
+                : tester
+                      .map((test) => {
+                          if (test.header == item.test) {
+                              return test;
+                          }
+                      })
+                      .filter((item) => item !== undefined)[0]
+                      .topic.replace(/Hus og hjem/, "Bolig")
+                      .replace(/Mat og drikke/, "Mat")
+                      .toLowerCase() === props.sort.toLowerCase()
         );
-        nyheterList = nyheterList.slice(-3);
+        nyheterList = nyheterList.sort(sortNews).slice(0, 3);
     } else {
-        nyheterList = nyheter.slice(-3);
+        console.log("nyheter.sort(sortNews)", nyheter.sort(sortNews));
+        nyheterList = nyheter.sort(sortNews).slice(0, 3);
     }
 
     function testForNyhet() {
         if (nyheterList[0]) {
             return nyheterList.map((nyhet, index) => {
-                return (
-                    <Nytt
-                        key={index}
-                        img={nyhet.img ? nyhet.img : sampleImg}
-                        imgAlt={nyhet.imgAlt ? nyhet.imgAlt : ""}
-                        topic={nyhet.topic}
-                        header={nyhet.header}
-                    />
-                );
+                if (nyhet.test) {
+                    let test = tester
+                        .map((test) => {
+                            if (test.header == nyhet.test) {
+                                return test;
+                            }
+                        })
+                        .filter((item) => item !== undefined)[0];
+                    console.log("test", test);
+                    return (
+                        <Nytt
+                            key={index}
+                            img={test.img ? test.img : sampleImg}
+                            imgAlt={test.imgAlt ? test.imgAlt : ""}
+                            topic={test.topic
+                                .replace(/Hus og hjem/, "Bolig")
+                                .replace(/Mat og drikke/, "Mat")}
+                            header={test.readMore.header}
+                            href={`/tester?page=${test.header.replace(/ /g, "-").toLowerCase()}`}
+                        />
+                    );
+                } else {
+                    return (
+                        <Nytt
+                            key={index}
+                            img={nyhet.img ? nyhet.img : sampleImg}
+                            imgAlt={nyhet.imgAlt ? nyhet.imgAlt : ""}
+                            topic={nyhet.topic}
+                            header={nyhet.header}
+                        />
+                    );
+                }
             });
         } else {
             return (
@@ -826,6 +911,17 @@ export function ToppSection({ header, content, path, img, imgAlt }) {
         formattedContent = formatContent(content);
     }
 
+    // let pathNames = [];
+
+    // let pathPath = path.map((p) => {
+    //     pathNames.push(p.toLowerCase().replace(/ /g, "-"));
+    //     let toReturn = "";
+    //     pathNames.forEach((name) => {
+    //         toReturn = toReturn + "/" + name;
+    //     });
+    //     return toReturn;
+    // });
+
     return (
         <div className="toppSection">
             <div style={{ backgroundColor: "var(--FR-color-lb)" }}>
@@ -856,6 +952,10 @@ export function ToppSection({ header, content, path, img, imgAlt }) {
                             </>
                         )}
                     </div>
+                    {/* <BreadCrumb
+                        names={["Forsiden", ...pathNames]}
+                        path={["/", ...pathPath]}
+                    ></BreadCrumb> */}
                     <h1>{header}</h1>
                     <p>{formattedContent}</p>
                 </div>
