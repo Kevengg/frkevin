@@ -17,7 +17,7 @@ export default function KontaktOss() {
                 header="Kontakt oss"
                 content="Vi hjelper deg med spørsmål om dine forbrukerrettigheter."
             ></ToppSection>
-            <div className="maxWidth" style={{ padding: "0" }}>
+            <div className="maxWidth" style={{ padding: " 0 20px", marginBottom: "40px" }}>
                 <GuideBtn></GuideBtn>
             </div>
             <div className="maxWidthSmall">
@@ -306,7 +306,7 @@ export default function KontaktOss() {
                         </div>
                     </div>
 
-                    <div id="ring">
+                    <div id="ring" style={{ marginTop: "50px" }}>
                         <div className="ringHeader">
                             <i>{/* tlf */}</i>
                             <h3>Snakk med oss</h3>

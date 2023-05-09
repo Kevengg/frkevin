@@ -60,3 +60,10 @@
     border: 1px solid var(--FR-color-b);
     margin-top: -1px;
 }
+
+@media screen and (max-width: 870px) {
+    .kontaktskjema {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+    }
+}
