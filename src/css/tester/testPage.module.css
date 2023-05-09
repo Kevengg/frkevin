@@ -126,6 +126,14 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.testHeader span {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
 }
 
 .testHeader .block {
@@ -185,7 +193,7 @@
 
 .sortV {
     position: relative;
-    transform: translateX(-180px);
+    transform: translateX(-34px);
 }
 
 .search {
@@ -310,5 +318,38 @@
 
     .testList {
         grid-template-columns: 100%;
+    }
+}
+
+@media screen and (max-width: 906px) {
+    .testHeader {
+        justify-content: left;
+    }
+
+    .testHeader span {
+        width: 100%;
+    }
+
+    .testHeader span input,
+    .testHeader span select {
+        width: 100%;
+        margin: 0;
+        position: relative;
+    }
+
+    .sortV,
+    .search {
+        display: flex;
+        margin: 0 !important;
+        margin-left: auto;
+        width: 100%;
+        transform: translate(0) translateY(-30px) translateX(-20px);
+        flex-direction: row-reverse;
+    }
+
+    .search i,
+    .sortV i {
+        margin: 0;
+        margin-right: 0 !important;
     }
 }

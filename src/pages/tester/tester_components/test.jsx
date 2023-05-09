@@ -374,8 +374,9 @@ export default function TestPage({ page }) {
                 {/*  */}
 
                 <div className={styles.testHeader}>
-                    <p>Filter</p>
-                    <div className={styles.block}>
+                    <span>
+                        <p>Filtrer</p>
+
                         <LinkBtnOld
                             content="Nulstill filter"
                             color="transparent"
@@ -396,6 +397,9 @@ export default function TestPage({ page }) {
                         <label htmlFor="search" className={styles.search}>
                             <i className="fa-solid fa-magnifying-glass"></i>
                         </label>
+                    </span>
+
+                    <span>
                         <select
                             name="sort"
                             id="sort"
@@ -413,16 +417,17 @@ export default function TestPage({ page }) {
                         <label htmlFor="sort" className={styles.sortV}>
                             <i className="fa-solid fa-chevron-down"></i>
                         </label>
-                    </div>
-                    <LinkBtnOld
-                        to={`?page=${test.header
-                            .toLowerCase()
-                            .replace(/ /g, "-")}&compare=${calcCompare()}`}
-                        content="Sammenlign"
-                        color="var(--FR-color-lg)"
-                        hover="var(--FR-color-lb)"
-                        className={styles.compare}
-                    ></LinkBtnOld>
+
+                        <LinkBtnOld
+                            to={`?page=${test.header
+                                .toLowerCase()
+                                .replace(/ /g, "-")}&compare=${calcCompare()}`}
+                            content="Sammenlign"
+                            color="var(--FR-color-lg)"
+                            hover="var(--FR-color-lb)"
+                            className={styles.compare}
+                        ></LinkBtnOld>
+                    </span>
                 </div>
 
                 {/*  */}
