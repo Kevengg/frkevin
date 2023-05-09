@@ -1,4 +1,4 @@
-import { formatDate, Chevron } from "../../../component";
+import { formatDate, Chevron, BreadCrumb } from "../../../component";
 import styles from "../../../css/tester/testPage.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -114,28 +114,22 @@ export default function ComparePage({ obj, info, parent }) {
     return (
         <main>
             <div className="maxWidth">
-                <nav className={styles.path}>
-                    <Link to="">Tester</Link>
-                    <Chevron size="xxs" />
-                    <Link
-                        to={`?searchBar:&searchBtn:${parent.topic
-                            .toLowerCase()
-                            .replace(/ /g, "-")}`}
-                    >
-                        {parent.topic}
-                    </Link>
-                    <Chevron size="xxs" />
-                    <Link to={`?page=${queryParams.get("page")}`}>{parent.header}</Link>
-                    <Chevron size="xxs" />
-                    <span>Sammenlign</span>
-                </nav>
+                <BreadCrumb
+                    names={["Forsiden", "Tester", parent.topic, parent.header, "Sammenlign"]}
+                    path={[
+                        "",
+                        "/tester",
+                        `?searchBar:&searchBtn:${parent.topic.toLowerCase().replace(/ /g, "-")}`,
+                        `?page=${queryParams.get("page")}`,
+                    ]}
+                ></BreadCrumb>
 
                 <Link to={`?page=${queryParams.get("page")}`}>
                     <i class="fa-solid fa-arrow-left"></i>
                     <span style={{ textDecoration: "underline" }}>Tilbake</span>
                 </Link>
 
-                <div className={styles.compareWrap}>
+                <div className={styles.compareWrap} style={{ marginTop: "10px" }}>
                     <div className={styles.comparePoints}>
                         <div className={styles.compareListHeader}></div>
                         <div className={styles.compareListItem}> Samlet score </div>

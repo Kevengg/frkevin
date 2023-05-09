@@ -177,7 +177,7 @@ export default function Headers() {
                             <a href="/tips_og_rettigheter/slik_klager_du">Slik klager du</a>
                             <a href="">Klagebrev</a>
                             <a href="/tips_og_rettigheter/kontrakter">Kontrakter</a>
-                            <a href="">Våre tester</a>
+                            <a href="/tester">Våre tester</a>
                             <a href="">Flykalkulatoren</a>
                         </div>
                         <div id="TipsOgRettigheter" className="menuColum">

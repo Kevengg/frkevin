@@ -16,6 +16,7 @@ export default function SearchPage(params) {
     const [searchTester, setSearchTester] = useState([]);
     const [searchNyheter, setSearchNyheter] = useState([]);
     const [searchKontakter, setSearchKontakter] = useState([]);
+    const [searchFilter, setSearchFilter] = useState("");
 
     const [page, setPage] = useState(1);
 
@@ -168,7 +169,6 @@ export default function SearchPage(params) {
                                 </form>
                             </div>
                         </div>
-                        {console.log("searchResult", searchResult)}
                         <div className={style.resultList}>
                             {searchResult.map((result, index) => {
                                 if (index + 1 > (page - 1) * 10 && index < page * 10) {
@@ -384,7 +384,7 @@ export default function SearchPage(params) {
                         <div className={style.searchFilter}>
                             <h4>Begrens søkeresultatet:</h4>
 
-                            <div className={style.searchFilterFilter}>
+                            <div className={style.searchFilterFilter} onClick={(e) => {}}>
                                 <input type="checkbox" name="" id="" />
                                 <div>
                                     Tester <section>{`(${searchTester.length})`}</section>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Chevron, formatDate } from "../../../component";
+import { BreadCrumb, Chevron, formatDate } from "../../../component";
 import styles from "../../../css/tester/testObjectPage.module.css";
 
 export default function TestObjectPage({ obj, info }) {
@@ -61,21 +61,16 @@ export default function TestObjectPage({ obj, info }) {
     return (
         <main>
             <div className={`maxWidth`}>
-                <nav className={"path"}>
-                    <Link to="">Tester</Link>
-                    <Chevron size="xs" />
-                    <Link
-                        to={`?searchBar:&searchBtn:${info.topic.toLowerCase().replace(/ /g, "-")}`}
-                    >
-                        {info.topic}
-                    </Link>
-                    <Chevron size="xs" />
-                    <Link to={`?page=${info.header.toLowerCase().replace(/ /g, "-")}`}>
-                        {info.header}
-                    </Link>
-                    <Chevron size="xs" />
-                    <span>{obj.product}</span>
-                </nav>
+                <BreadCrumb
+                    names={["Forsiden", "Tester", info.topic, info.header, obj.product]}
+                    path={[
+                        "/",
+                        "tester",
+                        `?searchBar:&searchBtn:${info.topic.toLowerCase().replace(/ /g, "-")}`,
+                        `?page=${info.header.toLowerCase().replace(/ /g, "-")}`,
+                    ]}
+                    style={{ marginBottom: "30px" }}
+                ></BreadCrumb>
 
                 <div className={styles.pageWrap}>
                     <div className={`${styles.bigImgWrap} imgWrap`}>

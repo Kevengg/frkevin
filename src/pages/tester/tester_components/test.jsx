@@ -1,7 +1,14 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Chevron, formatContent, LinkBtnOld, formatDate, Slider } from "../../../component";
+import {
+    Chevron,
+    formatContent,
+    LinkBtnOld,
+    formatDate,
+    Slider,
+    BreadCrumb,
+} from "../../../component";
 import styles from "../../../css/tester/testPage.module.css";
 import SortBy from "./sortBy_component";
 
@@ -9,7 +16,6 @@ import SortBy from "./sortBy_component";
 
 export default function TestPage({ page }) {
     let test = page;
-    // console.log(test);
     const [sortBy, setSortBy] = useState("resultSynk");
     const [search, setsearch] = useState("");
     const [vurdering, setvurdering] = useState([]);
@@ -17,7 +23,6 @@ export default function TestPage({ page }) {
     const [priceMinValue, setPriceMinValue] = useState(calcPriceMin());
     const [update, forceUpdate] = useState(true);
     const [customFilter, setCustomFilter] = useState({});
-    // expects example: {manufacturer: ["Nortura SA", "Fatland Sandefjord for Coop Norge SA"]}
 
     let [compare, setCompare] = useState([]);
 
@@ -323,15 +328,16 @@ export default function TestPage({ page }) {
 
     return (
         <main key={reset}>
-            <nav className={`path ${styles.path}`}>
-                <Link to="">Tester</Link>
-                <Chevron size="xs" />
-                <Link to={`?searchBar:&searchBtn:${test.topic.toLowerCase().replace(/ /g, "-")}`}>
-                    {test.topic}
-                </Link>
-                <Chevron size="xs" />
-                <span>{test.header}</span>
-            </nav>
+            <div style={{ padding: "0" }} className={"maxWidth"}>
+                <BreadCrumb
+                    names={["Forsiden", "Tester", test.topic, test.header]}
+                    path={[
+                        "/",
+                        "tester",
+                        `?searchBar:&searchBtn:${test.topic.toLowerCase().replace(/ /g, "-")}`,
+                    ]}
+                ></BreadCrumb>
+            </div>
 
             <div id={styles.testPageGrayBox}>
                 <div className="imgWrap">

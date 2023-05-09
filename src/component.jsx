@@ -924,9 +924,9 @@ export const GuideBtn = (props) => {
     );
 };
 
-export function BreadCrumb({ names, path }) {
+export function BreadCrumb({ names, path, style, className }) {
     return (
-        <nav className="path">
+        <nav className={`path ${className}`} style={style}>
             {names.map((name, i) => {
                 return (
                     <>
