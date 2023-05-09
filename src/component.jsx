@@ -398,7 +398,10 @@ function Nytt(props) {
     var img = "/img/" + props.img;
 
     return (
-        <a className="nytt" href="#">
+        <a
+            className="nytt"
+            href={`/siste-nytt/artikkel?artikkel=${props.header.toLowerCase().replace(/ /g, "-")}`}
+        >
             <div className="imgWrap">
                 <img src={img} alt={props.imgAlt} />
             </div>
@@ -934,6 +937,7 @@ export function getNthOccurrence(str, target, n) {
 
 export function formatDate(date, format) {
     const dateDate = new Date(date);
+    let dateFormatted;
     let options = {};
     if (format == "DD longM YYYY") {
         options = {
@@ -941,38 +945,59 @@ export function formatDate(date, format) {
             month: "long",
             year: "numeric",
         };
+
+        dateFormatted = dateDate.toLocaleDateString("nb-NO", options);
     } else if (format == "DD.longM.YYYY") {
         options = {
             day: "numeric",
             month: "long",
             year: "numeric",
         };
+        dateFormatted = dateDate
+            .toLocaleDateString("nb-NO", options)
+            .replace(/ /g, ".")
+            .replace(/\.\./g, ".");
     } else if (format == "DD MM YYYY") {
         options = {
             day: "numeric",
             month: "numeric",
             year: "numeric",
         };
+
+        dateFormatted = dateDate.toLocaleDateString("nb-NO", options);
     } else if (format == "DD/MM/YYYY") {
         options = {
             day: "numeric",
             month: "numeric",
             year: "numeric",
         };
+
+        dateFormatted = dateDate
+            .toLocaleDateString("nb-NO", options)
+            .replace(/ /g, "/")
+            .replace(/\./g, "");
     } else if (format == "DD.MM.YYYY") {
         options = {
             day: "numeric",
             month: "numeric",
             year: "numeric",
         };
+        dateFormatted = dateDate
+            .toLocaleDateString("nb-NO", options)
+            .replace(/ /g, ".")
+            .replace(/\.\./g, ".");
     } else if (format == "DD-MM-YYYY") {
         options = {
             day: "numeric",
             month: "numeric",
             year: "numeric",
         };
+        dateFormatted = dateDate
+            .toLocaleDateString("nb-NO", options)
+            .replace(/ /g, "-")
+            .replace(/\./g, ".");
     }
-    return dateDate.toLocaleDateString("nb-NO", options);
+    return dateFormatted;
 }
 
 export function findName(array, filter) {
