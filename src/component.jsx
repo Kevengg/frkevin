@@ -274,7 +274,7 @@ export function Slider(props) {
 export function GrayBoxCustom(props) {
     if (props.flip) {
         return (
-            <div id="grayBox">
+            <div className="grayBox">
                 <div className="grayBoxContent">{props.children}</div>
                 <div className="grayBoxImgWrap imgWrap">
                     <img src={props.img ? props.img : forbrukerrtilsynet} alt={props.imgAlt} />
@@ -283,7 +283,7 @@ export function GrayBoxCustom(props) {
         );
     } else {
         return (
-            <div id="grayBox">
+            <div className="grayBox">
                 <div
                     className="grayBoxImgWrap imgWrap"
                     // style={{ height: this.parentElement.querySelector(".grayBoxContent").height }}
@@ -301,7 +301,7 @@ export function GrayBox(props) {
 
     if (props.flip) {
         return (
-            <div id="grayBox">
+            <div className="grayBox">
                 <div className="grayBoxContent">
                     <h4>{props.topic}</h4>
                     <h2>{props.header}</h2>
@@ -346,7 +346,7 @@ export function GrayBox(props) {
         );
     } else {
         return (
-            <div id="grayBox">
+            <div className="grayBox">
                 <div
                     className="grayBoxImgWrap imgWrap"
                     // style={{ height: this.parentElement.querySelector(".grayBoxContent").height }}
@@ -400,7 +400,10 @@ function Nytt(props) {
     return (
         <a
             className="nytt"
-            href={`/siste-nytt/artikkel?artikkel=${props.header.toLowerCase().replace(/ /g, "-")}`}
+            href={
+                props.header &&
+                `/siste-nytt/artikkel?artikkel=${props.header.toLowerCase().replace(/ /g, "-")}`
+            }
         >
             <div className="imgWrap">
                 <img src={img} alt={props.imgAlt} />
@@ -450,7 +453,7 @@ export function Nyheter(props) {
     return (
         <>
             {props.header && (
-                <div id="sisteNyttHeaderWrapper">
+                <div className="sisteNyttHeaderWrapper">
                     <h2 style={{ marginBottom: "20px" }}>{props.header}</h2>
                     <a href="/siste-nytt">
                         les mer
@@ -461,7 +464,7 @@ export function Nyheter(props) {
                     </a>
                 </div>
             )}
-            <div id="sisteNytt">{testForNyhet()}</div>
+            <div className="sisteNytt">{testForNyhet()}</div>
         </>
     );
 }
@@ -548,7 +551,7 @@ export function Contacts(props) {
     return (
         <div style={{ margin: "70px 0" }}>
             {header()}
-            <div id="pressekontakter">
+            <div className="pressekontakter">
                 {kontaktList.map((kontakt) => {
                     var img = kontakt.img;
 
@@ -614,7 +617,7 @@ export function Raporter(props) {
     return (
         <div>
             <h2>Rapporter</h2>
-            <div id="rapporter">
+            <div className="rapporter">
                 {rapporterList.map((rapport) => {
                     return (
                         <Raport
@@ -671,10 +674,10 @@ export function Tester(props) {
 
     return (
         <div style={{ marginTop: "70px" }}>
-            <div id="sisteNyttHeaderWrapper">
+            <div className="sisteNyttHeaderWrapper">
                 <h2 style={{ marginBottom: "20px" }}>Tester</h2>
             </div>
-            <div id="sisteNytt">{testForTest()}</div>
+            <div className="sisteNytt">{testForTest()}</div>
         </div>
     );
 }
@@ -713,7 +716,7 @@ export function Horinger(props) {
     return (
         <div style={{ marginTop: "70px" }}>
             <h2 style={{ marginBottom: "20px" }}>Høringer</h2>
-            <div id="horingerContainer">
+            <div className="horingerContainer">
                 {horingerList.map((horing, index) => {
                     return (
                         <Horing
@@ -733,7 +736,7 @@ export function Campain(props) {
     return (
         <div>
             <h2 style={{ margin: "100px 0 20px 0" }}>kampanjer</h2>
-            <div id="kampanjer">
+            <div className="kampanjer">
                 {props.header1 && (
                     <a className="kampanje" href="#">
                         <div className="kampanjeImg">
@@ -773,10 +776,10 @@ export function Campain(props) {
 
 export function ToppSectionCustom({ children, path, img, imgAlt, maxWidth }) {
     return (
-        <div id="toppSection">
+        <div className="toppSection">
             <div style={{ backgroundColor: "var(--FR-color-lb)" }}>
-                <div id="toppSectionContent">
-                    <div id="path">
+                <div className="toppSectionContent">
+                    <div className="path">
                         {path && (
                             <>
                                 <a href="/">Forsiden</a>
@@ -824,10 +827,10 @@ export function ToppSection({ header, content, path, img, imgAlt }) {
     }
 
     return (
-        <div id="toppSection">
+        <div className="toppSection">
             <div style={{ backgroundColor: "var(--FR-color-lb)" }}>
-                <div id="toppSectionContent">
-                    <div id="path">
+                <div className="toppSectionContent">
+                    <div calcItems="path">
                         {path && (
                             <>
                                 <a href="/">Forsiden</a>
@@ -869,7 +872,7 @@ export function ToppSection({ header, content, path, img, imgAlt }) {
 
 export const GuideBtn = (props) => {
     return (
-        <div id="guideBtnWrap" style={props.style}>
+        <div className="guideBtnWrap" style={props.style}>
             <a href="/tips_og_rettigheter/har_du_en_sak" className="guideBtn" tabIndex="0">
                 <h2>Har du en sak?</h2>
                 <div

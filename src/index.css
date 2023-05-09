@@ -628,7 +628,7 @@ footer nav {
 
 /* grayBox */
 
-#grayBox {
+.grayBox {
     background-color: var(--FR-color-lg);
     margin: 70px 0;
     display: grid;
@@ -636,7 +636,7 @@ footer nav {
     min-height: 430px;
 }
 
-#grayBox h2 {
+.grayBox h2 {
     font-size: 2rem;
 }
 
@@ -686,23 +686,23 @@ footer nav {
 
 /* Siste nytt */
 
-#sisteNyttHeaderWrapper {
+.sisteNyttHeaderWrapper {
     display: flex;
     justify-content: space-between;
 }
 
-#sisteNyttHeaderWrapper a {
+.sisteNyttHeaderWrapper a {
     text-align: right;
     margin: auto 0 20px 0;
     height: fit-content;
 }
 
-#sisteNytt {
+.sisteNytt {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px 40px;
     margin: 0 auto;
-    width: fit-content;
+    width: 100%;
     max-width: 100%;
     min-height: 450px;
 }
@@ -768,24 +768,24 @@ footer nav {
 }
 
 /* topSection */
-#toppSection {
+.toppSection {
     width: 100%;
     display: flex;
     flex-wrap: wrap-reverse;
 }
 
-#toppSection div,
-#toppSection .imgWrap {
+.toppSection div,
+.toppSection .imgWrap {
     width: 50%;
     max-height: 100%;
     overflow: hidden;
 }
 
-#toppSection #toppSectionContent,
-#toppSection .imgWrap {
+.toppSection .toppSectionContent,
+.toppSection .imgWrap {
     min-height: 400px;
 }
-#toppSection .imgWrap img {
+.toppSection .imgWrap img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -793,7 +793,7 @@ footer nav {
     height: 100%;
 }
 
-#toppSection #toppSectionContent {
+.toppSection .toppSectionContent {
     margin-left: auto;
     width: 100%;
     height: 100%;
@@ -802,7 +802,7 @@ footer nav {
     padding: 30px;
 }
 
-#toppSection #toppSectionContent #path {
+.toppSection .toppSectionContent .path {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -810,26 +810,26 @@ footer nav {
     font-size: 0.8rem;
 }
 
-#path a *,
-#path i,
-#path a {
+.path a *,
+.path i,
+.path a {
     margin-right: 8px;
 }
 
-#path a:hover {
+.path a:hover {
     text-decoration: underline;
 }
 
-#toppSectionContent h1 {
+.toppSectionContent h1 {
     margin: 80px 0 30px 0;
 }
 
-#toppSectionContent p {
+.toppSectionContent p {
     font-size: 1.25rem;
     margin: 5px;
 }
 
-#path a:hover {
+.path a:hover {
     text-decoration: underline;
 }
 
@@ -870,7 +870,7 @@ footer nav {
 }
 
 /* guideBtn */
-#guideBtnWrap {
+.guideBtnWrap {
     display: flex;
     margin-top: 70px;
     z-index: 3;
@@ -960,7 +960,7 @@ footer nav {
 
 /* rapporter */
 
-#rapporter {
+.rapporter {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 60px 40px;
@@ -1004,7 +1004,7 @@ footer nav {
 }
 
 /* pressekontakter */
-#pressekontakter {
+.pressekontakter {
     display: flex;
     flex-wrap: wrap;
     /* display: grid;
@@ -1051,7 +1051,7 @@ footer nav {
 }
 
 /* høringer */
-#horingerContainer {
+.horingerContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
@@ -1107,14 +1107,14 @@ footer nav {
 }
 
 /* kampanjer */
-#kampanjer {
+.kampanjer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
 }
 
-#kampanjer * :not(.topic) {
+.kampanjer * :not(.topic) {
     width: 100%;
 }
 
@@ -1313,7 +1313,7 @@ input.checkbox:checked + label.checkmark:after {
         padding: 0 20px;
     }
 
-    #toppSection picture img {
+    .toppSection picture img {
         margin-left: -300px;
     }
 }
@@ -1342,32 +1342,32 @@ input.checkbox:checked + label.checkmark:after {
         grid-template-columns: auto auto;
     }
 
-    #toppSection div,
-    #toppSection picture {
+    .toppSection div,
+    .toppSection picture {
         width: 100%;
     }
 
-    #toppSection picture img {
-        height: 100%;
+    .toppSection .imgWrap {
+        width: 100%;
         margin-left: -0;
     }
 
-    #toppSection #toppSectionContent {
+    .toppSection .toppSectionContent {
         max-width: var(--site-width);
         padding-bottom: 60px;
     }
 
-    #toppSectionContent h1 {
+    .toppSectionContent h1 {
         margin: 50px 0 30px 0;
     }
 
-    #toppSectionContent {
+    .toppSectionContent {
         padding-left: 15px !important;
         padding-right: 15px !important;
         text-align: center;
     }
 
-    #sisteNytt {
+    .sisteNytt {
         grid-template-columns: auto auto;
     }
 
@@ -1381,8 +1381,9 @@ input.checkbox:checked + label.checkmark:after {
         margin-bottom: none;
     }
 
-    #grayBox {
-        grid-template-columns: 1fr;
+    .grayBox {
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr;
         max-width: 820px;
         margin: 60px auto;
     }
@@ -1391,7 +1392,7 @@ input.checkbox:checked + label.checkmark:after {
         grid-template-columns: 1fr 1fr;
     }
 
-    #guideBtnWrap {
+    .guideBtnWrap {
         margin-top: 50px;
         flex-wrap: wrap;
     }
@@ -1412,7 +1413,7 @@ input.checkbox:checked + label.checkmark:after {
         grid-template-columns: 1fr 1fr;
     }
 
-    #rapporter {
+    .rapporter {
         grid-template-columns: 1fr 1fr;
     }
 }
@@ -1422,11 +1423,11 @@ input.checkbox:checked + label.checkmark:after {
         grid-template-columns: 100%;
     }
 
-    #toppSection picture img {
+    .toppSection picture img {
         margin-left: -200px;
     }
 
-    #sisteNytt {
+    .sisteNytt {
         grid-template-columns: auto;
     }
 
@@ -1440,11 +1441,11 @@ input.checkbox:checked + label.checkmark:after {
         grid-template-columns: 1fr;
     }
 
-    #horingerContainer {
+    .horingerContainer {
         grid-template-columns: 1fr;
     }
 
-    #rapporter {
+    .rapporter {
         grid-template-columns: 1fr;
     }
 }
@@ -1469,11 +1470,11 @@ input.checkbox:checked + label.checkmark:after {
         height: 48px;
     }
 
-    #toppSection picture {
+    .toppSection picture {
         height: 200px;
     }
 
-    #toppSection picture img {
+    .toppSection picture img {
         margin-left: 0px;
     }
 
@@ -1482,7 +1483,7 @@ input.checkbox:checked + label.checkmark:after {
         font-size: var(--small-f_size);
     }
 
-    #grayBox h2 {
+    .grayBox h2 {
         font-size: 1.5rem;
     }
 }
@@ -1504,7 +1505,7 @@ input.checkbox:checked + label.checkmark:after {
 }
 
 @media screen and (max-width: 290px) {
-    #toppSection picture img {
+    .toppSection picture img {
         margin-left: -100px;
     }
 
