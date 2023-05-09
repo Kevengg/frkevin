@@ -197,17 +197,17 @@ export default function Headers() {
                                 <h3>Forbrukerpolitikk</h3>
                             </a>
                             <div className="menuSpacer"></div>
-                            <a href="/forbrukerpolitikk/bærekraft">Bærekraft</a>
-                            <a href="/forbrukerpolitikk#openDigitaleRettigheter">
+                            <a href="/forbrukerpolitikk?side=berekraft">Bærekraft</a>
+                            <a href="/forbrukerpolitikk?side=digitaleRettigheter">
                                 Digitale rettigheter
                             </a>
-                            <a href="/forbrukerpolitikk#openoOkonomi">Økonomi</a>
-                            <a href="/forbrukerpolitikk#openForbrukerretigheter">
+                            <a href="/forbrukerpolitikk?side=okonomi">Økonomi</a>
+                            <a href="/forbrukerpolitikk?side=forbrukerretigheter">
                                 Forbrukerrettigheter
                             </a>
-                            <a href="/forbrukerpolitikk#openStrom">Strøm</a>
-                            <a href="/forbrukerpolitikk#openBolig">Bolig</a>
-                            <a href="/forbrukerpolitikk#openMat">Mat</a>
+                            <a href="/forbrukerpolitikk?side=strom">Strøm</a>
+                            <a href="/forbrukerpolitikk?side=bolig">Bolig</a>
+                            <a href="/forbrukerpolitikk?side=mat">Mat</a>
                         </div>
                         <div id="detteErOss" className="menuColum">
                             <a href="" className="menuHeader">

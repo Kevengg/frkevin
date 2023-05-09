@@ -1,5 +1,6 @@
 import styles from "../../css/forbrukerpolitikk.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import AlleOmeraader from "./alle_omeraader";
 import Berekraft from "./berekraft";
 import DigitaleRettigheter from "./digitale_rettigheter";
@@ -11,6 +12,16 @@ import Mat from "./mat";
 import { ToppSection } from "../../component";
 
 export default function Forbukerpolitikk(props) {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
+    useEffect(() => {
+        var underPage = queryParams.get("side");
+        if (underPage) {
+            document.getElementById(underPage).click();
+        }
+    }, []);
+
     function select(id) {
         document.getElementById(
             "alleOmeraader"
