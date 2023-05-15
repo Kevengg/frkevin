@@ -1,5 +1,5 @@
 import { ToppSection, GuideBtn, Rettigheter } from "../../component";
-import style from "../../css/tips_og_rettigheter.module.css";
+import style from "../../css/tips-og-rettigheter.module.css";
 
 const TipsOgRettigheter = () => {
     return (
