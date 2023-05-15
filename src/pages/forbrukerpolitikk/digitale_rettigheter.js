@@ -1,4 +1,4 @@
-import { Nyheter, Contacts, GrayBox, Raporter, Horinger, Campain } from "../../component";
+import { Nyheter, Contacts, GrayBox, Raporter, Horinger, Campain, Tester } from "../../component";
 import forbrukerrtilsynet from "../../img/Forbrukerrtilsynet.png";
 
 export default function DigitaleRettigheter() {
@@ -26,6 +26,7 @@ export default function DigitaleRettigheter() {
                 header2="Report on loot boxes: Insert coin"
                 topic2="Kampanje digital"
             />
+
             <Horinger sort="Digitalt" />
 
             <Contacts names={["Finn", "øyvind"]} />

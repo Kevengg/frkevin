@@ -1,4 +1,4 @@
-import { Nyheter, Contacts, GrayBox, Raporter, Horinger } from "../../component";
+import { Nyheter, Contacts, GrayBox, Raporter, Horinger, Tester } from "../../component";
 
 export default function Bolig() {
     return (

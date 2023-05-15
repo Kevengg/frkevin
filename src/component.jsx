@@ -863,21 +863,18 @@ export function Campain(props) {
     );
 }
 
-export function ToppSectionCustom({ children, path, img, imgAlt, maxWidth }) {
+export function ToppSectionCustom({ children, path, img, imgAlt, maxWidth, className, style }) {
     return (
-        <div className="toppSection">
+        <div className={`toppSection ${className}`} style={style}>
             <div style={{ backgroundColor: "var(--FR-color-lb)" }}>
                 <div className="toppSectionContent">
-                    <div className="path">
-                        {path && (
+                    {path && (
+                        <div className="path">
                             <>
                                 <a href="/">Forsiden</a>
                                 {path.map((p, index) => (
                                     <span key={index}>
-                                        <i
-                                            key={index + 1}
-                                            className="fa-solid fa-chevron-right fa-sm"
-                                        ></i>
+                                        <i className="fa-solid fa-chevron-right fa-sm"></i>
                                         <a
                                             href={
                                                 "/" +
@@ -892,8 +889,8 @@ export function ToppSectionCustom({ children, path, img, imgAlt, maxWidth }) {
                                     </span>
                                 ))}
                             </>
-                        )}
-                    </div>
+                        </div>
+                    )}
                     {children}
                 </div>
             </div>
@@ -977,7 +974,7 @@ export function ToppSection({ header, content, path, img, imgAlt }) {
 export const GuideBtn = (props) => {
     return (
         <div className="guideBtnWrap" style={props.style}>
-            <a href="/tips_og_rettigheter/har_du_en_sak" className="guideBtn" tabIndex="0">
+            <a href="/tips-og-rettigheter/har_du_en_sak" className="guideBtn" tabIndex="0">
                 <h2>Har du en sak?</h2>
                 <div
                     className="gridRowSpan2"
@@ -994,7 +991,7 @@ export const GuideBtn = (props) => {
                 <p>Finn ut om du har grunn til å klage</p>
             </a>
 
-            <a href="/tips_og_rettigheter/slik_klager_du" className="guideBtn" tabIndex="0">
+            <a href="/tips-og-rettigheter/slik_klager_du" className="guideBtn" tabIndex="0">
                 <h2>Slik klager du</h2>
                 <div
                     className="gridRowSpan2"
@@ -1011,7 +1008,7 @@ export const GuideBtn = (props) => {
                 <p>Sjekk vår klageguide</p>
             </a>
 
-            <a href="/tips_og_rettigheter/kontrakter" className="guideBtn" tabIndex="0">
+            <a href="/tips-og-rettigheter/kontrakter" className="guideBtn" tabIndex="0">
                 <h2>Kontrakter</h2>
                 <div
                     className="gridRowSpan2"
@@ -1036,11 +1033,11 @@ export function BreadCrumb({ names, path, style, className }) {
         <nav className={`path ${className}`} style={style}>
             {names.map((name, i) => {
                 return (
-                    <>
+                    <div key={i}>
                         {i != 0 && <Chevron size={"xs"}></Chevron>}
                         {i != path.length && <a href={path[i]}>{name}</a>}
                         {i == path.length && <span href={path[i]}>{name}</span>}
-                    </>
+                    </div>
                 );
             })}
         </nav>
@@ -1133,7 +1130,7 @@ export const Rettigheter = () => {
             <h1 style={{ textAlign: "left", marginTop: "60px" }}>Tips og rettigheter</h1>
             <div className="rettigheterWrap">
                 {/* <!-- Bil --> */}
-                <div className="rettigheter">
+                <a className="rettigheter" href="#">
                     <div className=" rettigheterSymbol">
                         <i className="fa-solid fa-car-side fa-xl"></i>
                     </div>
@@ -1146,9 +1143,9 @@ export const Rettigheter = () => {
                     <div className=" rettigheterDescription gridColSpan2">
                         <p>Kjøp, salg, reprasjon, leie, leasing, bøter, oppkjøring.</p>
                     </div>
-                </div>
+                </a>
                 {/* <!-- bolig --> */}
-                <div className="rettigheter">
+                <a className="rettigheter" href="#">
                     <div className=" rettigheterSymbol">
                         <i className="fa-solid fa-house fa-xl"></i>
                     </div>
@@ -1164,9 +1161,9 @@ export const Rettigheter = () => {
                             vannlevering, flyttetjenester.
                         </p>
                     </div>
-                </div>
+                </a>
                 {/* <!-- økonomi og betaling --> */}
-                <div className="rettigheter">
+                <a className="rettigheter" href="#">
                     <div className=" rettigheterSymbol">
                         <i className="fa-regular fa-credit-card fa-xl"></i>
                     </div>
@@ -1182,9 +1179,9 @@ export const Rettigheter = () => {
                             konkurs, kortreklamarsjon, svindel.
                         </p>
                     </div>
-                </div>
+                </a>
                 {/* <!-- reise --> */}
-                <div className="rettigheter">
+                <a className="rettigheter" href="/tips-og-rettigheter/reise">
                     <div className=" rettigheterSymbol">
                         <i className="fa-solid fa-plane-arrival fa-xl"></i>
                     </div>
@@ -1197,9 +1194,9 @@ export const Rettigheter = () => {
                     <div className=" rettigheterDescription gridColSpan2">
                         <p>Fly, pakkereise, tog, buss, taxi/drosje, hotellovernating.</p>
                     </div>
-                </div>
+                </a>
                 {/* <!-- digitalt --> */}
-                <div className="rettigheter">
+                <a className="rettigheter" href="#">
                     <div className=" rettigheterSymbol">
                         <i className="fa-solid fa-mobile-screen-button fa-xl"></i>
                     </div>
@@ -1215,9 +1212,9 @@ export const Rettigheter = () => {
                             tjenester, strømmetjenester, digitalt innhold.
                         </p>
                     </div>
-                </div>
+                </a>
                 {/* <!-- Andre varer og tenester --> */}
-                <div className="rettigheter">
+                <a className="rettigheter" href="#">
                     <div className=" rettigheterSymbol">
                         <i className="fa-solid fa-bag-shopping fa-xl"></i>
                     </div>
@@ -1230,7 +1227,7 @@ export const Rettigheter = () => {
                     <div className=" rettigheterDescription gridColSpan2">
                         Elektoniske varer, kler, møbler, velvære, andre tenester.
                     </div>
-                </div>
+                </a>
             </div>
         </>
     );

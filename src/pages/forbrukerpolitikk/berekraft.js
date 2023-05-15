@@ -28,8 +28,6 @@ export default function Berekraft() {
 
             <Raporter sort="Bærekraft" />
 
-            <Tester />
-
             <Horinger sort="Bærekraft" />
 
             <Contacts names={["Gunstein", "Andreas"]} />

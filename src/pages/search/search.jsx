@@ -68,7 +68,10 @@ export default function SearchPage(params) {
 
         // nyheter
         nyheter.forEach((nytt) => {
-            if (nytt.header.includes(searchKey) || nytt.topic.includes(searchKey)) {
+            if (
+                nytt.header &&
+                (nytt.header.includes(searchKey) || nytt.topic.includes(searchKey))
+            ) {
                 newData.push(nytt);
                 newNyheter.push(nytt);
             }
