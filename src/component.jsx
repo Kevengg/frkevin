@@ -421,7 +421,7 @@ function Nytt(props) {
             }
         >
             <div className="imgWrap">
-                <img src={img} alt={props.imgAlt} />
+                <img src={img ? img : sampleImg} alt={props.imgAlt} />
             </div>
             <div className="sisteNyttContent">
                 <div className="topic">{props.topic}</div>
@@ -718,51 +718,55 @@ export function Raporter(props) {
     );
 }
 
-export function Tester(props) {
-    if (props.sort) {
-        var testerList = [];
-        for (let index = 0; index < tester.length; index++) {
-            if (
-                tester[tester.length - (index + 1)].topic.toLowerCase() === props.sort.toLowerCase()
-            ) {
-                testerList.push(tester[tester.length - (index + 1)]);
-            }
-            if (testerList.length >= 3) {
-                break;
-            }
+export function Tester({ sort }) {
+    // get tests based on { filter }
+
+    let filteredTests = tester.map((t, i) => {
+        if (sort && t.topic.toLowerCase() == sort.toLowerCase()) {
+            console.log(sort);
+            return t;
+        } else if (!sort) {
+            return t;
         }
-    } else {
-        var testerList = [];
-        testerList.push(tester.slice(-3));
-    }
-    function testForTest() {
-        if (testerList[0]) {
-            return testerList.map((test, index) => {
-                return (
-                    <Nytt
-                        key={index}
-                        img={test.img ? test.img : sampleImg}
-                        imgAlt={test.imgAlt ? test.imgAlt : ""}
-                        topic={test.topic}
-                        header={test.header}
-                    />
-                );
-            });
+    });
+
+    function testSort(a, b) {
+        if (a.date > b.date) {
+            return 1;
+        } else if (a.date < b.date) {
+            return -1;
         } else {
-            return (
-                <div>
-                    <h2 style={{ color: "red" }}> ingen tester funnet, noe gikk galt</h2>
-                </div>
-            );
+            return 0;
         }
     }
 
+    filteredTests = filteredTests.sort(testSort);
+    filteredTests = [filteredTests[0], filteredTests[1], filteredTests[2]];
     return (
         <div style={{ marginTop: "70px" }}>
             <div className="sisteNyttHeaderWrapper">
                 <h2 style={{ marginBottom: "20px" }}>Tester</h2>
             </div>
-            <div className="sisteNytt">{testForTest()}</div>
+
+            <div className="sisteNytt">
+                {filteredTests[0] &&
+                    filteredTests.map((test, index) => {
+                        return (
+                            <Nytt
+                                key={index}
+                                img={test.img ? test.img : null}
+                                imgAlt={test.imgAlt ? test.imgAlt : ""}
+                                topic={test.topic}
+                                header={test.header}
+                            />
+                        );
+                    })}
+                {!filteredTests[0] && (
+                    <div>
+                        <h2 style={{ color: "red" }}> ingen tester funnet, noe gikk galt</h2>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
