@@ -67,7 +67,7 @@ export default function Headers() {
                 </div>
 
                 <div className="headerLinkHolder">
-                    <a href="/tips_og_rettigheter">Tips og rettigheter</a>
+                    <a href="/tips-og-rettigheter">Tips og rettigheter</a>
 
                     <a href="/forbrukerpolitikk">Forbrukerpolitikk</a>
 
@@ -172,16 +172,18 @@ export default function Headers() {
                                 <h3>Vi hjelper deg</h3>
                             </a>
                             <div className="menuSpacer"></div>
-                            <a href="/tips_og_rettigheter/har_du_en_sak">Har du en sak?</a>
+                            <a href="/tips-og-rettigheter/har_du_en_sak">Har du en sak?</a>
                             <a href="">Angrer du på et kjøp?</a>
-                            <a href="/tips_og_rettigheter/slik_klager_du">Slik klager du</a>
+                            <a href="/tips-og-rettigheter/slik_klager_du">Slik klager du</a>
                             <a href="">Klagebrev</a>
-                            <a href="/tips_og_rettigheter/kontrakter">Kontrakter</a>
+                            <a href="/tips-og-rettigheter/kontrakter">Kontrakter</a>
                             <a href="/tester">Våre tester</a>
-                            <a href="">Flykalkulatoren</a>
+                            <a href="/tips-og-rettigheter/reise/fly/flykalkulator">
+                                Flykalkulatoren
+                            </a>
                         </div>
                         <div id="TipsOgRettigheter" className="menuColum">
-                            <a href="/tips_og_rettigheter" className="menuHeader">
+                            <a href="/tips-og-rettigheter" className="menuHeader">
                                 <h3>Tips og rettigheter</h3>
                             </a>
                             <div className="menuSpacer"></div>
