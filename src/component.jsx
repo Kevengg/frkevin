@@ -431,7 +431,7 @@ function Nytt(props) {
     );
 }
 
-export function Nyheter(props) {
+export function Nyheter(props, { filter }) {
     // optimized and explained by chatGPT
 
     function sortNews(a, b) {

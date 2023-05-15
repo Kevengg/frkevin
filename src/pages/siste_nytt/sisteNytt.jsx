@@ -1,6 +1,7 @@
 import { LinkBtnOld, ToppSectionCustom, sortAlfa, Chevron } from "../../component";
 import style from "../../css/sisteNytt.module.css";
 import nyheter from "../../data/nyheter.json";
+import tester from "../../data/tester.json";
 import { useState, useEffect } from "react";
 
 export default function SisteNytt(params) {
@@ -39,12 +40,53 @@ export default function SisteNytt(params) {
     }, [newsList.sort(sortData)]);
 
     function sortData(a, b) {
-        if (a.article.date > b.article.date) {
+        if (a.test) {
+            a = [
+                tester
+                    .map((test) => {
+                        if (test.header == a.test) {
+                            return test;
+                        }
+                    })
+                    .filter((item) => item !== undefined)[0].date,
+                tester
+                    .map((test) => {
+                        if (test.header == a.test) {
+                            return test;
+                        }
+                    })
+                    .filter((item) => item !== undefined)[0].header,
+            ];
+        } else {
+            a = [a.article.date, a.header];
+        }
+
+        if (b.test) {
+            b = [
+                tester
+                    .map((test) => {
+                        if (test.header == b.test) {
+                            return test;
+                        }
+                    })
+                    .filter((item) => item !== undefined)[0].date,
+                tester
+                    .map((test) => {
+                        if (test.header == b.test) {
+                            return test;
+                        }
+                    })
+                    .filter((item) => item !== undefined)[0].header,
+            ];
+        } else {
+            b = [b.article.date, b.header];
+        }
+        if (a[0] > b[0]) {
             return -1;
-        } else if (a.article.date < b.article.date) {
+        } else if (a[0] < b[0]) {
             return 1;
-        } else if (a.article.date == b.article.date) {
-            return sortAlfa(a.header.replace(/ /g, ""), b.header.replace(/ /g, ""));
+        } else if (a[0] == b[0]) {
+            return sortAlfa(a[1].replace(/ /g, ""), b[1].replace(/ /g, ""));
         }
     }
     useEffect(() => {
@@ -65,24 +107,41 @@ export default function SisteNytt(params) {
     }, [newsFilter]);
 
     function Nytt({ news }) {
+        if (news.test) {
+            news = tester
+                .map((test) => {
+                    if (test.header == news.test) {
+                        return test;
+                    }
+                })
+                .filter((item) => item !== undefined)[0];
+        }
         return (
             <a
                 className={style.news}
-                href={`/siste-nytt/artikkel?artikkel=${news.header
-                    .toLowerCase()
-                    .replace(/ /g, "-")}`}
+                href={
+                    news.readMore
+                        ? `/tester?page=${news.header
+                              .toLowerCase()
+                              .replace(/ /g, "-")}&readmore=true`
+                        : `/siste-nytt/artikkel?artikkel=${
+                              news.header && news.header.toLowerCase().replace(/ /g, "-")
+                          }`
+                }
             >
                 <div className={`imgWrap ${style.newsImg}`}>
                     <img
-                        src={news.img.includes(":\\") ? news.img : `/img/${news.img}`}
+                        src={news.img && (news.img.includes(":\\") ? news.img : `/img/${news.img}`)}
                         alt={nyheter[nyheter.length - 1].alt}
                     />
                 </div>
                 <div className={style.newsContent}>
                     <div className={style.newsTopic}>{news.topic}</div>
                     <h3 className={style.newsHeader}>
-                        {news.header.substring(0, 65)}
-                        {news.header.length > 65 && "..."}
+                        {news.readMore ? news.readMore.header : news.header.substring(0, 65)}
+                        {news.readMore
+                            ? news.readMore.header.length > 65 && "..."
+                            : news.header.length > 65 && "..."}
                     </h3>
                 </div>
             </a>

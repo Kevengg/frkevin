@@ -513,6 +513,19 @@ export default function TestPage({ page }) {
                                         }}
                                     >
                                         9 - 10
+                                        <span style={{ marginLeft: "7px" }}>
+                                            (
+                                            {
+                                                page.objects
+                                                    .map((object) => {
+                                                        if (object.rating >= 9) {
+                                                            return object;
+                                                        }
+                                                    })
+                                                    .filter((item) => item !== undefined).length
+                                            }
+                                            )
+                                        </span>
                                     </span>
                                     <div>
                                         <input
@@ -531,6 +544,22 @@ export default function TestPage({ page }) {
                                         }}
                                     >
                                         7 - 8
+                                        <span style={{ marginLeft: "7px" }}>
+                                            (
+                                            {
+                                                page.objects
+                                                    .map((object) => {
+                                                        if (
+                                                            object.rating >= 7 &&
+                                                            object.rating <= 8
+                                                        ) {
+                                                            return object;
+                                                        }
+                                                    })
+                                                    .filter((item) => item !== undefined).length
+                                            }
+                                            )
+                                        </span>
                                     </span>
                                     <div>
                                         <input
@@ -549,6 +578,22 @@ export default function TestPage({ page }) {
                                         }}
                                     >
                                         5 - 6
+                                        <span style={{ marginLeft: "7px" }}>
+                                            (
+                                            {
+                                                page.objects
+                                                    .map((object) => {
+                                                        if (
+                                                            object.rating >= 5 &&
+                                                            object.rating <= 6
+                                                        ) {
+                                                            return object;
+                                                        }
+                                                    })
+                                                    .filter((item) => item !== undefined).length
+                                            }
+                                            )
+                                        </span>
                                     </span>
                                     <div>
                                         <input
@@ -567,6 +612,22 @@ export default function TestPage({ page }) {
                                         }}
                                     >
                                         3 - 4
+                                        <span style={{ marginLeft: "7px" }}>
+                                            (
+                                            {
+                                                page.objects
+                                                    .map((object) => {
+                                                        if (
+                                                            object.rating >= 3 &&
+                                                            object.rating <= 4
+                                                        ) {
+                                                            return object;
+                                                        }
+                                                    })
+                                                    .filter((item) => item !== undefined).length
+                                            }
+                                            )
+                                        </span>
                                     </span>
                                     <div>
                                         <input
@@ -585,6 +646,22 @@ export default function TestPage({ page }) {
                                         }}
                                     >
                                         1 - 2
+                                        <span style={{ marginLeft: "7px" }}>
+                                            (
+                                            {
+                                                page.objects
+                                                    .map((object) => {
+                                                        if (
+                                                            object.rating >= 1 &&
+                                                            object.rating <= 2
+                                                        ) {
+                                                            return object;
+                                                        }
+                                                    })
+                                                    .filter((item) => item !== undefined).length
+                                            }
+                                            )
+                                        </span>
                                     </span>
                                 </div>
                                 <p style={{ marginTop: "20px" }}>

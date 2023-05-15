@@ -285,6 +285,11 @@
     color: white;
 }
 
+.ratingWrap span {
+    width: fit-content;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 920px) {
     #testPageGrayBox {
         display: flex;

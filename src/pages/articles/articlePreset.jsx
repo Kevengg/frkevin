@@ -1,8 +1,18 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import nyheter from "../../data/nyheter.json";
-import { Chevron, Contacts, Nyheter, formatContent, formatDate, Error } from "../../component";
+import {
+    Chevron,
+    Contacts,
+    Nyheter,
+    formatContent,
+    formatDate,
+    Error,
+    LinkBtnOld,
+} from "../../component";
 import style from "../../css/tester/readMore.module.css";
+import { BreadCrumb } from "../../component";
+import kontakter from "../../data/kontakter.json";
 
 export default function Article(params) {
     const location = useLocation();
@@ -27,55 +37,105 @@ export default function Article(params) {
         <>
             {(typeof page == "object" && (
                 <main>
-                    <div className="maxWidthSmall">
-                        <nav className="path">
-                            <Link to="">Tester</Link>
-                            <Chevron size="xs" />
-                            <Link
-                                to={`?searchBar:&searchBtn:${page.topic
+                    <div className="maxWidthMedium">
+                        <BreadCrumb
+                            names={["Forsiden", "Siste nytt", page.header]}
+                            path={[
+                                "/",
+                                "/siste-nytt",
+                                `/siste-nytt/artikkel?artikkel=${page.header
                                     .toLowerCase()
-                                    .replace(/ /g, "-")}`}
-                            >
-                                {page.topic}
-                            </Link>
-                            <Chevron size="xs" />
-                            <span>{page.header}</span>
-                        </nav>
-                        <h1 className={style.pageHeader}>{page.header}</h1>
-                        <div className={style.date}>
-                            {formatDate(page.article.date, "DD.longM.YYYY")}
-                        </div>
-                        <div className={style.page}>
+                                    .replace(/ /g, "-")}`,
+                            ]}
+                        ></BreadCrumb>
+                    </div>
+                    <div className="maxWidthSmall" style={{ padding: 0 }}>
+                        <div className={style.pageTopic}>{page.topic}</div>
+                    </div>
+                    <div className="maxWidthSmall" style={{ padding: "20px 0" }}>
+                        <div className={style.pageWrap}>
                             <div className={style.pageLeft}>
-                                {page.article.content ? (
-                                    formatContent(page.article.content)
-                                ) : (
-                                    <Error back={"/siste-nytt"}></Error>
-                                )}
+                                <div>
+                                    <h1 style={{ padding: " 0 0 20px 0" }}> {page.header}</h1>
+                                    <div className={style.date} style={{ padding: " 0 0 20px 0" }}>
+                                        {formatDate(page.article.date, "DD.longM.YYYY")}
+                                    </div>
+                                    <article>
+                                        {page.article.content ? (
+                                            formatContent(page.article.content)
+                                        ) : (
+                                            <Error back={"/siste-nytt"}></Error>
+                                        )}
+                                    </article>
+                                </div>
                             </div>
                             <div className={style.pageRight}>
-                                <Contacts
-                                    names={page.article.writers}
-                                    header=""
-                                    className={style.contacts}
-                                />
-                                <div className={style.tldr}>
-                                    <h2>{page.article.tldr.header}</h2>
-                                    <div className={style.tldrSpacer}></div>
+                                {/* side */}
+                                <div>
+                                    {page.article.writers.map((w) => {
+                                        let writer = kontakter
+                                            .map((kontakt) => {
+                                                if (
+                                                    kontakt.firstName.toLowerCase() ==
+                                                    w.toLowerCase()
+                                                ) {
+                                                    return kontakt;
+                                                }
+                                            })
+                                            .filter((item) => item !== undefined)[0];
+
+                                        return (
+                                            <div
+                                                style={{
+                                                    marginBottom: "30px",
+                                                    borderBottom: "1px solid var(--FR-color-lb) ",
+                                                }}
+                                            >
+                                                <div className={style.contactHeader}>
+                                                    <div className={`imgWrap ${style.contactImg}`}>
+                                                        <img
+                                                            src={
+                                                                writer.img.includes("://")
+                                                                    ? writer.img
+                                                                    : `/img/${writer.img}`
+                                                            }
+                                                            alt={writer.alt}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <h4>{`${writer.firstName} ${writer.secondName} ${writer.lastName}`}</h4>
+                                                        <div>{writer.position}</div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    {writer.tlf
+                                                        ? writer.tlf.includes("(")
+                                                            ? writer.tlf
+                                                            : "(+47) " + writer.tlf
+                                                        : ""}
+                                                </div>
+                                                <div style={{ marginTop: "15px" }}>
+                                                    {writer.email}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                <div className={style.articleTldr}>
                                     <article>{formatContent(page.article.tldr.content)}</article>
                                 </div>
                                 <div>
                                     {page.article.tldr.btns
                                         ? page.article.tldr.btns.map((btn, index) => {
                                               return (
-                                                  <a
-                                                      className={style.newsLetter}
+                                                  <LinkBtnOld
+                                                      content={formatContent(btn.content)}
                                                       href={btn.href}
-                                                      style={{ textDecoration: "none" }}
                                                       key={index}
-                                                  >
-                                                      {formatContent(btn.content)}
-                                                  </a>
+                                                      color={"var(--FR-color-lb)"}
+                                                      hover={"#88e2e6"}
+                                                      style={{ width: "100%", marginTop: "20px" }}
+                                                  ></LinkBtnOld>
                                               );
                                           })
                                         : null}
@@ -83,11 +143,9 @@ export default function Article(params) {
                             </div>
                         </div>
                     </div>
-                    <div className={style.related}>
-                        <h2 className="maxWidthSmall">Relaterte saker</h2>
-                    </div>
+
                     <div className="maxWidthSmall">
-                        <Nyheter />
+                        <Nyheter header="Relaterte saker" />
                     </div>
                 </main>
             )) || <Error type="404"></Error>}
