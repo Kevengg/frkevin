@@ -4,7 +4,7 @@
     --main-f_family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --line-height: 1.5;
     --site-width: 1500px;
-    --site-width-medium: 1408px;
+    --site-width-medium: calc(var(--site-width) - 100px);
     --site-width-small: calc(var(--site-width) - 300px);
     --site-text-color: #000;
     --site-backround-color: #ffffff;
@@ -37,7 +37,6 @@
     list-style: none;
     text-decoration: none;
     font-family: var(--main-f_family);
-    overflow-x: visible;
 }
 
 html,
@@ -48,10 +47,6 @@ body {
     font-size: var(--main-f_size);
     font-family: var(--main-f_family);
     color: var(--site-text-color);
-}
-
-html {
-    overflow: hidden;
 }
 
 /*sticky footer*/
