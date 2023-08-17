@@ -1,9 +1,6 @@
-import { Link } from "react-router-dom";
 import frLogo from "../img/forbrukerradet_logo.svg";
 import frLogoSmall from "../img/forbrukerradet_logo_symbol.svg";
 import { useState } from "react";
-
-console.log("main js loaded");
 
 var menuOpen = false;
 function openMenu() {

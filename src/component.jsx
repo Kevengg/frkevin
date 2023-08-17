@@ -265,10 +265,6 @@ export function Slider(props) {
                     if (props.maxValue - parseInt(e.target.value) > gap) {
                         props.setMinValue(parseInt(e.target.value));
                     } else props.setMinValue(props.maxValue - (gap + 1));
-                    console.log("first");
-                }}
-                onClick={() => {
-                    console.log("first");
                 }}
             />
             {/* <div className="sliderChevronWrap">
@@ -863,7 +859,7 @@ export function Campain(props) {
     );
 }
 
-export function ToppSectionCustom({ children, path, img, imgAlt, maxWidth, className, style }) {
+export function ToppSectionCustom({ children, path, img, imgAlt, className, style }) {
     return (
         <div className={`toppSection ${className}`} style={style}>
             <div style={{ backgroundColor: "var(--FR-color-lb)" }}>

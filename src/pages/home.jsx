@@ -35,21 +35,7 @@ export default function Home() {
                 header="Vi veileder forbrukere, og påvirker samfunnet i en forbrukervennlig
                             retning."
             ></ToppSection>
-            {/* <!-- ^ main ^ --> */}
-            {/* <div id="toppSection">
-                <div>
-                    <div id="toppSectionContent">
-                        <h1>
-                            Vi veileder forbrukere, og påvirker samfunnet i en forbrukervennlig
-                            retning.
-                        </h1>
-                    </div>
-                </div>
-                <picture>
-                    <img src="https://picsum.photos/id/435/1300/520" alt=""></img>
-                </picture>
-            </div> */}
-            {/* <!-- v maxWidth v --> */}
+
             <div className="maxWidth">
                 <GuideBtn style={{ marginTop: "-150px" }}></GuideBtn>
 
